@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './navegacao/home/home.component';
 import { AcessoNegadoComponent } from './navegacao/acesso-negado/acesso-negado.component';
+import { VantComponent } from './navegacao/vant/vant.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AcessoNegadoComponent
+    AcessoNegadoComponent,
+    VantComponent
   ],
   imports: [
     BrowserModule,
