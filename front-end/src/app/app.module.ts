@@ -8,13 +8,15 @@ import { AcessoNegadoComponent } from './navegacao/acesso-negado/acesso-negado.c
 import { VantComponent } from './navegacao/vant/vant.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
+import { SigninComponent } from './modules/signin/signin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AcessoNegadoComponent,
-    VantComponent
+    VantComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
