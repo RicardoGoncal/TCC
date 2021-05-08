@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
 import { HttpClientService } from '../../service/http-client.service'
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
