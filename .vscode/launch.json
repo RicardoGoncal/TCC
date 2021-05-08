@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-TccApplication<tcc>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.fatec.tcc.TccApplication",
+            "projectName": "tcc",
+            "args": ""
+        }
+    ]
+}
