@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthenticationService } from './authentication.service';
+import { catchError, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 export class Categoria{
   constructor(
@@ -8,22 +11,54 @@ export class Categoria{
   ) {}
 }
 
+export class Usuario {
+  constructor(
+    public username: string,
+    public password: string,
+  ) { }
+
+}
+
+export class Vants{
+  constructor(
+    public username: string,
+    public password: string,
+  ) { }
+}
 @Injectable({
   providedIn: 'root'
 })
 export class HttpClientService {
 
-  constructor(
-    private httpClient:HttpClient
-  ) { 
-     }
+  basic: any;
 
-     getCategorias(){
-    let username='javainuse'
-    let password='password'
-  
-    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
-    return this.httpClient.get<Categoria[]>('http://localhost:8080/categorias',{headers});
+  constructor( private httpClient: HttpClient,
+    private auth: AuthenticationService  ) {  }
+
+  getCategorias() {
+    
+    this.basic = sessionStorage.getItem('basicauth')
+     
+    let headers = new HttpHeaders({ Authorization: this.basic });
+    return this.httpClient.get<Usuario>('http://localhost:8080/categorias', { headers })
+    
   }
- 
+
+  getVants() {
+    this.basic = sessionStorage.getItem('basicauth')
+    let headers = new HttpHeaders({ Authorization: this.basic });
+    return this.httpClient.get<Vants[]>('http://localhost:8080/vants', { headers })
+    .pipe(
+      tap(vants => console.log('leu os vants' + vants)),
+      catchError(this.handlerError('getCliente', []))
+    );
+  }
+
+  private handlerError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error)
+      return of(result as T)
+    }
+  }
+
 }

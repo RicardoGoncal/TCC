@@ -1,0 +1,26 @@
+.container {
+    position: relative;
+    float: left;
+    width: 100%;
+    margin-top: 180px;
+    display: flex;
+    justify-content: center;
+}
+.example-form{
+  width: 100px;
+}
+  
+.error-auth {
+    color: red;
+    font-size: 11px;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}

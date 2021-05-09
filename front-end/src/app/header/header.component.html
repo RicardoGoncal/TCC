@@ -1,14 +1,25 @@
-<header>
-  <nav class ="navbar navbar-expand-md navbar-dark bg-dark">
-  <div><a href="https://www.javainuse.com" class="navbar-brand">JavaInUse</a></div>
-  
-  <ul class="navbar-nav">
-     
-    <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/" class="nav-link">View Employees</a></li>
-    <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/home" class="nav-link">Vants</a></li>
-    <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a></li>
-    <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link">LogOut</a></li>
-  
-  </ul>
-    </nav>
-  </header>
+  <p>
+    <mat-toolbar color="primary">
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Vants controle</span>
+      <span class="example-spacer"></span>
+      <div class="botao-home">
+
+        <button *ngIf="loginService.isUserLoggedIn()"  mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+          <mat-icon>home</mat-icon>
+          <a routerLink="/vants" class="nav-link">Vants</a>
+        </button>
+      </div>
+        <div class="botao-logout">
+
+        <button *ngIf="loginService.isUserLoggedIn()" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+          <mat-icon>logout</mat-icon>
+          <a  routerLink="/logout" class="nav-link">Logout</a>
+        </button>
+      </div>
+      
+    </mat-toolbar>
+  </p>
+

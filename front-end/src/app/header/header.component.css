@@ -1,0 +1,14 @@
+.botao-home{
+    margin-left: 48px;
+    
+}
+
+.botao-home a, .botao-logout a {
+    color: white;
+    text-decoration: none;
+    margin-left: 8px;
+}
+
+.botao-logout {
+    margin-left: 80%;
+}

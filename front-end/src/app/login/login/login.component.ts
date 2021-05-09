@@ -20,16 +20,15 @@ export class LoginComponent implements OnInit {
   }
 
   checkLogin() {
-    (this.loginservice.authenticate(this.username, this.password).subscribe(
-      data => {
-        this.router.navigate([''])
+    this.loginservice.authenticate(this.username, this.password).subscribe(
+      res => {
+        this.router.navigate(['vants'])
         this.invalidLogin = false
       },
       error => {
         this.invalidLogin = true
 
       }
-    )
     );
 
   }
