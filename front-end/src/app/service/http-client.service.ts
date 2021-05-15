@@ -71,6 +71,7 @@ export class HttpClientService {
   getMensagem(type: string){
 
     let url = `http://localhost:8080/mensagens/${type}`
+    
     this.basic = sessionStorage.getItem('basicauth')
     let headers = new HttpHeaders({ Authorization: this.basic });
     return this.httpClient.get<Mensagem[]>(url, { headers })
