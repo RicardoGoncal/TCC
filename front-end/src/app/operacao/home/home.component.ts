@@ -50,6 +50,18 @@ export class HomeComponent implements OnInit {
     this.categorias = response;
   }
 
+  excluir(f: string){
+    if(f == 'displayClimb') this.displayClimb = false
+    if(f == 'displayRoute') this.displayRoute = false
+    if(f == 'displayEmergency') this.displayEmergency = false
+    if(f == 'displayDescend') this.displayDescend = false
+    if(f == 'displayComms') this.displayComms = false
+    if(f == 'displaySpeed') this.displaySpeed = false
+    if(f == 'displayReport') this.displayReport = false
+    if(f == 'displayCrossing') this.displayCrossing = false
+    this.maxMensagem--;
+  }
+
   climb() {
     this.httpClientService.getMensagem('climb').subscribe(
       response => {

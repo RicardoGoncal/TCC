@@ -13,7 +13,7 @@
                     </mat-select>
                 </mat-form-field>
                 <input matInput placeholder="100" type="number" value="numeroClimb" min=0  *ngIf="displayClimb">
-                <button mat-raised-button color="warn" *ngIf="displayClimb">
+                <button mat-raised-button color="warn" *ngIf="displayClimb" (click)="excluir('displayClimb')">
                     <mat-icon>delete</mat-icon>
                 </button>
             </div>
