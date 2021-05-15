@@ -13,7 +13,7 @@
                     </mat-select>
                 </mat-form-field>
                 <input matInput placeholder="100" type="number" value="numeroClimb" min=0  *ngIf="displayClimb">
-                <button mat-raised-button color="warn" *ngIf="displayClimb" (click)="excluir('displayClimb')">
+                <button  class="button-del" mat-raised-button color="warn" *ngIf="displayClimb" (click)="excluir('displayClimb')">
                     <mat-icon>delete</mat-icon>
                 </button>
             </div>
@@ -26,6 +26,9 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
+                <button class="button-del" mat-raised-button color="warn" *ngIf="displayRoute" (click)="excluir('displayRoute')">
+                    <mat-icon>delete</mat-icon>
+                </button>
             </div>
             <div class="row-cards">
                 <mat-form-field appearance="fill" *ngIf="displayEmergency">
@@ -36,6 +39,9 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
+                <button class="button-del" mat-raised-button color="warn" *ngIf="displayEmergency" (click)="excluir('displayEmergency')">
+                    <mat-icon>delete</mat-icon>
+                </button>
             </div>
             <div class="row-cards">
                 <mat-form-field appearance="fill" *ngIf="displayDescend">
@@ -46,6 +52,9 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
+                <button class="button-del" mat-raised-button color="warn" *ngIf="displayDescend" (click)="excluir('displayDescend')">
+                    <mat-icon>delete</mat-icon>
+                </button>
             </div>
             <div class="row-cards">
                 <mat-form-field appearance="fill" *ngIf="displayComms">
@@ -56,6 +65,9 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
+                <button class="button-del" mat-raised-button color="warn" *ngIf="displayComms" (click)="excluir('displayComms')">
+                    <mat-icon>delete</mat-icon>
+                </button>
             </div>
             <div class="row-cards">
                 <mat-form-field appearance="fill" *ngIf="displaySpeed">
@@ -66,6 +78,9 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
+                <button class="button-del" mat-raised-button color="warn" *ngIf="displaySpeed" (click)="excluir('displaySpeed')">
+                    <mat-icon>delete</mat-icon>
+                </button>
             </div>
             <div class="row-cards">
                 <mat-form-field appearance="fill" *ngIf="displayReport">
@@ -76,6 +91,9 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
+                <button class="button-del" mat-raised-button color="warn" *ngIf="displayReport" (click)="excluir('displayReport')">
+                    <mat-icon>delete</mat-icon>
+                </button>
             </div>
             <div class="row-cards">
                 <mat-form-field appearance="fill" *ngIf="displayCrossing">
@@ -86,6 +104,9 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
+                <button class="button-del" mat-raised-button color="warn" *ngIf="displayCrossing" (click)="excluir('displayCrossing')">
+                    <mat-icon>delete</mat-icon>
+                </button>
             </div>
         </div>
     </div>

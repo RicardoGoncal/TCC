@@ -57,3 +57,14 @@ button{
     align-items: center;
     align-content: center;
 }
+
+.button-del{
+    background-color: rgba(255, 0, 0, 0.822);
+    width: 5%;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    border-radius: 80%;
+    display: flex;
+    padding: 2px 2px 2px 2px;
+}

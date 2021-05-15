@@ -59,6 +59,7 @@ export class HomeComponent implements OnInit {
     if(f == 'displaySpeed') this.displaySpeed = false
     if(f == 'displayReport') this.displayReport = false
     if(f == 'displayCrossing') this.displayCrossing = false
+    
     this.maxMensagem--;
   }
 
