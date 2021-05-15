@@ -1,17 +1,13 @@
 package com.fatec.tcc.controller;
 
-import com.fatec.tcc.model.Categoria;
 import com.fatec.tcc.model.Mensagem;
-import com.fatec.tcc.service.CategoriaService;
 import com.fatec.tcc.service.MensagemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("mensagens")
 public class MensagemController {
@@ -24,4 +20,10 @@ public class MensagemController {
         List<Mensagem> mensagens = mensagemService.listar();
         return ResponseEntity.ok().body(mensagens);
     }
+
+//    @GetMapping()
+//    public ResponseEntity<List<Mensagem>> buscarMensagem(@RequestBody String mensagem){
+//        List<Mensagem> mensagens = mensagemService.findMessage(mensagem);
+//        return ResponseEntity.ok().body(mensagens);
+//    }
 }

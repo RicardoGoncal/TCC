@@ -16,4 +16,8 @@ public class MensagemService {
     public List<Mensagem> listar() {
         return mensagemRepository.findAll();
     }
+
+    public List<Mensagem> findMessage(String mensagem) {
+        return mensagemRepository.findAllByMensagemContaining(mensagem);
+    }
 }

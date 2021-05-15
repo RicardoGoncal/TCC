@@ -1,7 +1,6 @@
 package com.fatec.tcc.controller;
 
 import com.fatec.tcc.model.Categoria;
-import com.fatec.tcc.repository.CategoriaRepository;
 import com.fatec.tcc.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
