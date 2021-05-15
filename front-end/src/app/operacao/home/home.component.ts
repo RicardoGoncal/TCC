@@ -18,6 +18,13 @@ export class HomeComponent implements OnInit {
   mensagens: Mensagem[];
 
   displayClimb: boolean = false;
+  displayRoute: boolean = false;
+  displayEmergency: boolean = false;
+  displayDescend: boolean = false;
+  displayComms: boolean = false;
+  displaySpeed: boolean = false;
+  displayReport: boolean = false;
+  displayCrossing: boolean = false;
 
   constructor(
     private httpClientService: HttpClientService
@@ -34,14 +41,65 @@ export class HomeComponent implements OnInit {
     this.categorias = response;
   }
 
-  handleSuccessfulResponseClimb(response) {
+  handleSuccessfulResponseMsg(response) {
     this.mensagens = response
-    this.displayClimb = true;
   }
 
   climb(){
     this.httpClientService.getMensagem('climb').subscribe(
-      response => this.handleSuccessfulResponseClimb(response)
+      response => { this.handleSuccessfulResponseMsg(response) 
+        this.displayClimb = true;}
+      
     );
   }
+
+  route(){
+    this.httpClientService.getMensagem('route').subscribe(
+      response => { this.handleSuccessfulResponseMsg(response) 
+        this.displayRoute = true;}
+    );
+  }
+
+  emergency(){
+    this.httpClientService.getMensagem('emergency').subscribe(
+      response => { this.handleSuccessfulResponseMsg(response) 
+        this.displayEmergency = true;}
+    );
+  }
+
+  descend(){
+    this.httpClientService.getMensagem('descend').subscribe(
+      response => { this.handleSuccessfulResponseMsg(response) 
+        this.displayDescend = true;}
+    );
+  }
+
+  comms(){
+    this.httpClientService.getMensagem('comms').subscribe(
+      response => { this.handleSuccessfulResponseMsg(response) 
+        this.displayComms = true;}
+    );
+  }
+
+  speed(){
+    this.httpClientService.getMensagem('speed').subscribe(
+      response => { this.handleSuccessfulResponseMsg(response) 
+        this.displaySpeed = true;}
+    );
+  }
+
+  report(){
+    this.httpClientService.getMensagem('report').subscribe(
+      response => { this.handleSuccessfulResponseMsg(response) 
+        this.displayReport = true;}
+    );
+  }
+
+  crossing(){
+    this.httpClientService.getMensagem('crossing').subscribe(
+      response => { this.handleSuccessfulResponseMsg(response) 
+        this.displayCrossing = true;}
+    );
+  }
+
 }
