@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientService } from '../../service/http-client.service'
 
-interface Mensagem{
+interface Mensagem {
   id: string;
   mensagem: string;
 }
@@ -15,7 +15,14 @@ export class HomeComponent implements OnInit {
 
   categorias: string[];
 
-  mensagens: Mensagem[];
+  mensagensClimb: Mensagem[];
+  mensagensRoute: Mensagem[];
+  mensagensEmergency: Mensagem[];
+  mensagensDescend: Mensagem[];
+  mensagensComms: Mensagem[];
+  mensagensSpeed: Mensagem[];
+  mensagensReport: Mensagem[];
+  mensagensCrossing: Mensagem[];
 
   displayClimb: boolean = false;
   displayRoute: boolean = false;
@@ -41,64 +48,76 @@ export class HomeComponent implements OnInit {
     this.categorias = response;
   }
 
-  handleSuccessfulResponseMsg(response) {
-    this.mensagens = response
-  }
-
-  climb(){
+  climb() {
     this.httpClientService.getMensagem('climb').subscribe(
-      response => { this.handleSuccessfulResponseMsg(response) 
-        this.displayClimb = true;}
-      
+      response => {
+        this.mensagensClimb = response
+        this.displayClimb = true;
+      }
+
     );
   }
 
-  route(){
+  route() {
     this.httpClientService.getMensagem('route').subscribe(
-      response => { this.handleSuccessfulResponseMsg(response) 
-        this.displayRoute = true;}
+      response => {
+        this.mensagensRoute = response
+        this.displayRoute = true;
+      }
     );
   }
 
-  emergency(){
+  emergency() {
     this.httpClientService.getMensagem('emergency').subscribe(
-      response => { this.handleSuccessfulResponseMsg(response) 
-        this.displayEmergency = true;}
+      response => {
+        this.mensagensEmergency=response
+        this.displayEmergency = true;
+      }
     );
   }
 
-  descend(){
+  descend() {
     this.httpClientService.getMensagem('descend').subscribe(
-      response => { this.handleSuccessfulResponseMsg(response) 
-        this.displayDescend = true;}
+      response => {
+        this.mensagensDescend = response
+        this.displayDescend = true;
+      }
     );
   }
 
-  comms(){
+  comms() {
     this.httpClientService.getMensagem('comms').subscribe(
-      response => { this.handleSuccessfulResponseMsg(response) 
-        this.displayComms = true;}
+      response => {
+        this.mensagensComms = response
+        this.displayComms = true;
+      }
     );
   }
 
-  speed(){
+  speed() {
     this.httpClientService.getMensagem('speed').subscribe(
-      response => { this.handleSuccessfulResponseMsg(response) 
-        this.displaySpeed = true;}
+      response => {
+        this.mensagensSpeed = response
+        this.displaySpeed = true;
+      }
     );
   }
 
-  report(){
+  report() {
     this.httpClientService.getMensagem('report').subscribe(
-      response => { this.handleSuccessfulResponseMsg(response) 
-        this.displayReport = true;}
+      response => {
+        this.mensagensReport = response
+        this.displayReport = true;
+      }
     );
   }
 
-  crossing(){
+  crossing() {
     this.httpClientService.getMensagem('crossing').subscribe(
-      response => { this.handleSuccessfulResponseMsg(response) 
-        this.displayCrossing = true;}
+      response => {
+        this.mensagensCrossing = response
+        this.displayCrossing = true;
+      }
     );
   }
 

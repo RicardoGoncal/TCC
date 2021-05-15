@@ -7,7 +7,7 @@
                 <mat-form-field appearance="fill" *ngIf="displayClimb">
                     <mat-label>Climb</mat-label>
                     <mat-select>
-                        <mat-option *ngFor="let msg of mensagens" [value]="msg.id">
+                        <mat-option *ngFor="let msg of mensagensClimb" [value]="msg.id">
                             {{msg.mensagem}}
                         </mat-option>
                     </mat-select>
@@ -17,7 +17,7 @@
                 <mat-form-field appearance="fill" *ngIf="displayRoute">
                     <mat-label>Route</mat-label>
                     <mat-select>
-                        <mat-option *ngFor="let msg of mensagens" [value]="msg.id">
+                        <mat-option *ngFor="let msg of mensagensRoute" [value]="msg.id">
                             {{msg.mensagem}}
                         </mat-option>
                     </mat-select>
@@ -27,7 +27,7 @@
                 <mat-form-field appearance="fill" *ngIf="displayEmergency">
                     <mat-label>Emergency</mat-label>
                     <mat-select>
-                        <mat-option *ngFor="let msg of mensagens" [value]="msg.id">
+                        <mat-option *ngFor="let msg of mensagensEmergency" [value]="msg.id">
                             {{msg.mensagem}}
                         </mat-option>
                     </mat-select>
@@ -37,7 +37,7 @@
                 <mat-form-field appearance="fill" *ngIf="displayDescend">
                     <mat-label>Descend</mat-label>
                     <mat-select>
-                        <mat-option *ngFor="let msg of mensagens" [value]="msg.id">
+                        <mat-option *ngFor="let msg of mensagensDescend" [value]="msg.id">
                             {{msg.mensagem}}
                         </mat-option>
                     </mat-select>
@@ -47,7 +47,7 @@
                 <mat-form-field appearance="fill" *ngIf="displayComms">
                     <mat-label>Comms</mat-label>
                     <mat-select>
-                        <mat-option *ngFor="let msg of mensagens" [value]="msg.id">
+                        <mat-option *ngFor="let msg of mensagensComms" [value]="msg.id">
                             {{msg.mensagem}}
                         </mat-option>
                     </mat-select>
@@ -57,7 +57,7 @@
                 <mat-form-field appearance="fill" *ngIf="displaySpeed">
                     <mat-label>Speed</mat-label>
                     <mat-select>
-                        <mat-option *ngFor="let msg of mensagens" [value]="msg.id">
+                        <mat-option *ngFor="let msg of mensagensSpeed" [value]="msg.id">
                             {{msg.mensagem}}
                         </mat-option>
                     </mat-select>
@@ -67,7 +67,7 @@
                 <mat-form-field appearance="fill" *ngIf="displayReport">
                     <mat-label>Report</mat-label>
                     <mat-select>
-                        <mat-option *ngFor="let msg of mensagens" [value]="msg.id">
+                        <mat-option *ngFor="let msg of mensagensReport" [value]="msg.id">
                             {{msg.mensagem}}
                         </mat-option>
                     </mat-select>
@@ -77,7 +77,7 @@
                 <mat-form-field appearance="fill" *ngIf="displayCrossing">
                     <mat-label>Crossing</mat-label>
                     <mat-select>
-                        <mat-option *ngFor="let msg of mensagens" [value]="msg.id">
+                        <mat-option *ngFor="let msg of mensagensCrossing" [value]="msg.id">
                             {{msg.mensagem}}
                         </mat-option>
                     </mat-select>

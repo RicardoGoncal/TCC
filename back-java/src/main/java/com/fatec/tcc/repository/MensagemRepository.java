@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface MensagemRepository extends JpaRepository<Mensagem, Long> {
     List<Mensagem> findAllByMensagemContaining(String mensagem);
+
+    List<Mensagem> findAllByCategoria_Id(Long categoriaId);
 }

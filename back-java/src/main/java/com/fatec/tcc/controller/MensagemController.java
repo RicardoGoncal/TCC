@@ -21,9 +21,52 @@ public class MensagemController {
         return ResponseEntity.ok().body(mensagens);
     }
 
-//    @GetMapping()
-//    public ResponseEntity<List<Mensagem>> buscarMensagem(@RequestBody String mensagem){
-//        List<Mensagem> mensagens = mensagemService.findMessage(mensagem);
-//        return ResponseEntity.ok().body(mensagens);
-//    }
+    @GetMapping("/climb")
+    public ResponseEntity<List<Mensagem>> listarClimb(){
+        List<Mensagem> mensagens = mensagemService.findMessage(1L);
+        return ResponseEntity.ok().body(mensagens);
+    }
+
+    @GetMapping("/route")
+    public ResponseEntity<List<Mensagem>> listarRoute(){
+        List<Mensagem> mensagens = mensagemService.findMessage(2L);
+        return ResponseEntity.ok().body(mensagens);
+    }
+
+    @GetMapping("/emergency")
+    public ResponseEntity<List<Mensagem>> listarEmergency(){
+        List<Mensagem> mensagens = mensagemService.findMessage(3L);
+        return ResponseEntity.ok().body(mensagens);
+    }
+
+    @GetMapping("/descend")
+    public ResponseEntity<List<Mensagem>> listarDescend(){
+        List<Mensagem> mensagens = mensagemService.findMessage(4L);
+        return ResponseEntity.ok().body(mensagens);
+    }
+
+    @GetMapping("/comms")
+    public ResponseEntity<List<Mensagem>> listarComms(){
+        List<Mensagem> mensagens = mensagemService.findMessage(5L);
+        return ResponseEntity.ok().body(mensagens);
+    }
+
+    @GetMapping("/speed")
+    public ResponseEntity<List<Mensagem>> listarSpeed(){
+        List<Mensagem> mensagens = mensagemService.findMessage(6L);
+        return ResponseEntity.ok().body(mensagens);
+    }
+
+    @GetMapping("/report")
+    public ResponseEntity<List<Mensagem>> listarReport(){
+        List<Mensagem> mensagens = mensagemService.findMessage(7L);
+        return ResponseEntity.ok().body(mensagens);
+    }
+
+    @GetMapping("/crossing")
+    public ResponseEntity<List<Mensagem>> listarCrossing(){
+        List<Mensagem> mensagens = mensagemService.findMessage(8L);
+        return ResponseEntity.ok().body(mensagens);
+    }
+
 }
