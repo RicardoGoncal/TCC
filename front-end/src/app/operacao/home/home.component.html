@@ -4,28 +4,84 @@
         <h1> Área de Mensagem </h1>
         <div class="cards">
             <div class="row-cards">
-
                 <mat-form-field appearance="fill" *ngIf="displayClimb">
                     <mat-label>Climb</mat-label>
                     <mat-select>
-                        <mat-option *ngFor="let mensagem of mensagens" [value]="mensagem.id">
-                            {{mensagem.mensagem}}
+                        <mat-option *ngFor="let msg of mensagens" [value]="msg.id">
+                            {{msg.mensagem}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-
             </div>
             <div class="row-cards">
-                <mat-card>Mensagem 2</mat-card>
+                <mat-form-field appearance="fill" *ngIf="displayClimb">
+                    <mat-label>Route</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let msg of mensagens" [value]="msg.id">
+                            {{msg.mensagem}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
             </div>
             <div class="row-cards">
-                <mat-card>Mensagem 3</mat-card>
+                <mat-form-field appearance="fill" *ngIf="displayClimb">
+                    <mat-label>Climb</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let msg of mensagens" [value]="msg.id">
+                            {{msg.mensagem}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
             </div>
             <div class="row-cards">
-                <mat-card>Mensagem 4</mat-card>
+                <mat-form-field appearance="fill" *ngIf="displayClimb">
+                    <mat-label>Climb</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let msg of mensagens" [value]="msg.id">
+                            {{msg.mensagem}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
             </div>
             <div class="row-cards">
-                <mat-card>Mensagem 5</mat-card>
+                <mat-form-field appearance="fill" *ngIf="displayClimb">
+                    <mat-label>Climb</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let msg of mensagens" [value]="msg.id">
+                            {{msg.mensagem}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="row-cards">
+                <mat-form-field appearance="fill" *ngIf="displayClimb">
+                    <mat-label>Climb</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let msg of mensagens" [value]="msg.id">
+                            {{msg.mensagem}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="row-cards">
+                <mat-form-field appearance="fill" *ngIf="displayClimb">
+                    <mat-label>Climb</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let msg of mensagens" [value]="msg.id">
+                            {{msg.mensagem}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="row-cards">
+                <mat-form-field appearance="fill" *ngIf="displayClimb">
+                    <mat-label>Climb</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let msg of mensagens" [value]="msg.id">
+                            {{msg.mensagem}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
             </div>
         </div>
     </div>

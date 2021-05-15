@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
   }
 
   climb(){
-    this.httpClientService.getMensagem().subscribe(
+    this.httpClientService.getMensagem('climb').subscribe(
       response => this.handleSuccessfulResponseClimb(response)
     );
   }

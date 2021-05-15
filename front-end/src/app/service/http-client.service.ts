@@ -68,10 +68,12 @@ export class HttpClientService {
     }
   }
 
-  getMensagem(){
+  getMensagem(type: string){
+
+    let url = `http://localhost:8080/mensagens/${type}`
     this.basic = sessionStorage.getItem('basicauth')
     let headers = new HttpHeaders({ Authorization: this.basic });
-    return this.httpClient.get<Mensagem[]>('http://localhost:8080/mensagens', { headers })
+    return this.httpClient.get<Mensagem[]>(url, { headers })
     .pipe(
       tap(mensagens => console.log('leu as mensagens' + mensagens)),
       catchError(this.handlerError('getMensagem', []))
