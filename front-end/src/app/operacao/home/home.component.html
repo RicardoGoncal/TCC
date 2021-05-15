@@ -4,7 +4,16 @@
         <h1> Área de Mensagem </h1>
         <div class="cards">
             <div class="row-cards">
-                <mat-card>Mensagem 1</mat-card>
+
+                <mat-form-field appearance="fill" *ngIf="displayClimb">
+                    <mat-label>Climb</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let mensagem of mensagens" [value]="mensagem.id">
+                            {{mensagem.mensagem}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
             </div>
             <div class="row-cards">
                 <mat-card>Mensagem 2</mat-card>
@@ -20,28 +29,28 @@
             </div>
         </div>
     </div>
-    
+
     <div class="container2">
         <h1>Área de Categorias</h1>
         <div class="botoes">
             <div class="example-button-row">
-                <button mat-raised-button>Climb</button>
+                <button mat-raised-button (click)="climb()">Climb</button>
                 <button mat-raised-button>Route</button>
             </div>
-              <div class="example-button-row">
-                  <button mat-raised-button>Emergency</button>
-                  <button mat-raised-button>Descend</button>
-                </div>
-                <div class="example-button-row">
-                  <button mat-raised-button>Comms</button>
-                  <button mat-raised-button>Speed</button>
-                </div>
-                <div class="example-button-row">
-                  <button mat-raised-button>Report</button>
-                  <button mat-raised-button>Crossing</button>
-                </div>
+            <div class="example-button-row">
+                <button mat-raised-button>Emergency</button>
+                <button mat-raised-button>Descend</button>
+            </div>
+            <div class="example-button-row">
+                <button mat-raised-button>Comms</button>
+                <button mat-raised-button>Speed</button>
+            </div>
+            <div class="example-button-row">
+                <button mat-raised-button>Report</button>
+                <button mat-raised-button>Crossing</button>
+            </div>
         </div>
-        
+
     </div>
 
     <div class="container3">
@@ -49,10 +58,9 @@
         <div class="botao-enviar">
             <div class="example-button-row">
                 <button mat-raised-button>Send Message </button>
+            </div>
+
         </div>
-        
+
+
     </div>
-
-
-</div> 
-

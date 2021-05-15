@@ -21,8 +21,15 @@ export class Usuario {
 
 export class Vants{
   constructor(
-    public username: string,
-    public password: string,
+    public id: string,
+    public nome: string,
+  ) { }
+}
+
+export class Mensagem{
+  constructor(
+    public id: string,
+    public mensagem: string,
   ) { }
 }
 @Injectable({
@@ -59,6 +66,16 @@ export class HttpClientService {
       console.error(error)
       return of(result as T)
     }
+  }
+
+  getMensagem(){
+    this.basic = sessionStorage.getItem('basicauth')
+    let headers = new HttpHeaders({ Authorization: this.basic });
+    return this.httpClient.get<Mensagem[]>('http://localhost:8080/mensagens', { headers })
+    .pipe(
+      tap(mensagens => console.log('leu as mensagens' + mensagens)),
+      catchError(this.handlerError('getMensagem', []))
+    )
   }
 
 }
