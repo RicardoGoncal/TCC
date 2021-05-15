@@ -51,22 +51,28 @@ export class HomeComponent implements OnInit {
   }
 
   excluir(f: string){
-    if(f == 'displayClimb') this.displayClimb = false
-    if(f == 'displayRoute') this.displayRoute = false
-    if(f == 'displayEmergency') this.displayEmergency = false
-    if(f == 'displayDescend') this.displayDescend = false
-    if(f == 'displayComms') this.displayComms = false
-    if(f == 'displaySpeed') this.displaySpeed = false
-    if(f == 'displayReport') this.displayReport = false
-    if(f == 'displayCrossing') this.displayCrossing = false
+    if(f == 'displayClimb') {this.displayClimb = false}
+    if(f == 'displayRoute') {this.displayRoute = false}
+    if(f == 'displayEmergency') {this.displayEmergency = false}
+    if(f == 'displayDescend') {this.displayDescend = false}
+    if(f == 'displayComms') {this.displayComms = false}
+    if(f == 'displaySpeed') {this.displaySpeed = false}
+    if(f == 'displayReport') {this.displayReport = false}
+    if(f == 'displayCrossing') {this.displayCrossing = false}
+
+    console.log(this.maxMensagem)
+    console.log(f)
+
     
     this.maxMensagem--;
+    console.log(this.maxMensagem)
+
   }
 
   climb() {
     this.httpClientService.getMensagem('climb').subscribe(
       response => {
-        if (this.maxMensagem < 6) {
+        if (this.maxMensagem < 6 && this.displayClimb == false) {
           this.mensagensClimb = response
           this.displayClimb = true;
           this.maxMensagem++;
@@ -79,7 +85,7 @@ export class HomeComponent implements OnInit {
   route() {
     this.httpClientService.getMensagem('route').subscribe(
       response => {
-        if (this.maxMensagem < 6) {
+        if (this.maxMensagem < 6 && this.displayRoute == false) {
           this.mensagensRoute = response
           this.displayRoute = true;
           this.maxMensagem++;
@@ -91,7 +97,7 @@ export class HomeComponent implements OnInit {
   emergency() {
     this.httpClientService.getMensagem('emergency').subscribe(
       response => {
-        if (this.maxMensagem < 6) {
+        if (this.maxMensagem < 6 && this.displayEmergency == false) {
           this.mensagensEmergency = response
           this.displayEmergency = true;
           this.maxMensagem++;
@@ -103,7 +109,7 @@ export class HomeComponent implements OnInit {
   descend() {
     this.httpClientService.getMensagem('descend').subscribe(
       response => {
-        if (this.maxMensagem < 6) {
+        if (this.maxMensagem < 6 && this.displayDescend == false) {
           this.mensagensDescend = response
           this.displayDescend = true;
           this.maxMensagem++;
@@ -115,7 +121,7 @@ export class HomeComponent implements OnInit {
   comms() {
     this.httpClientService.getMensagem('comms').subscribe(
       response => {
-        if (this.maxMensagem < 6) {
+        if (this.maxMensagem < 6 && this.displayComms == false) {
           this.mensagensComms = response
           this.displayComms = true;
           this.maxMensagem++;
@@ -127,7 +133,7 @@ export class HomeComponent implements OnInit {
   speed() {
     this.httpClientService.getMensagem('speed').subscribe(
       response => {
-        if (this.maxMensagem < 6) {
+        if (this.maxMensagem < 6 && this.displaySpeed == false) {
           this.mensagensSpeed = response
           this.displaySpeed = true;
           this.maxMensagem++;
@@ -139,7 +145,7 @@ export class HomeComponent implements OnInit {
   report() {
     this.httpClientService.getMensagem('report').subscribe(
       response => {
-        if (this.maxMensagem < 6) {
+        if (this.maxMensagem < 6 && this.displayReport == false) {
           this.mensagensReport = response
           this.displayReport = true;
           this.maxMensagem++;
@@ -151,7 +157,7 @@ export class HomeComponent implements OnInit {
   crossing() {
     this.httpClientService.getMensagem('crossing').subscribe(
       response => {
-        if (this.maxMensagem < 6) {
+        if (this.maxMensagem < 6 && this.displayCrossing == false) {
           this.mensagensCrossing = response
           this.displayCrossing = true;
           this.maxMensagem++;
