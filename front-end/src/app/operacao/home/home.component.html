@@ -12,6 +12,10 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
+                <input matInput placeholder="100" type="number" value="numeroClimb" min=0  *ngIf="displayClimb">
+                <button mat-raised-button color="warn" *ngIf="displayClimb">
+                    <mat-icon>delete</mat-icon>
+                </button>
             </div>
             <div class="row-cards">
                 <mat-form-field appearance="fill" *ngIf="displayRoute">
