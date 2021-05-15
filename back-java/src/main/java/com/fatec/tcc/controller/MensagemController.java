@@ -35,31 +35,31 @@ public class MensagemController {
 
     @GetMapping("/emergency")
     public ResponseEntity<List<Mensagem>> listarEmergency(){
-        List<Mensagem> mensagens = mensagemService.findMessage(3L);
+        List<Mensagem> mensagens = mensagemService.findMessage(7L);
         return ResponseEntity.ok().body(mensagens);
     }
 
     @GetMapping("/descend")
     public ResponseEntity<List<Mensagem>> listarDescend(){
-        List<Mensagem> mensagens = mensagemService.findMessage(4L);
+        List<Mensagem> mensagens = mensagemService.findMessage(3L);
         return ResponseEntity.ok().body(mensagens);
     }
 
     @GetMapping("/comms")
     public ResponseEntity<List<Mensagem>> listarComms(){
-        List<Mensagem> mensagens = mensagemService.findMessage(5L);
+        List<Mensagem> mensagens = mensagemService.findMessage(4L);
         return ResponseEntity.ok().body(mensagens);
     }
 
     @GetMapping("/speed")
     public ResponseEntity<List<Mensagem>> listarSpeed(){
-        List<Mensagem> mensagens = mensagemService.findMessage(6L);
+        List<Mensagem> mensagens = mensagemService.findMessage(5L);
         return ResponseEntity.ok().body(mensagens);
     }
 
     @GetMapping("/report")
     public ResponseEntity<List<Mensagem>> listarReport(){
-        List<Mensagem> mensagens = mensagemService.findMessage(7L);
+        List<Mensagem> mensagens = mensagemService.findMessage(6L);
         return ResponseEntity.ok().body(mensagens);
     }
 

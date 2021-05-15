@@ -15,6 +15,8 @@ export class HomeComponent implements OnInit {
 
   categorias: string[];
 
+  maxMensagem = 1;
+
   mensagensClimb: Mensagem[];
   mensagensRoute: Mensagem[];
   mensagensEmergency: Mensagem[];
@@ -51,8 +53,11 @@ export class HomeComponent implements OnInit {
   climb() {
     this.httpClientService.getMensagem('climb').subscribe(
       response => {
-        this.mensagensClimb = response
-        this.displayClimb = true;
+        if (this.maxMensagem < 6) {
+          this.mensagensClimb = response
+          this.displayClimb = true;
+          this.maxMensagem++;
+        }
       }
 
     );
@@ -61,8 +66,11 @@ export class HomeComponent implements OnInit {
   route() {
     this.httpClientService.getMensagem('route').subscribe(
       response => {
-        this.mensagensRoute = response
-        this.displayRoute = true;
+        if (this.maxMensagem < 6) {
+          this.mensagensRoute = response
+          this.displayRoute = true;
+          this.maxMensagem++;
+        }
       }
     );
   }
@@ -70,8 +78,11 @@ export class HomeComponent implements OnInit {
   emergency() {
     this.httpClientService.getMensagem('emergency').subscribe(
       response => {
-        this.mensagensEmergency=response
-        this.displayEmergency = true;
+        if (this.maxMensagem < 6) {
+          this.mensagensEmergency = response
+          this.displayEmergency = true;
+          this.maxMensagem++;
+        }
       }
     );
   }
@@ -79,8 +90,11 @@ export class HomeComponent implements OnInit {
   descend() {
     this.httpClientService.getMensagem('descend').subscribe(
       response => {
-        this.mensagensDescend = response
-        this.displayDescend = true;
+        if (this.maxMensagem < 6) {
+          this.mensagensDescend = response
+          this.displayDescend = true;
+          this.maxMensagem++;
+        }
       }
     );
   }
@@ -88,8 +102,11 @@ export class HomeComponent implements OnInit {
   comms() {
     this.httpClientService.getMensagem('comms').subscribe(
       response => {
-        this.mensagensComms = response
-        this.displayComms = true;
+        if (this.maxMensagem < 6) {
+          this.mensagensComms = response
+          this.displayComms = true;
+          this.maxMensagem++;
+        }
       }
     );
   }
@@ -97,8 +114,11 @@ export class HomeComponent implements OnInit {
   speed() {
     this.httpClientService.getMensagem('speed').subscribe(
       response => {
-        this.mensagensSpeed = response
-        this.displaySpeed = true;
+        if (this.maxMensagem < 6) {
+          this.mensagensSpeed = response
+          this.displaySpeed = true;
+          this.maxMensagem++;
+        }
       }
     );
   }
@@ -106,8 +126,11 @@ export class HomeComponent implements OnInit {
   report() {
     this.httpClientService.getMensagem('report').subscribe(
       response => {
-        this.mensagensReport = response
-        this.displayReport = true;
+        if (this.maxMensagem < 6) {
+          this.mensagensReport = response
+          this.displayReport = true;
+          this.maxMensagem++;
+        }
       }
     );
   }
@@ -115,8 +138,11 @@ export class HomeComponent implements OnInit {
   crossing() {
     this.httpClientService.getMensagem('crossing').subscribe(
       response => {
-        this.mensagensCrossing = response
-        this.displayCrossing = true;
+        if (this.maxMensagem < 6) {
+          this.mensagensCrossing = response
+          this.displayCrossing = true;
+          this.maxMensagem++;
+        }
       }
     );
   }

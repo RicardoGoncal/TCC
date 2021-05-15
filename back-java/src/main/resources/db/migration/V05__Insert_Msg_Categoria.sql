@@ -1,8 +1,6 @@
 INSERT into mensagem
 (id_categoria, mensagem)
-values (1, 'CLIMB TO FL'),
-       (1, 'MAINTAIN FL'),
-       (1, 'CLIMB TO AND MAINTAIN FL'),
+values
        (2, 'ROUTE 666'),
        (2, 'ROUTE 116'),
        (3, 'DESCEND FL'),
