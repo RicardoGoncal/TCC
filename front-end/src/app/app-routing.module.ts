@@ -8,6 +8,7 @@ import { ListVantsComponent } from './operacao/list-vants/list-vants.component';
 import { AuthguardService } from './service/authguard.service';
 
 const routes: Routes = [
+  { path: '', component: ListVantsComponent,canActivate:[AuthguardService] },
   { path: 'vants', component: ListVantsComponent,canActivate:[AuthguardService] },
   { path: 'vants/:id', component: HomeComponent,canActivate:[AuthguardService] },
   { path: 'login', component: LoginComponent },
