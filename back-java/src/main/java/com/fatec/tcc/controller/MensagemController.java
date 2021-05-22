@@ -33,11 +33,7 @@ public class MensagemController {
         return ResponseEntity.ok().body(mensagens);
     }
 
-    @GetMapping("/emergency")
-    public ResponseEntity<List<Mensagem>> listarEmergency(){
-        List<Mensagem> mensagens = mensagemService.findMessage(7L);
-        return ResponseEntity.ok().body(mensagens);
-    }
+
 
     @GetMapping("/descend")
     public ResponseEntity<List<Mensagem>> listarDescend(){
@@ -60,6 +56,12 @@ public class MensagemController {
     @GetMapping("/report")
     public ResponseEntity<List<Mensagem>> listarReport(){
         List<Mensagem> mensagens = mensagemService.findMessage(6L);
+        return ResponseEntity.ok().body(mensagens);
+    }
+
+    @GetMapping("/emergency")
+    public ResponseEntity<List<Mensagem>> listarEmergency(){
+        List<Mensagem> mensagens = mensagemService.findMessage(7L);
         return ResponseEntity.ok().body(mensagens);
     }
 

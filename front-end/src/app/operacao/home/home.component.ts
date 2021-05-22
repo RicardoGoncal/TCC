@@ -35,6 +35,23 @@ export class HomeComponent implements OnInit {
   displayReport: boolean = false;
   displayCrossing: boolean = false;
 
+  selectedClimb: string;
+  selectedRoute: string;
+  selectedEmergency: string;
+  selectedDescend: string;
+  selectedComms: string;
+  selectedSpeed: string;
+  selectedReport: string;
+  selectedCrossing: string;
+
+  numberClimb: string;
+  numberRoute: string;
+  numberDescend: string;
+  numberComms: string;
+  numberSpeed: string;
+  numberCrossing: string;
+
+
   constructor(
     private httpClientService: HttpClientService
   ) { }
@@ -50,23 +67,17 @@ export class HomeComponent implements OnInit {
     this.categorias = response;
   }
 
-  excluir(f: string){
-    if(f == 'displayClimb') {this.displayClimb = false}
-    if(f == 'displayRoute') {this.displayRoute = false}
-    if(f == 'displayEmergency') {this.displayEmergency = false}
-    if(f == 'displayDescend') {this.displayDescend = false}
-    if(f == 'displayComms') {this.displayComms = false}
-    if(f == 'displaySpeed') {this.displaySpeed = false}
-    if(f == 'displayReport') {this.displayReport = false}
-    if(f == 'displayCrossing') {this.displayCrossing = false}
+  excluir(f: string) {
+    if (f == 'displayClimb') { this.displayClimb = false }
+    if (f == 'displayRoute') { this.displayRoute = false }
+    if (f == 'displayEmergency') { this.displayEmergency = false }
+    if (f == 'displayDescend') { this.displayDescend = false }
+    if (f == 'displayComms') { this.displayComms = false }
+    if (f == 'displaySpeed') { this.displaySpeed = false }
+    if (f == 'displayReport') { this.displayReport = false }
+    if (f == 'displayCrossing') { this.displayCrossing = false }
 
-    console.log(this.maxMensagem)
-    console.log(f)
-
-    
     this.maxMensagem--;
-    console.log(this.maxMensagem)
-
   }
 
   climb() {
@@ -164,6 +175,18 @@ export class HomeComponent implements OnInit {
         }
       }
     );
+  }
+
+  sendMessage() {
+    console.log(this.selectedClimb + ' ' + this.numberClimb)
+    console.log(this.selectedRoute + ' ' + this.numberRoute)
+    console.log(this.selectedEmergency)
+    console.log(this.selectedDescend + ' ' + this.numberDescend)
+    console.log(this.selectedComms + ' ' + this.numberComms)
+    console.log(this.selectedSpeed + ' ' + this.numberSpeed)
+    console.log(this.selectedReport)
+    console.log(this.selectedCrossing + ' ' + this.numberCrossing)
+
   }
 
 }

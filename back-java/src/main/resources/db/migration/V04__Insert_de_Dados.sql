@@ -24,9 +24,3 @@ values ('climb'),
        ('report'),
        ('emerg'),
        ('crossing');
-
-INSERT into mensagem
-(id_categoria, mensagem)
-values (1, 'CLIMB TO FL'),
-       (1, 'MAINTAIN FL'),
-       (1, 'CLIMB TO AND MAINTAIN FL');
