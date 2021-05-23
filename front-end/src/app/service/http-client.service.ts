@@ -44,7 +44,13 @@ export class HttpClientService {
 
   sendMessage(messageToVant: {}) {
     let url = `${this.pythonApiURL}/vant`;
-    return this.httpClient.get(url, messageToVant);
+    let json =  JSON.stringify(messageToVant)
+    var params = 'json=' + json;
+    var cabe = new HttpHeaders();
+    cabe.append('Content-Type', 'application/x-www-form-urlencoded');
+    return this.httpClient.post(url, params,{
+      headers : cabe
+    });
   }
   getCategorias() {
     let url = `${this.javaApiURL}/categorias`
