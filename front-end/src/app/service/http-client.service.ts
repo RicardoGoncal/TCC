@@ -39,7 +39,7 @@ export class HttpClientService {
 
 
   sendMessage(messageToVant: string) {
-    return this.httpClient.get('http://localhost:5000/messageToVant', { })
+    return this.httpClient.get('http://localhost:5000/vant/messageToVant', { })
   }
 
   basic: any;
