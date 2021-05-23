@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthenticationService } from './authentication.service';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
-
-export class Categoria{
+export class Categoria {
   constructor(
-    public id:string,
-    public nome:string,
-  ) {}
+    public id: string,
+    public nome: string,
+  ) { }
 }
-
 export class Usuario {
   constructor(
     public username: string,
@@ -18,15 +16,13 @@ export class Usuario {
   ) { }
 
 }
-
-export class Vants{
+export class Vants {
   constructor(
     public id: string,
     public nome: string,
   ) { }
 }
-
-export class Mensagem{
+export class Mensagem {
   constructor(
     public id: string,
     public mensagem: string,
@@ -37,33 +33,48 @@ export class Mensagem{
 })
 export class HttpClientService {
 
-
-  
+  readonly pythonApiURL: string;
+  readonly javaApiURL: string;
   basic: any;
-  
-  constructor( private httpClient: HttpClient,
-    private auth: AuthenticationService  ) {  }
-    
-    sendMessage(messageToVant: {}) {
-      return this.httpClient.get('http://localhost:5000/vant/messageToVant', messageToVant)
-    }
+
+  constructor(private httpClient: HttpClient, private auth: AuthenticationService) {
+    this.pythonApiURL = 'http://localhost:5000';
+    this.javaApiURL = 'http://localhost:8080';
+  }
+
+  sendMessage(messageToVant: {}) {
+    let url = `${this.pythonApiURL}/vant`;
+    return this.httpClient.get(url, messageToVant);
+  }
   getCategorias() {
-    
+    let url = `${this.javaApiURL}/categorias`
     this.basic = sessionStorage.getItem('basicauth')
-     
+
     let headers = new HttpHeaders({ Authorization: this.basic });
-    return this.httpClient.get<Usuario>('http://localhost:8080/categorias', { headers })
-    
+    return this.httpClient.get<Usuario>(url, { headers })
+
   }
 
   getVants() {
+    let url = `${this.javaApiURL}/vants`
     this.basic = sessionStorage.getItem('basicauth')
     let headers = new HttpHeaders({ Authorization: this.basic });
-    return this.httpClient.get<Vants[]>('http://localhost:8080/vants', { headers })
-    .pipe(
-      tap(vants => console.log('leu os vants' + vants)),
-      catchError(this.handlerError('getCliente', []))
-    );
+
+    return this.httpClient.get<Vants[]>(url, { headers })
+      .pipe(
+        catchError(this.handlerError('getCliente', []))
+      );
+  }
+
+  getMensagem(type: string) {
+    let url = `${this.javaApiURL}/mensagens/${type}`
+    this.basic = sessionStorage.getItem('basicauth')
+    let headers = new HttpHeaders({ Authorization: this.basic });
+
+    return this.httpClient.get<Mensagem[]>(url, { headers })
+      .pipe(
+        catchError(this.handlerError('getMensagem', []))
+      )
   }
 
   private handlerError<T>(operation = 'operation', result?: T) {
@@ -71,19 +82,6 @@ export class HttpClientService {
       console.error(error)
       return of(result as T)
     }
-  }
-
-  getMensagem(type: string){
-
-    let url = `http://localhost:8080/mensagens/${type}`
-    
-    this.basic = sessionStorage.getItem('basicauth')
-    let headers = new HttpHeaders({ Authorization: this.basic });
-    return this.httpClient.get<Mensagem[]>(url, { headers })
-    .pipe(
-      tap(mensagens => console.log('leu as mensagens' + mensagens)),
-      catchError(this.handlerError('getMensagem', []))
-    )
   }
 
 }
