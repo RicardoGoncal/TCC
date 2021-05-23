@@ -5,6 +5,10 @@ interface Mensagem {
   id: string;
   mensagem: string;
 }
+
+interface SendMessage {
+  [key: string]: any
+}
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -178,30 +182,30 @@ export class HomeComponent implements OnInit {
 
   sendMessage() {
 
-    let messageToVant = '';
-    if(this.selectedClimb != undefined){
-      messageToVant += this.selectedClimb + '&' + this.numberClimb + '&';
+    let messageToVant: SendMessage = {};
+    if (this.selectedClimb != undefined) {
+      messageToVant.climb += this.selectedClimb + ' ' + this.numberClimb;
     }
-    if(this.selectedRoute != undefined){
-      messageToVant += this.selectedRoute + '&' + this.numberRoute + '&';
+    if (this.selectedRoute != undefined) {
+      messageToVant.route += this.selectedRoute + ' ' + this.numberRoute;
     }
-    if(this.selectedEmergency != undefined){
-      messageToVant += this.selectedEmergency  + '&';
+    if (this.selectedEmergency != undefined) {
+      messageToVant.emergency += this.selectedEmergency;
     }
-    if(this.selectedDescend != undefined){
-      messageToVant += this.selectedDescend + '&' + this.numberDescend + '&';
+    if (this.selectedDescend != undefined) {
+      messageToVant.descend += this.selectedDescend + ' ' + this.numberDescend;
     }
-    if(this.selectedComms != undefined){
-      messageToVant += this.selectedComms + '&';
+    if (this.selectedComms != undefined) {
+      messageToVant.comms += this.selectedComms;
     }
-    if(this.selectedSpeed != undefined){
-      messageToVant += this.selectedSpeed + '&' + this.numberSpeed + '&';
+    if (this.selectedSpeed != undefined) {
+      messageToVant.speed += this.selectedSpeed + ' ' + this.numberSpeed;
     }
-    if(this.selectedReport != undefined){
-      messageToVant += this.selectedReport  + '&';
+    if (this.selectedReport != undefined) {
+      messageToVant.report += this.selectedReport;
     }
-    if(this.selectedCrossing != undefined){
-      messageToVant += this.selectedCrossing + '&' + this.numberCrossing + '&';
+    if (this.selectedCrossing != undefined) {
+      messageToVant.crossing += this.selectedCrossing + ' ' + this.numberCrossing;
     }
     console.log(messageToVant)
 

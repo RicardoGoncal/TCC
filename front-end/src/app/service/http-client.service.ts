@@ -38,15 +38,15 @@ export class Mensagem{
 export class HttpClientService {
 
 
-  sendMessage(messageToVant: string) {
-    return this.httpClient.get('http://localhost:5000/vant/messageToVant', { })
-  }
-
+  
   basic: any;
-
+  
   constructor( private httpClient: HttpClient,
     private auth: AuthenticationService  ) {  }
-
+    
+    sendMessage(messageToVant: {}) {
+      return this.httpClient.get('http://localhost:5000/vant/messageToVant', messageToVant)
+    }
   getCategorias() {
     
     this.basic = sessionStorage.getItem('basicauth')
