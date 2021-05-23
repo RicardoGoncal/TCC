@@ -37,6 +37,11 @@ export class Mensagem{
 })
 export class HttpClientService {
 
+
+  sendMessage(messageToVant: string) {
+    return this.httpClient.get('http://localhost:5000/messageToVant', { })
+  }
+
   basic: any;
 
   constructor( private httpClient: HttpClient,

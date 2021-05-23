@@ -77,8 +77,6 @@
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
-                    <input class="input-mat" matInput placeholder="100" type="number" name="numberComms" [(ngModel)]="numberComms" min=0
-                        *ngIf="displayComms">
                     <button class="button-del" mat-raised-button color="warn" *ngIf="displayComms"
                         (click)="excluir('displayComms')">
                         <mat-icon>delete</mat-icon>

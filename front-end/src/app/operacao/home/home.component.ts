@@ -47,7 +47,6 @@ export class HomeComponent implements OnInit {
   numberClimb: string;
   numberRoute: string;
   numberDescend: string;
-  numberComms: string;
   numberSpeed: string;
   numberCrossing: string;
 
@@ -178,15 +177,39 @@ export class HomeComponent implements OnInit {
   }
 
   sendMessage() {
-    console.log(this.selectedClimb + ' ' + this.numberClimb)
-    console.log(this.selectedRoute + ' ' + this.numberRoute)
-    console.log(this.selectedEmergency)
-    console.log(this.selectedDescend + ' ' + this.numberDescend)
-    console.log(this.selectedComms + ' ' + this.numberComms)
-    console.log(this.selectedSpeed + ' ' + this.numberSpeed)
-    console.log(this.selectedReport)
-    console.log(this.selectedCrossing + ' ' + this.numberCrossing)
 
+    let messageToVant = '';
+    if(this.selectedClimb != undefined){
+      messageToVant += this.selectedClimb + '&' + this.numberClimb + '&';
+    }
+    if(this.selectedRoute != undefined){
+      messageToVant += this.selectedRoute + '&' + this.numberRoute + '&';
+    }
+    if(this.selectedEmergency != undefined){
+      messageToVant += this.selectedEmergency  + '&';
+    }
+    if(this.selectedDescend != undefined){
+      messageToVant += this.selectedDescend + '&' + this.numberDescend + '&';
+    }
+    if(this.selectedComms != undefined){
+      messageToVant += this.selectedComms + '&';
+    }
+    if(this.selectedSpeed != undefined){
+      messageToVant += this.selectedSpeed + '&' + this.numberSpeed + '&';
+    }
+    if(this.selectedReport != undefined){
+      messageToVant += this.selectedReport  + '&';
+    }
+    if(this.selectedCrossing != undefined){
+      messageToVant += this.selectedCrossing + '&' + this.numberCrossing + '&';
+    }
+    console.log(messageToVant)
+
+    this.httpClientService.sendMessage(messageToVant).subscribe(
+      response => {
+        console.log(response)
+      }
+    );
   }
 
 }
