@@ -37,7 +37,7 @@ export class HttpClientService {
   readonly javaApiURL: string;
   basic: any;
 
-  constructor(private httpClient: HttpClient, private auth: AuthenticationService) {
+  constructor(protected httpClient: HttpClient, private auth: AuthenticationService,) {
     this.pythonApiURL = 'http://localhost:5000';
     this.javaApiURL = 'http://localhost:8080';
   }
@@ -45,12 +45,7 @@ export class HttpClientService {
   sendMessage(messageToVant: {}) {
     let url = `${this.pythonApiURL}/vant`;
     let json =  JSON.stringify(messageToVant)
-    var params = 'json=' + json;
-    var cabe = new HttpHeaders();
-    cabe.append('Content-Type', 'application/x-www-form-urlencoded');
-    return this.httpClient.post(url, params,{
-      headers : cabe
-    });
+    return this.httpClient.post(url, json, {headers:{'Content-Type': 'application/json'}});
   }
   getCategorias() {
     let url = `${this.javaApiURL}/categorias`

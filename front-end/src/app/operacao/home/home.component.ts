@@ -54,6 +54,8 @@ export class HomeComponent implements OnInit {
   numberSpeed: string;
   numberCrossing: string;
 
+  messageToVant: SendMessage = {};
+
 
   constructor(
     private httpClientService: HttpClientService
@@ -71,19 +73,35 @@ export class HomeComponent implements OnInit {
   }
 
   excluir(f: string) {
-    if (f == 'displayClimb') { this.displayClimb = false }
-    if (f == 'displayRoute') { this.displayRoute = false }
-    if (f == 'displayEmergency') { this.displayEmergency = false }
-    if (f == 'displayDescend') { this.displayDescend = false }
-    if (f == 'displayComms') { this.displayComms = false }
-    if (f == 'displaySpeed') { this.displaySpeed = false }
-    if (f == 'displayReport') { this.displayReport = false }
-    if (f == 'displayCrossing') { this.displayCrossing = false }
+    if (f == 'displayClimb') { this.displayClimb = false, this.selectedClimb = ''; }
+    if (f == 'displayRoute') { this.displayRoute = false, this.selectedRoute = ''; }
+    if (f == 'displayEmergency') { this.displayEmergency = false, this.selectedEmergency = ''; }
+    if (f == 'displayDescend') { this.displayDescend = false, this.selectedDescend = ''; }
+    if (f == 'displayComms') { this.displayComms = false, this.selectedComms = ''; }
+    if (f == 'displaySpeed') { this.displaySpeed = false, this.selectedSpeed = ''; }
+    if (f == 'displayReport') { this.displayReport = false, this.selectedReport = ''; }
+    if (f == 'displayCrossing') { this.displayCrossing = false, this.selectedCrossing = ''; }
 
     this.maxMensagem--;
   }
 
+  reset(){
+    this.messageToVant = {};
+    
+    this.displayClimb = false, this.mensagensClimb = []; 
+    this.displayRoute = false, this.mensagensRoute = []; 
+    this.displayEmergency = false, this.mensagensEmergency = []; 
+    this.displayDescend = false, this.mensagensDescend = []; 
+    this.displayComms = false, this.mensagensComms = []; 
+    this.displaySpeed = false, this.mensagensSpeed = []; 
+    this.displayReport = false, this.mensagensReport = []; 
+    this.displayCrossing = false, this.mensagensCrossing = []; 
+
+    this.maxMensagem = 1;
+  }
+
   climb() {
+    console.log(this.mensagensClimb)
     this.httpClientService.getMensagem('climb').subscribe(
       response => {
         if (this.maxMensagem < 6 && this.displayClimb == false) {
@@ -182,38 +200,41 @@ export class HomeComponent implements OnInit {
 
   sendMessage() {
 
-    let messageToVant: SendMessage = {};
+
     if (this.selectedClimb != undefined) {
-      messageToVant.climb += this.selectedClimb + ' ' + this.numberClimb;
+      this.messageToVant.climb += this.selectedClimb + ' ' + this.numberClimb;
     }
     if (this.selectedRoute != undefined) {
-      messageToVant.route += this.selectedRoute + ' ' + this.numberRoute;
+      this.messageToVant.route += this.selectedRoute + ' ' + this.numberRoute;
     }
     if (this.selectedEmergency != undefined) {
-      messageToVant.emergency += this.selectedEmergency;
+      this.messageToVant.emergency += this.selectedEmergency;
     }
     if (this.selectedDescend != undefined) {
-      messageToVant.descend += this.selectedDescend + ' ' + this.numberDescend;
+      this.messageToVant.descend += this.selectedDescend + ' ' + this.numberDescend;
     }
     if (this.selectedComms != undefined) {
-      messageToVant.comms += this.selectedComms;
+      this.messageToVant.comms += this.selectedComms;
     }
     if (this.selectedSpeed != undefined) {
-      messageToVant.speed += this.selectedSpeed + ' ' + this.numberSpeed;
+      this.messageToVant.speed += this.selectedSpeed + ' ' + this.numberSpeed;
     }
     if (this.selectedReport != undefined) {
-      messageToVant.report += this.selectedReport;
+      this.messageToVant.report += this.selectedReport;
     }
     if (this.selectedCrossing != undefined) {
-      messageToVant.crossing += this.selectedCrossing + ' ' + this.numberCrossing;
+      this.messageToVant.crossing += this.selectedCrossing + ' ' + this.numberCrossing;
     }
-    console.log(messageToVant)
 
-    this.httpClientService.sendMessage(messageToVant).subscribe(
+    this.httpClientService.sendMessage(this.messageToVant).subscribe(
       response => {
+        console.log("Resposta do python")
         console.log(response)
       }
     );
+
+    this.reset()
+
   }
 
 }

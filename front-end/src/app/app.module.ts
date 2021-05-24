@@ -21,7 +21,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ListVantsComponent } from './operacao/list-vants/list-vants.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -49,7 +49,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatToolbarModule,
     MatInputModule,
     MatPaginatorModule, 
-    MatSelectModule
+    MatSelectModule,
+    ReactiveFormsModule
   ],
   providers: [
 
