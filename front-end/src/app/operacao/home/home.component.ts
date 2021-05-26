@@ -72,15 +72,15 @@ export class HomeComponent implements OnInit {
     this.categorias = response;
   }
 
-  excluir(f: string) {
-    if (f == 'displayClimb') { this.displayClimb = false, this.selectedClimb = ''; }
-    if (f == 'displayRoute') { this.displayRoute = false, this.selectedRoute = ''; }
-    if (f == 'displayEmergency') { this.displayEmergency = false, this.selectedEmergency = ''; }
-    if (f == 'displayDescend') { this.displayDescend = false, this.selectedDescend = ''; }
-    if (f == 'displayComms') { this.displayComms = false, this.selectedComms = ''; }
-    if (f == 'displaySpeed') { this.displaySpeed = false, this.selectedSpeed = ''; }
-    if (f == 'displayReport') { this.displayReport = false, this.selectedReport = ''; }
-    if (f == 'displayCrossing') { this.displayCrossing = false, this.selectedCrossing = ''; }
+  excluir(displayType: string) {
+    if (displayType == 'displayClimb') { this.displayClimb = false, this.selectedClimb = ''; }
+    if (displayType == 'displayRoute') { this.displayRoute = false, this.selectedRoute = ''; }
+    if (displayType == 'displayEmergency') { this.displayEmergency = false, this.selectedEmergency = ''; }
+    if (displayType == 'displayDescend') { this.displayDescend = false, this.selectedDescend = ''; }
+    if (displayType == 'displayComms') { this.displayComms = false, this.selectedComms = ''; }
+    if (displayType == 'displaySpeed') { this.displaySpeed = false, this.selectedSpeed = ''; }
+    if (displayType == 'displayReport') { this.displayReport = false, this.selectedReport = ''; }
+    if (displayType == 'displayCrossing') { this.displayCrossing = false, this.selectedCrossing = ''; }
 
     this.maxMensagem--;
   }
