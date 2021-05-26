@@ -39,9 +39,9 @@ export class HomeComponent implements OnInit {
   displayReport: boolean = false;
   displayCrossing: boolean = false;
 
-  selectedClimb: string;
-  selectedRoute: string;
-  selectedEmergency: string;
+  selectedClimb: string = '';
+  selectedRoute: string = '';
+  selectedEmergency: string = '';
   selectedDescend: string;
   selectedComms: string;
   selectedSpeed: string;
@@ -86,7 +86,7 @@ export class HomeComponent implements OnInit {
   }
 
   reset(){
-    this.messageToVant = {};
+    this.messageToVant;
     
     this.displayClimb = false, this.mensagensClimb = []; 
     this.displayRoute = false, this.mensagensRoute = []; 
@@ -101,7 +101,6 @@ export class HomeComponent implements OnInit {
   }
 
   climb() {
-    console.log(this.mensagensClimb)
     this.httpClientService.getMensagem('climb').subscribe(
       response => {
         if (this.maxMensagem < 6 && this.displayClimb == false) {
@@ -200,35 +199,33 @@ export class HomeComponent implements OnInit {
 
   sendMessage() {
 
-
-    if (this.selectedClimb != undefined) {
-      this.messageToVant.climb += this.selectedClimb + ' ' + this.numberClimb;
+    if (this.selectedClimb != undefined && this.selectedClimb != '') {
+      this.messageToVant.climb = this.selectedClimb + ' ' + this.numberClimb;
     }
-    if (this.selectedRoute != undefined) {
-      this.messageToVant.route += this.selectedRoute + ' ' + this.numberRoute;
+    if (this.selectedRoute != undefined && this.selectedRoute != '') {
+      this.messageToVant.route = this.selectedRoute + ' ' + this.numberRoute;
     }
-    if (this.selectedEmergency != undefined) {
-      this.messageToVant.emergency += this.selectedEmergency;
+    if (this.selectedEmergency != undefined && this.selectedEmergency != '') {
+      this.messageToVant.emergency = this.selectedEmergency;
     }
-    if (this.selectedDescend != undefined) {
-      this.messageToVant.descend += this.selectedDescend + ' ' + this.numberDescend;
+    if (this.selectedDescend != undefined && this.selectedDescend != '' ) {
+      this.messageToVant.descend = this.selectedDescend + ' ' + this.numberDescend;
     }
-    if (this.selectedComms != undefined) {
-      this.messageToVant.comms += this.selectedComms;
+    if (this.selectedComms != undefined && this.selectedComms != '' ) {
+      this.messageToVant.comms = this.selectedComms;
     }
-    if (this.selectedSpeed != undefined) {
-      this.messageToVant.speed += this.selectedSpeed + ' ' + this.numberSpeed;
+    if (this.selectedSpeed != undefined && this.selectedSpeed != '' ) {
+      this.messageToVant.speed = this.selectedSpeed + ' ' + this.numberSpeed;
     }
-    if (this.selectedReport != undefined) {
-      this.messageToVant.report += this.selectedReport;
+    if (this.selectedReport != undefined && this.selectedReport != '' ) {
+      this.messageToVant.report = this.selectedReport;
     }
-    if (this.selectedCrossing != undefined) {
-      this.messageToVant.crossing += this.selectedCrossing + ' ' + this.numberCrossing;
+    if (this.selectedCrossing != undefined && this.selectedCrossing != '' ) {
+      this.messageToVant.crossing = this.selectedCrossing + ' ' + this.numberCrossing;
     }
 
     this.httpClientService.sendMessage(this.messageToVant).subscribe(
       response => {
-        console.log("Resposta do python")
         console.log(response)
       }
     );
