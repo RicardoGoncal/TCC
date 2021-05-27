@@ -42,7 +42,7 @@ export class HttpClientService {
     this.javaApiURL = 'http://localhost:8080';
   }
 
-  sendMessage(messageToVant: {}) {
+  sendMessage(messageToVant) {
     let url = `${this.pythonApiURL}/vant`;
     let json =  JSON.stringify(messageToVant)
     return this.httpClient.post(url, json, {headers:{'Content-Type': 'application/json'}});

@@ -15,7 +15,10 @@ def vant():
     """
         Rota para receber as msg da torre de comando
     """
-    content = request.json
-    print(content)
 
-    return jsonify(content)
+    if request.json is None:
+        return jsonify({"mensagem":"ERRO: Mensagem invalida ou nula"})
+    else:
+        content = {"mensagem":"Mensagem recebida"}
+        content.update(request.json)
+        return jsonify(content)

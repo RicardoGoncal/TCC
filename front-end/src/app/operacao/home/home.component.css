@@ -23,9 +23,17 @@ h1{
     height: 600px;
 }
 
+.container-response{
+    border: 0.2px solid black;
+    width: 30%;
+    margin: 30px 0 0 30px;
+    margin-left: 150px;
+    height: 600px;
+}
+
 .container3{
     border: 0.2px solid black;
-    width: 25%;
+    width: 500px;
     margin-top: 700px;
     margin-left: 200px;
     height: 150px;

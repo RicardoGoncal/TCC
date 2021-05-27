@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { HttpClientService } from '../../service/http-client.service'
 
 interface Mensagem {
@@ -16,6 +17,8 @@ interface SendMessage {
 })
 
 export class HomeComponent implements OnInit {
+
+  vantResponse: any;
 
   categorias: string[];
 
@@ -226,7 +229,7 @@ export class HomeComponent implements OnInit {
 
     this.httpClientService.sendMessage(this.messageToVant).subscribe(
       response => {
-        console.log(response)
+        this.vantResponse = response
       }
     );
 
