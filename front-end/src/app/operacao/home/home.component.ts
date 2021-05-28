@@ -88,17 +88,18 @@ export class HomeComponent implements OnInit {
     this.maxMensagem--;
   }
 
-  reset(){
-    this.messageToVant;
-    
-    this.displayClimb = false, this.mensagensClimb = []; 
-    this.displayRoute = false, this.mensagensRoute = []; 
-    this.displayEmergency = false, this.mensagensEmergency = []; 
-    this.displayDescend = false, this.mensagensDescend = []; 
-    this.displayComms = false, this.mensagensComms = []; 
-    this.displaySpeed = false, this.mensagensSpeed = []; 
-    this.displayReport = false, this.mensagensReport = []; 
-    this.displayCrossing = false, this.mensagensCrossing = []; 
+  resetForm(){
+
+    this.messageToVant = {};
+
+    this.displayClimb = false, this.selectedClimb  = '',
+    this.displayRoute = false,   this.selectedRoute  = '',
+    this.displayEmergency = false,   this.selectedEmergency  = '',
+    this.displayDescend = false,   this.selectedDescend = '',
+    this.displayComms = false,   this.selectedComms = '',
+    this.displaySpeed = false,   this.selectedSpeed = '',
+    this.displayReport = false,   this.selectedReport = '',
+    this.displayCrossing = false,   this.selectedCrossing = '',
 
     this.maxMensagem = 1;
   }
@@ -233,7 +234,7 @@ export class HomeComponent implements OnInit {
       }
     );
 
-    this.reset()
+    this.resetForm()
 
   }
 
