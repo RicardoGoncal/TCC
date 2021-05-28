@@ -1,6 +1,6 @@
 <div class="container">
 
-    <div class="container1">
+    <div class="container-mensagem">
         <form method="post">
             <h1> Área de Mensagem </h1>
 
@@ -132,7 +132,7 @@
         </form>
     </div>
 
-    <div class="container2">
+    <div class="container-botoes">
         <h1>Área de Categorias</h1>
         <div class="botoes">
             <div class="example-button-row">
@@ -155,27 +155,30 @@
 
     </div>
 
-    <div class="container-response">
-        <h1>Mensagem Retornada do Vant</h1>
-        <h3>{{vantResponse?.mensagem}}</h3>
-        <h3>{{vantResponse?.climb}}</h3>
-        <h3>{{vantResponse?.route}}</h3>
-        <h3>{{vantResponse?.emergency}}</h3>
-        <h3>{{vantResponse?.descend}}</h3>
-        <h3>{{vantResponse?.comms}}</h3>
-        <h3>{{vantResponse?.speed}}</h3>
-        <h3>{{vantResponse?.report}}</h3>
-        <h3>{{vantResponse?.crossing}}</h3>
-    </div>
+    <div class="container-right">
 
-    <div class="container3">
-        <h1>Área de Envio</h1>
-        <div class="botao-enviar">
-            <div class="example-button-row">
-                <button mat-raised-button type="submit" (click)=sendMessage()>Send Message</button>
+        <div class="container-response">
+            <h1>Mensagem Retornada do Vant</h1>
+            <h3>{{vantResponse?.mensagem}}</h3>
+            <h3>{{vantResponse?.climb}}</h3>
+            <h3>{{vantResponse?.route}}</h3>
+            <h3>{{vantResponse?.emergency}}</h3>
+            <h3>{{vantResponse?.descend}}</h3>
+            <h3>{{vantResponse?.comms}}</h3>
+            <h3>{{vantResponse?.speed}}</h3>
+            <h3>{{vantResponse?.report}}</h3>
+            <h3>{{vantResponse?.crossing}}</h3>
+        </div>
+
+        <div class="container-envio">
+            <h1>Área de Envio</h1>
+            <div class="botao-enviar">
+                <div class="example-button-row">
+                    <button mat-raised-button type="submit" (click)=sendMessage()>Send Message</button>
+                </div>
+
             </div>
 
         </div>
-
 
     </div>
