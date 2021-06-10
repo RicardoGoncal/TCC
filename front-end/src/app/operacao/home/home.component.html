@@ -5,126 +5,163 @@
             <h1> Área de Mensagem </h1>
 
             <div class="cards">
-                <div class="row-cards">
-                    <mat-form-field class="mat-form-fields" appearance="fill" *ngIf="displayClimb">
+                <div class="row-cards" *ngIf="displayClimb">
+                    <mat-form-field class="mat-form-fields" appearance="fill">
                         <mat-label>Climb</mat-label>
-                        <mat-select name="selectedClimb" [(ngModel)]="selectedClimb">
+                        <mat-select id="selectedClimb" name="selectedClimb" [(ngModel)]="selectedClimb">
                             <mat-option *ngFor="let msg of mensagensClimb" [value]="msg.mensagem">
                                 {{msg.mensagem}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
                     <input class="input-mat" matInput placeholder="100" type="number" name="numberClimb"
-                        [(ngModel)]="numberClimb" min=0 *ngIf="displayClimb">
-                    <button class="button-del" mat-raised-button color="warn" *ngIf="displayClimb"
-                        (click)="excluir('displayClimb')">
+                        [(ngModel)]="numberClimb" min=0>
+                    <button class="button-del" mat-raised-button color="primary"
+                        [disabled]="selectedClimb.length == 0 || numberClimb==null"
+                        (click)="addMessage('selectedClimb')">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                    <button class="button-del" mat-raised-button color="warn" (click)="excluir('displayClimb')">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </div>
-                <div class="row-cards">
-                    <mat-form-field appearance="fill" *ngIf="displayRoute">
+                <div class="row-cards" *ngIf="displayRoute">
+                    <mat-form-field appearance="fill">
                         <mat-label>Route</mat-label>
-                        <mat-select name="selectedRoute" [(ngModel)]="selectedRoute">
+                        <mat-select id="selectedRoute" name="selectedRoute" [(ngModel)]="selectedRoute">
                             <mat-option *ngFor="let msg of mensagensRoute" [value]="msg.mensagem">
                                 {{msg.mensagem}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
                     <input class="input-mat" matInput placeholder="100" type="number" name="numberRoute"
-                        [(ngModel)]="numberRoute" min=0 *ngIf="displayRoute">
+                        [(ngModel)]="numberRoute" min=0>
+                    <button class="button-del" mat-raised-button color="primary"
+                        [disabled]="selectedRoute.length == 0 || numberRoute==null"
+                        (click)="addMessage('selectedRoute')">
+                        <mat-icon>add</mat-icon>
+                    </button>
                     <button class="button-del" mat-raised-button color="warn" *ngIf="displayRoute"
                         (click)="excluir('displayRoute')">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </div>
-                <div class="row-cards">
-                    <mat-form-field appearance="fill" *ngIf="displayEmergency">
+
+                <div class="row-cards" *ngIf="displayEmergency">
+                    <mat-form-field appearance="fill">
                         <mat-label>Emergency</mat-label>
-                        <mat-select name="selectedClimEmergency" [(ngModel)]="selectedEmergency">
+                        <mat-select id="selectedEmergency" name="selectedEmergency" [(ngModel)]="selectedEmergency">
                             <mat-option *ngFor="let msg of mensagensEmergency" [value]="msg.mensagem">
                                 {{msg.mensagem}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
-
-                    <button class="button-del" mat-raised-button color="warn" *ngIf="displayEmergency"
-                        (click)="excluir('displayEmergency')">
+                    <button class="button-del" mat-raised-button color="primary"
+                        [disabled]="selectedEmergency.length == 0" (click)="addMessage('selectedEmergency')">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                    <button class="button-del" mat-raised-button color="warn" (click)="excluir('displayEmergency')">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </div>
-                <div class="row-cards">
-                    <mat-form-field appearance="fill" *ngIf="displayDescend">
+
+                <div class="row-cards" *ngIf="displayDescend">
+                    <mat-form-field appearance="fill">
                         <mat-label>Descend</mat-label>
-                        <mat-select name="selectedClDescend" [(ngModel)]="selectedDescend">
+                        <mat-select id="selectedClDescend" name="selectedClDescend" [(ngModel)]="selectedDescend">
                             <mat-option *ngFor="let msg of mensagensDescend" [value]="msg.mensagem">
                                 {{msg.mensagem}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
                     <input class="input-mat" matInput placeholder="100" type="number" name="numberDescend"
-                        [(ngModel)]="numberDescend" min=0 *ngIf="displayDescend">
+                        [(ngModel)]="numberDescend" min=0>
+                    <button class="button-del" mat-raised-button color="primary"
+                        [disabled]="selectedDescend.length == 0 || numberDescend==null"
+                        (click)="addMessage('selectedClDescend')">
+                        <mat-icon>add</mat-icon>
+                    </button>
                     <button class="button-del" mat-raised-button color="warn" *ngIf="displayDescend"
                         (click)="excluir('displayDescend')">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </div>
-                <div class="row-cards">
-                    <mat-form-field appearance="fill" *ngIf="displayComms">
+
+                <div class="row-cards" *ngIf="displayComms">
+                    <mat-form-field appearance="fill">
                         <mat-label>Comms</mat-label>
-                        <mat-select name="selectedComms" [(ngModel)]="selectedComms">
+                        <mat-select id="selectedComms" name="selectedComms" [(ngModel)]="selectedComms">
                             <mat-option *ngFor="let msg of mensagensComms" [value]="msg.mensagem">
                                 {{msg.mensagem}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
-                    <button class="button-del" mat-raised-button color="warn" *ngIf="displayComms"
-                        (click)="excluir('displayComms')">
+                    <button class="button-del" mat-raised-button color="primary" [disabled]="selectedComms.length == 0"
+                        (click)="addMessage('selectedComms')">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                    <button class="button-del" mat-raised-button color="warn" (click)="excluir('displayComms')">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </div>
-                <div class="row-cards">
-                    <mat-form-field appearance="fill" *ngIf="displaySpeed">
+
+                <div class="row-cards" *ngIf="displaySpeed">
+                    <mat-form-field appearance="fill">
                         <mat-label>Speed</mat-label>
-                        <mat-select name="selectedSpeed" [(ngModel)]="selectedSpeed">
+                        <mat-select id="selectedSpeed" name="selectedSpeed" [(ngModel)]="selectedSpeed">
                             <mat-option *ngFor="let msg of mensagensSpeed" [value]="msg.mensagem">
                                 {{msg.mensagem}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
                     <input class="input-mat" matInput placeholder="100" type="number" name="numberSpeed"
-                        [(ngModel)]="numberSpeed" min=0 *ngIf="displaySpeed">
+                        [(ngModel)]="numberSpeed" min=0>
+                    <button class="button-del" mat-raised-button color="primary"
+                        [disabled]="selectedSpeed.length == 0 || numberSpeed==null"
+                        (click)="addMessage('selectedSpeed')">
+                        <mat-icon>add</mat-icon>
+                    </button>
                     <button class="button-del" mat-raised-button color="warn" *ngIf="displaySpeed"
                         (click)="excluir('displaySpeed')">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </div>
-                <div class="row-cards">
-                    <mat-form-field appearance="fill" *ngIf="displayReport">
+
+                <div class="row-cards" *ngIf="displayReport">
+                    <mat-form-field appearance="fill">
                         <mat-label>Report</mat-label>
-                        <mat-select name="selectedCReport" [(ngModel)]="selectedReport">
+                        <mat-select id="selectedCReport" name="selectedCReport" [(ngModel)]="selectedReport">
                             <mat-option *ngFor="let msg of mensagensReport" [value]="msg.mensagem">
                                 {{msg.mensagem}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
-                    <button class="button-del" mat-raised-button color="warn" *ngIf="displayReport"
-                        (click)="excluir('displayReport')">
+                    <button class="button-del" mat-raised-button color="primary" [disabled]="selectedReport.length == 0"
+                        (click)="addMessage('selectedCReport')">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                    <button class="button-del" mat-raised-button color="warn" (click)="excluir('displayReport')">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </div>
-                <div class="row-cards">
-                    <mat-form-field appearance="fill" *ngIf="displayCrossing">
+
+                <div class="row-cards" *ngIf="displayCrossing">
+                    <mat-form-field appearance="fill">
                         <mat-label>Crossing</mat-label>
-                        <mat-select name="selectedCliCrossing" [(ngModel)]="selectedCrossing">
+                        <mat-select id="selectedCrossing" name="selectedCrossing" [(ngModel)]="selectedCrossing">
                             <mat-option *ngFor="let msg of mensagensCrossing" [value]="msg.mensagem">
                                 {{msg.mensagem}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
                     <input class="input-mat" matInput placeholder="100" type="number" name="numberCrossing"
-                        [(ngModel)]="numberCrossing" min=0 *ngIf="displayCrossing">
-                    <button class="button-del" mat-raised-button color="warn" *ngIf="displayCrossing"
-                        (click)="excluir('displayCrossing')">
+                        [(ngModel)]="numberCrossing" min=0>
+                    <button class="button-del" mat-raised-button color="primary"
+                        [disabled]="selectedCrossing.length == 0 || numberCrossing==null"
+                        (click)="addMessage('selectedCrossing')">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                    <button class="button-del" mat-raised-button color="warn" (click)="excluir('displayCrossing')">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </div>
@@ -136,20 +173,20 @@
         <h1>Área de Categorias</h1>
         <div class="botoes">
             <div class="example-button-row">
-                <button mat-raised-button (click)="climb()">Climb</button>
-                <button mat-raised-button (click)="route()">Route</button>
+                <button mat-raised-button (click)="getMessages('climb')">Climb</button>
+                <button mat-raised-button (click)="getMessages('route')">Route</button>
             </div>
             <div class="example-button-row">
-                <button mat-raised-button (click)="emergency()">Emergency</button>
-                <button mat-raised-button (click)="descend()">Descend</button>
+                <button mat-raised-button (click)="getMessages('emergency')">Emergency</button>
+                <button mat-raised-button (click)="getMessages('descend')">Descend</button>
             </div>
             <div class="example-button-row">
-                <button mat-raised-button (click)="comms()">Comms</button>
-                <button mat-raised-button (click)="speed()">Speed</button>
+                <button mat-raised-button (click)="getMessages('comms')">Comms</button>
+                <button mat-raised-button (click)="getMessages('speed')">Speed</button>
             </div>
             <div class="example-button-row">
-                <button mat-raised-button (click)="report()">Report</button>
-                <button mat-raised-button (click)="crossing()">Crossing</button>
+                <button mat-raised-button (click)="getMessages('report')">Report</button>
+                <button mat-raised-button (click)="getMessages('crossing')">Crossing</button>
             </div>
         </div>
 
@@ -172,11 +209,16 @@
 
         <div class="container-envio">
             <h1>Área de Envio</h1>
+            <div class="selectedMessages">
+                <span>{{messageToVant?.message}}</span>
+            </div>
+            <button class="reset-messages" mat-raised-button color="warn" (click)="resetForm()" *ngIf="messageToVant?.message.length > 0" >
+                Resetar Mensagens
+            </button>
             <div class="botao-enviar">
                 <div class="example-button-row">
-                    <button mat-raised-button type="submit" (click)=sendMessage()>Send Message</button>
+                    <button mat-raised-button type="submit" color="primary" (click)=sendMessage() [disabled]="messageToVant?.message.length == 0" >Send Message</button>
                 </div>
-
             </div>
 
         </div>

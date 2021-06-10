@@ -26,6 +26,10 @@ export class Mensagem {
   constructor(
     public id: string,
     public mensagem: string,
+    public categoria: {
+      id:string,
+      nome:string
+    },
   ) { }
 }
 @Injectable({
@@ -53,7 +57,6 @@ export class HttpClientService {
 
     let headers = new HttpHeaders({ Authorization: this.basic });
     return this.httpClient.get<Usuario>(url, { headers })
-
   }
 
   getVants() {
