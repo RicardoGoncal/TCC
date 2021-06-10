@@ -119,6 +119,11 @@ export class HomeComponent implements OnInit {
     this.displaySpeed = 0, this.selectedSpeed = '',
     this.displayReport = 0, this.selectedReport = '',
     this.displayCrossing = 0, this.selectedCrossing = '',
+    this.numberClimb = '',
+    this.numberRoute = '',
+    this.numberDescend = '',
+    this.numberSpeed = '',
+    this.numberCrossing = '',
 
     this.maxMensagem = 1;
     this.maxMensagemDisplay = 0;
