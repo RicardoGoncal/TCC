@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { HttpClientService } from '../../service/http-client.service'
 
 interface Mensagem {
@@ -7,7 +8,7 @@ interface Mensagem {
   categoria: {
     id:string,
     nome:string
-  },
+  }
 }
 
 interface Categoria {
@@ -24,6 +25,8 @@ interface SendMessage {
 })
 
 export class HomeComponent implements OnInit {
+
+  vantId: number;
 
   vantResponse: any;
 
@@ -68,8 +71,11 @@ export class HomeComponent implements OnInit {
   messageToVant: SendMessage = {};
 
   constructor(
-    private httpClientService: HttpClientService
-  ) { }
+    private httpClientService: HttpClientService,
+    private route: ActivatedRoute 
+  ) { 
+    this.route.params.subscribe(params => this.vantId = params['id']);
+  }
 
 
   ngOnInit() {
@@ -77,6 +83,7 @@ export class HomeComponent implements OnInit {
       response => this.handleSuccessfulResponse(response),
     );
     this.messageToVant.message = ''
+    this.messageToVant.vant = this.vantId    
   }
 
   handleSuccessfulResponse(response) {
@@ -101,6 +108,8 @@ export class HomeComponent implements OnInit {
 
     this.messageToVant = {};
     this.messageToVant.message = ''
+    this.messageToVant.vant = this.vantId
+
 
     this.displayClimb = 0, this.selectedClimb = '',
     this.displayRoute = 0, this.selectedRoute = '',
@@ -171,10 +180,7 @@ export class HomeComponent implements OnInit {
 
   addMessage(type: any){
 
-    this.maxMensagemDisplay = 0
-
     var doc = document.getElementById(type)  
-    console.log(doc?.innerText)
 
     if(doc != null){
       if(doc.innerText == null || doc.innerText == '' || doc.innerText == undefined){
@@ -213,49 +219,20 @@ export class HomeComponent implements OnInit {
           if(this.displayEmergency == 1) this.displayEmergency = -1
           if(this.displayReport == 1) this.displayReport = -1
         }
+       this.maxMensagemDisplay = 0
+
       }
-    
-
-    console.log(this.messageToVant)
-
-
   }
 
   sendMessage() {
 
-    // if (this.selectedClimb != undefined && this.selectedClimb != '') {
-    //   this.messageToVant.climb = this.selectedClimb + ' ' + this.numberClimb;
-    // }
-    // if (this.selectedRoute != undefined && this.selectedRoute != '') {
-    //   this.messageToVant.route = this.selectedRoute + ' ' + this.numberRoute;
-    // }
-    // if (this.selectedEmergency != undefined && this.selectedEmergency != '') {
-    //   this.messageToVant.emergency = this.selectedEmergency;
-    // }
-    // if (this.selectedDescend != undefined && this.selectedDescend != '') {
-    //   this.messageToVant.descend = this.selectedDescend + ' ' + this.numberDescend;
-    // }
-    // if (this.selectedComms != undefined && this.selectedComms != '') {
-    //   this.messageToVant.comms = this.selectedComms;
-    // }
-    // if (this.selectedSpeed != undefined && this.selectedSpeed != '') {
-    //   this.messageToVant.speed = this.selectedSpeed + ' ' + this.numberSpeed;
-    // }
-    // if (this.selectedReport != undefined && this.selectedReport != '') {
-    //   this.messageToVant.report = this.selectedReport;
-    // }
-    // if (this.selectedCrossing != undefined && this.selectedCrossing != '') {
-    //   this.messageToVant.crossing = this.selectedCrossing + ' ' + this.numberCrossing;
-    // }
-
+    
     console.log(this.messageToVant)
     this.httpClientService.sendMessage(this.messageToVant).subscribe(
       response => {
         this.vantResponse = response
       }
     );
-
-   
 
     this.resetForm()
 
