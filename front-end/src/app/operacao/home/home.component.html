@@ -17,7 +17,7 @@
                     <input class="input-mat" matInput placeholder="100" type="number" name="numberClimb"
                         [(ngModel)]="numberClimb" min=0>
                     <button class="button-del" mat-raised-button color="primary"
-                        [disabled]="selectedClimb.length == 0 || numberClimb==null"
+                        [disabled]="selectedClimb.length == 0 || numberClimb==''"
                         (click)="addMessage('selectedClimb')">
                         <mat-icon>add</mat-icon>
                     </button>
@@ -37,7 +37,7 @@
                     <input class="input-mat" matInput placeholder="100" type="number" name="numberRoute"
                         [(ngModel)]="numberRoute" min=0>
                     <button class="button-del" mat-raised-button color="primary"
-                        [disabled]="selectedRoute.length == 0 || numberRoute==null"
+                        [disabled]="selectedRoute.length == 0 || numberRoute==''"
                         (click)="addMessage('selectedRoute')">
                         <mat-icon>add</mat-icon>
                     </button>
@@ -77,7 +77,7 @@
                     <input class="input-mat" matInput placeholder="100" type="number" name="numberDescend"
                         [(ngModel)]="numberDescend" min=0>
                     <button class="button-del" mat-raised-button color="primary"
-                        [disabled]="selectedDescend.length == 0 || numberDescend==null"
+                        [disabled]="selectedDescend.length == 0 || numberDescend==''"
                         (click)="addMessage('selectedClDescend')">
                         <mat-icon>add</mat-icon>
                     </button>
@@ -117,7 +117,7 @@
                     <input class="input-mat" matInput placeholder="100" type="number" name="numberSpeed"
                         [(ngModel)]="numberSpeed" min=0>
                     <button class="button-del" mat-raised-button color="primary"
-                        [disabled]="selectedSpeed.length == 0 || numberSpeed==null"
+                        [disabled]="selectedSpeed.length == 0 || numberSpeed==''"
                         (click)="addMessage('selectedSpeed')">
                         <mat-icon>add</mat-icon>
                     </button>
@@ -157,7 +157,7 @@
                     <input class="input-mat" matInput placeholder="100" type="number" name="numberCrossing"
                         [(ngModel)]="numberCrossing" min=0>
                     <button class="button-del" mat-raised-button color="primary"
-                        [disabled]="selectedCrossing.length == 0 || numberCrossing==null"
+                        [disabled]="selectedCrossing.length == 0 || numberCrossing==''"
                         (click)="addMessage('selectedCrossing')">
                         <mat-icon>add</mat-icon>
                     </button>

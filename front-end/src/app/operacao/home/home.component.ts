@@ -62,11 +62,11 @@ export class HomeComponent implements OnInit {
   selectedReport: string = '';
   selectedCrossing: string = '';
 
-  numberClimb: string;
-  numberRoute: string;
-  numberDescend: string;
-  numberSpeed: string;
-  numberCrossing: string;
+  numberClimb: string = '';
+  numberRoute: string = '';
+  numberDescend: string = '';
+  numberSpeed: string = '';
+  numberCrossing: string = '';
 
   messageToVant: SendMessage = {};
 
@@ -91,15 +91,14 @@ export class HomeComponent implements OnInit {
   }
 
   excluir(displayType: string) {
-    if (displayType == 'displayClimb') { this.displayClimb = 0, this.selectedClimb = ''; }
-    if (displayType == 'displayRoute') { this.displayRoute = 0, this.selectedRoute = ''; }
+    if (displayType == 'displayClimb') { this.displayClimb = 0, this.selectedClimb = '', this.numberClimb = ''; }
+    if (displayType == 'displayRoute') { this.displayRoute = 0, this.selectedRoute = '', this.numberRoute = ''; }
     if (displayType == 'displayEmergency') { this.displayEmergency = 0, this.selectedEmergency = ''; }
-    if (displayType == 'displayDescend') { this.displayDescend = 0, this.selectedDescend = ''; }
+    if (displayType == 'displayDescend') { this.displayDescend = 0, this.selectedDescend = '', this.numberDescend = ''; }
     if (displayType == 'displayComms') { this.displayComms = 0, this.selectedComms = ''; }
-    if (displayType == 'displaySpeed') { this.displaySpeed = 0, this.selectedSpeed = ''; }
+    if (displayType == 'displaySpeed') { this.displaySpeed = 0, this.selectedSpeed = '', this.numberDescend=''; }
     if (displayType == 'displayReport') { this.displayReport = 0, this.selectedReport = ''; }
-    if (displayType == 'displayCrossing') { this.displayCrossing = 0, this.selectedCrossing = ''; }
-
+    if (displayType == 'displayCrossing') { this.displayCrossing = 0, this.selectedCrossing = '', this.numberCrossing=''; }
     this.maxMensagem--;
     this.maxMensagemDisplay = 0;
   }
@@ -109,7 +108,6 @@ export class HomeComponent implements OnInit {
     this.messageToVant = {};
     this.messageToVant.message = ''
     this.messageToVant.vant = this.vantId
-
 
     this.displayClimb = 0, this.selectedClimb = '',
     this.displayRoute = 0, this.selectedRoute = '',
@@ -137,46 +135,30 @@ export class HomeComponent implements OnInit {
           if ( type == 'climb' && this.displayClimb == 0) {
             this.mensagensClimb = response
             this.displayClimb = 1;
-            this.maxMensagem++;
-            this.maxMensagemDisplay = 1;
-
           } else if (type == 'route' && this.displayRoute == 0) {
             this.mensagensRoute = response
             this.displayRoute = 1;
-            this.maxMensagem++;
-            this.maxMensagemDisplay = 1;
-
           } else if (type == 'emergency' && this.displayEmergency == 0) {
             this.mensagensEmergency = response
             this.displayEmergency = 1;
-            this.maxMensagem++;
-            this.maxMensagemDisplay = 1;
           } else if (type == 'descend' && this.displayDescend == 0) {
             this.mensagensDescend = response
             this.displayDescend = 1;
-            this.maxMensagem++;
-            this.maxMensagemDisplay = 1;
           } else  if (type == 'comms' && this.displayComms == 0) {
             this.mensagensComms = response
             this.displayComms = 1;
-            this.maxMensagem++;
-            this.maxMensagemDisplay = 1;
           }  else  if (type == 'speed' && this.displaySpeed == 0) {
             this.mensagensSpeed = response
             this.displaySpeed = 1;
-            this.maxMensagem++;
-            this.maxMensagemDisplay = 1;
           } else if (type == 'report' && this.displayReport == 0) {
             this.mensagensReport = response
             this.displayReport = 1;
-            this.maxMensagem++;
-            this.maxMensagemDisplay = 1;
           } else if (type == 'crossing' && this.displayCrossing == 0) {
             this.mensagensCrossing = response
             this.displayCrossing = 1;
-            this.maxMensagem++;
-            this.maxMensagemDisplay = 1;
           }
+          this.maxMensagem++;
+          this.maxMensagemDisplay = 1;
         }
       }
 
@@ -231,7 +213,6 @@ export class HomeComponent implements OnInit {
 
   sendMessage() {
 
-    
     console.log(this.messageToVant)
     this.httpClientService.sendMessage(this.messageToVant).subscribe(
       response => {
@@ -240,7 +221,6 @@ export class HomeComponent implements OnInit {
     );
 
     this.resetForm()
-
   }
 
 }
