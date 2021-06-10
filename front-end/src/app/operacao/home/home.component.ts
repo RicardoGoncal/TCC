@@ -41,14 +41,14 @@ export class HomeComponent implements OnInit {
   mensagensReport: Mensagem[];
   mensagensCrossing: Mensagem[];
 
-  displayClimb: boolean = false;
-  displayRoute: boolean = false;
-  displayEmergency: boolean = false;
-  displayDescend: boolean = false;
-  displayComms: boolean = false;
-  displaySpeed: boolean = false;
-  displayReport: boolean = false;
-  displayCrossing: boolean = false;
+  displayClimb: number = 0;
+  displayRoute: number = 0;
+  displayEmergency: number = 0;
+  displayDescend: number = 0;
+  displayComms: number = 0;
+  displaySpeed: number = 0;
+  displayReport: number = 0;
+  displayCrossing: number = 0;
 
   selectedClimb: string = '';
   selectedRoute: string = '';
@@ -84,14 +84,14 @@ export class HomeComponent implements OnInit {
   }
 
   excluir(displayType: string) {
-    if (displayType == 'displayClimb') { this.displayClimb = false, this.selectedClimb = ''; }
-    if (displayType == 'displayRoute') { this.displayRoute = false, this.selectedRoute = ''; }
-    if (displayType == 'displayEmergency') { this.displayEmergency = false, this.selectedEmergency = ''; }
-    if (displayType == 'displayDescend') { this.displayDescend = false, this.selectedDescend = ''; }
-    if (displayType == 'displayComms') { this.displayComms = false, this.selectedComms = ''; }
-    if (displayType == 'displaySpeed') { this.displaySpeed = false, this.selectedSpeed = ''; }
-    if (displayType == 'displayReport') { this.displayReport = false, this.selectedReport = ''; }
-    if (displayType == 'displayCrossing') { this.displayCrossing = false, this.selectedCrossing = ''; }
+    if (displayType == 'displayClimb') { this.displayClimb = 0, this.selectedClimb = ''; }
+    if (displayType == 'displayRoute') { this.displayRoute = 0, this.selectedRoute = ''; }
+    if (displayType == 'displayEmergency') { this.displayEmergency = 0, this.selectedEmergency = ''; }
+    if (displayType == 'displayDescend') { this.displayDescend = 0, this.selectedDescend = ''; }
+    if (displayType == 'displayComms') { this.displayComms = 0, this.selectedComms = ''; }
+    if (displayType == 'displaySpeed') { this.displaySpeed = 0, this.selectedSpeed = ''; }
+    if (displayType == 'displayReport') { this.displayReport = 0, this.selectedReport = ''; }
+    if (displayType == 'displayCrossing') { this.displayCrossing = 0, this.selectedCrossing = ''; }
 
     this.maxMensagem--;
     this.maxMensagemDisplay = 0;
@@ -100,64 +100,66 @@ export class HomeComponent implements OnInit {
   resetForm() {
 
     this.messageToVant = {};
+    this.messageToVant.message = ''
 
-    this.displayClimb = false, this.selectedClimb = '',
-    this.displayRoute = false, this.selectedRoute = '',
-    this.displayEmergency = false, this.selectedEmergency = '',
-    this.displayDescend = false, this.selectedDescend = '',
-    this.displayComms = false, this.selectedComms = '',
-    this.displaySpeed = false, this.selectedSpeed = '',
-    this.displayReport = false, this.selectedReport = '',
-    this.displayCrossing = false, this.selectedCrossing = '',
+    this.displayClimb = 0, this.selectedClimb = '',
+    this.displayRoute = 0, this.selectedRoute = '',
+    this.displayEmergency = 0, this.selectedEmergency = '',
+    this.displayDescend = 0, this.selectedDescend = '',
+    this.displayComms = 0, this.selectedComms = '',
+    this.displaySpeed = 0, this.selectedSpeed = '',
+    this.displayReport = 0, this.selectedReport = '',
+    this.displayCrossing = 0, this.selectedCrossing = '',
 
     this.maxMensagem = 1;
     this.maxMensagemDisplay = 0;
   }
 
   getMessages(type: string) {
+    console.log(this.displayClimb)
     this.httpClientService.getMensagem(type).subscribe(
       response => {
         if(this.maxMensagem < 6 && this.maxMensagemDisplay < 1){
-          if ( type == 'climb' && this.displayClimb == false) {
+          if ( type == 'climb' && this.displayClimb == 0) {
             this.mensagensClimb = response
-            this.displayClimb = true;
+            this.displayClimb = 1;
             this.maxMensagem++;
             this.maxMensagemDisplay = 1;
 
-          } else if (type == 'route' && this.displayRoute == false) {
+          } else if (type == 'route' && this.displayRoute == 0) {
             this.mensagensRoute = response
-            this.displayRoute = true;
+            this.displayRoute = 1;
             this.maxMensagem++;
             this.maxMensagemDisplay = 1;
 
-          } else if (type == 'emergency' && this.displayEmergency == false) {
+          } else if (type == 'emergency' && this.displayEmergency == 0) {
             this.mensagensEmergency = response
-            this.displayEmergency = true;
+            this.displayEmergency = 1;
             this.maxMensagem++;
             this.maxMensagemDisplay = 1;
-          } else if (type == 'descend' && this.displayDescend == false) {
+          } else if (type == 'descend' && this.displayDescend == 0) {
             this.mensagensDescend = response
-            this.displayDescend = true;
+            this.displayDescend = 1;
             this.maxMensagem++;
             this.maxMensagemDisplay = 1;
-          } else  if (type == 'comms' && this.displayComms == false) {
+          } else  if (type == 'comms' && this.displayComms == 0) {
             this.mensagensComms = response
-            this.displayComms = true;
+            this.displayComms = 1;
             this.maxMensagem++;
             this.maxMensagemDisplay = 1;
-          }  else  if (type == 'speed' && this.displaySpeed == false) {
+          }  else  if (type == 'speed' && this.displaySpeed == 0) {
             this.mensagensSpeed = response
-            this.displaySpeed = true;
+            this.displaySpeed = 1;
             this.maxMensagem++;
             this.maxMensagemDisplay = 1;
-          } else if (type == 'report' && this.displayReport == false) {
+          } else if (type == 'report' && this.displayReport == 0) {
             this.mensagensReport = response
-            this.displayReport = true;
+            this.displayReport = 1;
             this.maxMensagem++;
             this.maxMensagemDisplay = 1;
-          } else if (type == 'crossing' && this.displayCrossing == false) {
+          } else if (type == 'crossing' && this.displayCrossing == 0) {
             this.mensagensCrossing = response
-            this.displayCrossing = true;
+            this.displayCrossing = 1;
             this.maxMensagem++;
             this.maxMensagemDisplay = 1;
           }
@@ -182,34 +184,34 @@ export class HomeComponent implements OnInit {
 
         if (this.numberClimb != undefined && this.numberClimb != '') {
           this.messageToVant.message += doc.innerText != null ? doc.innerText.replace('\t', '') + ':' + this.numberClimb + ';' : '' ;
-          this.displayClimb = false
+          this.displayClimb = -1
           this.numberClimb = ''
         }
         else if (this.numberCrossing != undefined && this.numberCrossing != '') {
           this.messageToVant.message += doc.innerText != null ? doc.innerText.replace('\t', '') + ':' + this.numberCrossing + ';' : '' ;
-          this.displayCrossing = false
+          this.displayCrossing = -1
           this.numberCrossing = ''
         }
         else if (this.numberDescend != undefined && this.numberDescend != '') {
           this.messageToVant.message += doc.innerText != null ? doc.innerText.replace('\t', '') + ':' + this.numberDescend + ';' : '' ;
-          this.displayDescend = false
+          this.displayDescend = -1
           this.numberDescend = ''
         }
         else if (this.numberRoute != undefined && this.numberRoute != '') {
           this.messageToVant.message += doc.innerText != null ? doc.innerText.replace('\t', '') + ':' + this.numberRoute + ';' : '' ;
-          this.displayRoute = false
+          this.displayRoute = -1
           this.numberRoute = ''
         }
         else if (this.numberSpeed != undefined && this.numberSpeed != '') {
           this.messageToVant.message += doc.innerText != null ? doc.innerText.replace('\t', '') + ':' + this.numberSpeed + ';' : '' ;
-          this.displaySpeed = false
+          this.displaySpeed = -1
           this.numberSpeed = ''
         }
         else {
           this.messageToVant.message += doc.innerText != null ? doc.innerText.replace('\t', '') + ';' : '';
-          this.displayComms = false
-          this.displayEmergency = false
-          this.displayReport = false
+          if(this.displayComms == 1) this.displayComms = -1
+          if(this.displayEmergency == 1) this.displayEmergency = -1
+          if(this.displayReport == 1) this.displayReport = -1
         }
       }
     

@@ -5,7 +5,7 @@
             <h1> Área de Mensagem </h1>
 
             <div class="cards">
-                <div class="row-cards" *ngIf="displayClimb">
+                <div class="row-cards" *ngIf="displayClimb == 1">
                     <mat-form-field class="mat-form-fields" appearance="fill">
                         <mat-label>Climb</mat-label>
                         <mat-select id="selectedClimb" name="selectedClimb" [(ngModel)]="selectedClimb">
@@ -25,7 +25,7 @@
                         <mat-icon>delete</mat-icon>
                     </button>
                 </div>
-                <div class="row-cards" *ngIf="displayRoute">
+                <div class="row-cards" *ngIf="displayRoute == 1">
                     <mat-form-field appearance="fill">
                         <mat-label>Route</mat-label>
                         <mat-select id="selectedRoute" name="selectedRoute" [(ngModel)]="selectedRoute">
@@ -47,7 +47,7 @@
                     </button>
                 </div>
 
-                <div class="row-cards" *ngIf="displayEmergency">
+                <div class="row-cards" *ngIf="displayEmergency == 1">
                     <mat-form-field appearance="fill">
                         <mat-label>Emergency</mat-label>
                         <mat-select id="selectedEmergency" name="selectedEmergency" [(ngModel)]="selectedEmergency">
@@ -65,7 +65,7 @@
                     </button>
                 </div>
 
-                <div class="row-cards" *ngIf="displayDescend">
+                <div class="row-cards" *ngIf="displayDescend == 1">
                     <mat-form-field appearance="fill">
                         <mat-label>Descend</mat-label>
                         <mat-select id="selectedClDescend" name="selectedClDescend" [(ngModel)]="selectedDescend">
@@ -87,7 +87,7 @@
                     </button>
                 </div>
 
-                <div class="row-cards" *ngIf="displayComms">
+                <div class="row-cards" *ngIf="displayComms == 1">
                     <mat-form-field appearance="fill">
                         <mat-label>Comms</mat-label>
                         <mat-select id="selectedComms" name="selectedComms" [(ngModel)]="selectedComms">
@@ -105,7 +105,7 @@
                     </button>
                 </div>
 
-                <div class="row-cards" *ngIf="displaySpeed">
+                <div class="row-cards" *ngIf="displaySpeed == 1">
                     <mat-form-field appearance="fill">
                         <mat-label>Speed</mat-label>
                         <mat-select id="selectedSpeed" name="selectedSpeed" [(ngModel)]="selectedSpeed">
@@ -127,17 +127,17 @@
                     </button>
                 </div>
 
-                <div class="row-cards" *ngIf="displayReport">
+                <div class="row-cards" *ngIf="displayReport == 1">
                     <mat-form-field appearance="fill">
                         <mat-label>Report</mat-label>
-                        <mat-select id="selectedCReport" name="selectedCReport" [(ngModel)]="selectedReport">
+                        <mat-select id="selectedReport" name="selectedReport" [(ngModel)]="selectedReport">
                             <mat-option *ngFor="let msg of mensagensReport" [value]="msg.mensagem">
                                 {{msg.mensagem}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
                     <button class="button-del" mat-raised-button color="primary" [disabled]="selectedReport.length == 0"
-                        (click)="addMessage('selectedCReport')">
+                        (click)="addMessage('selectedReport')">
                         <mat-icon>add</mat-icon>
                     </button>
                     <button class="button-del" mat-raised-button color="warn" (click)="excluir('displayReport')">
@@ -145,7 +145,7 @@
                     </button>
                 </div>
 
-                <div class="row-cards" *ngIf="displayCrossing">
+                <div class="row-cards" *ngIf="displayCrossing == 1">
                     <mat-form-field appearance="fill">
                         <mat-label>Crossing</mat-label>
                         <mat-select id="selectedCrossing" name="selectedCrossing" [(ngModel)]="selectedCrossing">
