@@ -12,7 +12,8 @@ class Tarefas_Bd():
     def __init__(self):
 
         self.config = ConfigParser()
-        self.config.read('sql.ini')
+        self.path = '../source/sql.ini'
+        self.config.read(self.path)
 
         self.mydb = mysql.connector.connect(
             host = self.config.get('main', 'host'),

@@ -4,7 +4,8 @@ from flask import Flask
 from flask import request
 from flask import jsonify
 from flask_cors import CORS
-from tarefas_bd import Tarefas_Bd
+from source.tarefas_bd import Tarefas_Bd
+from source.envio_rabbit import Torre_Rb
 import datetime
 
 # Configuração da API
@@ -40,5 +41,10 @@ def vant():
         log_torre(id_vant=content['vant'], msg_vant=content['message'])
 
         # coelho
+        torre_rb = Torre_Rb()
+
+        print(" [x] Requesting...")
+        response = torre_rb.call()
+        print(" [.] Got %r" % response)
 
         return jsonify(content)
