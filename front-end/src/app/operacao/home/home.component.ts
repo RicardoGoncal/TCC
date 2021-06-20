@@ -84,7 +84,7 @@ export class HomeComponent implements OnInit {
     );
     this.messageToVant.message = ''
     this.messageToVant.vant = this.vantId   
-    this.messageToVant.port = this.vantId + 5000 
+    this.messageToVant.port = 5000 + Number(this.vantId)
   }
 
   handleSuccessfulResponse(response) {
