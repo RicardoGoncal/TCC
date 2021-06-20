@@ -1,0 +1,19 @@
+<div class="">
+    <h3>Adicionar Novo Vant</h3>
+</div>
+
+<div class="button-row">
+    <button color="" mat-raised-button [routerLink]="['/vants']">
+        <mat-icon>chevron_left</mat-icon> Voltar
+    </button>
+</div>
+
+<form action="" class="container" [formGroup]="vantForm" (ngSubmit)="newVant(vantForm.value)">
+    <mat-form-field>
+        <input matInput #input name="nome" placeholder="Nome" maxlength="200" formControlName="nome">
+        <mat-hint align="end">{{input.value?.length || 0}}/100</mat-hint>
+    </mat-form-field>
+    <br>
+
+    <button type="submit" class="button-add" mat-raised-button color="primary" [disabled]="!vantForm.valid">Adicionar</button>
+</form>
