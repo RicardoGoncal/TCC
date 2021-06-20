@@ -41,7 +41,7 @@ def vant():
         log_torre(id_vant=content['vant'], msg_vant=content['message'])
 
         # coelho
-        torre_rb = Torre_Rb(id_vant=content['vant'], port_vant=content['vant'], message=content['message'])
+        torre_rb = Torre_Rb(id_vant=content['vant'], port_vant=content['port'], message=content['message'])
 
         print(" [x] Requesting...")
         response = torre_rb.call()
