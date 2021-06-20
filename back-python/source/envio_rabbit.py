@@ -4,8 +4,11 @@ import pika
 
 class Torre_Rb(object):
 
-    def __init__(self):
+    def __init__(self, id_vant, port_vant, message):
 
+        self.id = str(id_vant)
+        self.port = str(port_vant)
+        self.message = str(message)
         self.connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
         self.channel = self.connection.channel()
         result = self.channel.queue_declare(queue='', exclusive=True)
@@ -19,9 +22,9 @@ class Torre_Rb(object):
 
     def call(self):
         self.response = None
-        self.corr_id = str(1)
-        self.channel.basic_publish(exchange='', routing_key='vant2', properties=pika.BasicProperties(reply_to=self.callback_queue, correlation_id=self.corr_id),\
-                                    body='me retorne um numero')
+        self.corr_id = str(self.id) 
+        self.channel.basic_publish(exchange='', routing_key=self.port, properties=pika.BasicProperties(reply_to=self.callback_queue, correlation_id=self.corr_id),\
+                                    body=self.message)
 
         while self.response is None:
             self.connection.process_data_events()

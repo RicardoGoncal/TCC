@@ -41,10 +41,11 @@ def vant():
         log_torre(id_vant=content['vant'], msg_vant=content['message'])
 
         # coelho
-        torre_rb = Torre_Rb()
+        torre_rb = Torre_Rb(id_vant=content['vant'], port_vant=content['vant'], message=content['message'])
 
         print(" [x] Requesting...")
         response = torre_rb.call()
         print(" [.] Got %r" % response)
 
         return jsonify(content)
+
