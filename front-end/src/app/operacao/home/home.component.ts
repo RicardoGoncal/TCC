@@ -83,7 +83,8 @@ export class HomeComponent implements OnInit {
       response => this.handleSuccessfulResponse(response),
     );
     this.messageToVant.message = ''
-    this.messageToVant.vant = this.vantId    
+    this.messageToVant.vant = this.vantId   
+    this.messageToVant.port = this.vantId + 5000 
   }
 
   handleSuccessfulResponse(response) {
@@ -108,6 +109,7 @@ export class HomeComponent implements OnInit {
     this.messageToVant = {};
     this.messageToVant.message = ''
     this.messageToVant.vant = this.vantId
+    this.messageToVant.port = this.vantId + 5000 
 
     this.displayClimb = 0, this.selectedClimb = '',
     this.displayRoute = 0, this.selectedRoute = '',

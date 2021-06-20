@@ -12,7 +12,7 @@ import { HttpClientService } from 'src/app/service/http-client.service';
 
 export class ListVantsComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'nome', 'acao'];
+  displayedColumns: string[] = ['id', 'nome', 'port', 'acao'];
 
   dataSource = new MatTableDataSource<any>();
 
