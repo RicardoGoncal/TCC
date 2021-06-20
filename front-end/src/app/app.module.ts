@@ -22,6 +22,7 @@ import { ListVantsComponent } from './operacao/list-vants/list-vants.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AddVantComponent } from './operacao/add-vant/add-vant.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     HomeComponent,
     ListVantsComponent,
+    AddVantComponent,
   ],
   imports: [
     BrowserModule,

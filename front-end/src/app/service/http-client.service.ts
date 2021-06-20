@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthenticationService } from './authentication.service';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
+
 export class Categoria {
   constructor(
     public id: string,
@@ -22,6 +23,11 @@ export class Vants {
     public nome: string,
   ) { }
 }
+export class Vant {
+  constructor(
+    public nome: string,
+  ) { }
+}
 export class Mensagem {
   constructor(
     public id: string,
@@ -37,13 +43,29 @@ export class Mensagem {
 })
 export class HttpClientService {
 
+  
+
   readonly pythonApiURL: string;
   readonly javaApiURL: string;
+  readonly cadastrarVant: string;
   basic: any;
 
   constructor(protected httpClient: HttpClient, private auth: AuthenticationService,) {
     this.pythonApiURL = 'http://localhost:5000';
     this.javaApiURL = 'http://localhost:8080';
+    this.cadastrarVant = 'http://localhost:8080';
+  }
+
+  addVant(vant): Observable<Vant> {
+
+    let url = `${this.javaApiURL}/vants`
+    this.basic = sessionStorage.getItem('basicauth')
+
+    return this.httpClient.post<Vant>(url, vant, {headers:{Authorization: this.basic,'Content-Type': 'application/json'}})
+      .pipe(
+        tap((vant: Vant) => console.log('Adicionou o vant')),
+        catchError(this.handlerError<Vant>('addVant'))
+      )
   }
 
   sendMessage(messageToVant) {
@@ -51,6 +73,7 @@ export class HttpClientService {
     let json =  JSON.stringify(messageToVant)
     return this.httpClient.post(url, json, {headers:{'Content-Type': 'application/json'}});
   }
+
   getCategorias() {
     let url = `${this.javaApiURL}/categorias`
     this.basic = sessionStorage.getItem('basicauth')
