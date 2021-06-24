@@ -31,6 +31,15 @@ public class VantController {
             return ResponseEntity.status(HttpStatus.CREATED).body(vantCriado);
         }
         return ResponseEntity.badRequest().build();
+    }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Vant> deletar(@PathVariable Long id) {
+        try {
+            vantService.deletar(id);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }catch(Exception e){
+            return ResponseEntity.notFound().build();
+        }
     }
 }

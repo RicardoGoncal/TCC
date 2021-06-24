@@ -27,4 +27,8 @@ public class VantService {
             return null;
         }
     }
+
+    public void deletar(Long id) {
+        vantRepository.deleteById(id);
+    }
 }
