@@ -8,5 +8,18 @@
 }
 
 .button-add{
+    margin-left: 32px;
+    height: 48px;
+}
+
+.title{
+    text-align: center;
+}
+
+.button-row{
     margin-left: 16px;
+}
+
+.input-name{
+    width: 300px;
 }
