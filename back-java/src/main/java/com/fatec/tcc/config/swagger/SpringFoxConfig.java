@@ -17,7 +17,7 @@ public class SpringFoxConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("com.fatec.tcc"))
                 .paths(PathSelectors.any())
                 .build();
     }

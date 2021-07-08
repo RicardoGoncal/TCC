@@ -1,11 +1,13 @@
 package com.fatec.tcc.service;
 
 import com.fatec.tcc.model.Vant;
+import com.fatec.tcc.model.dto.VantDTO;
 import com.fatec.tcc.repository.VantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @Service
@@ -17,18 +19,26 @@ public class VantService {
         return vantRepository.findAll();
     }
 
-    public Vant salvar(Vant vant) {
+    public ResponseEntity salvar(VantDTO vantDTO) {
         try {
+            Vant vant = new Vant();
             Integer portToVant = vantRepository.findMaxPort();
             portToVant++;
             vant.setPort(portToVant);
-            return vantRepository.save(vant);
+            vant.setNome(vantDTO.getNome());
+            Vant vantCriado = vantRepository.save(vant);
+            return ResponseEntity.status(HttpStatus.CREATED).body(vantCriado);
         }catch (Exception e){
-            return null;
+            return ResponseEntity.badRequest().build();
         }
     }
 
-    public void deletar(Long id) {
-        vantRepository.deleteById(id);
+    public ResponseEntity deletar(Long id) {
+        try {
+            vantRepository.deleteById(id);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }catch(Exception e){
+            return ResponseEntity.notFound().build();
+        }
     }
 }
