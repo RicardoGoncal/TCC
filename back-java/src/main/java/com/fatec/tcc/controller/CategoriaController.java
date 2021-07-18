@@ -4,6 +4,7 @@ import com.fatec.tcc.model.Categoria;
 import com.fatec.tcc.service.CategoriaService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,6 +21,7 @@ public class CategoriaController {
     @Autowired
     private CategoriaService categoriaService;
 
+    @Cacheable(value = "listaDeCategorias")
     @ApiOperation(value = "Listagem de todas as categorias")
     @GetMapping()
     public ResponseEntity<List<Categoria>> listar(){
