@@ -23,6 +23,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddVantComponent } from './operacao/add-vant/add-vant.component';
+import { ClimaComponent } from './operacao/clima/clima.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { AddVantComponent } from './operacao/add-vant/add-vant.component';
     HomeComponent,
     ListVantsComponent,
     AddVantComponent,
+    ClimaComponent,
   ],
   imports: [
     BrowserModule,

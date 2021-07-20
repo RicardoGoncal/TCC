@@ -43,8 +43,6 @@ export class Mensagem {
 })
 export class HttpClientService {
 
-  
-
   readonly pythonApiURL: string;
   readonly javaApiURL: string;
   readonly cadastrarVant: string;

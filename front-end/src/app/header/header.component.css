@@ -1,14 +1,21 @@
 .botao-home{
     margin-left: 48px;
-    
 }
 
-.botao-home a, .botao-logout a {
+.botao-home a, .botao-logout a  {
     color: white;
     text-decoration: none;
     margin-left: 8px;
 }
 
+.link-clima a{
+    margin-left: 40px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    text-align: center;
+}
+
 .botao-logout {
-    margin-left: 80%;
+    margin-left: 70%;
 }

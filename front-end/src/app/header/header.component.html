@@ -1,25 +1,29 @@
-  <p>
-    <mat-toolbar color="primary">
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
+<p>
+  <mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Vants controle</span>
+    <span class="example-spacer"></span>
+    <div class="botao-home">
+      <button *ngIf="loginService.isUserLoggedIn()" mat-icon-button class="example-icon"
+        aria-label="Example icon-button with share icon">
+        <mat-icon>home</mat-icon>
+        <a routerLink="/vants" class="nav-link">Vants</a>
       </button>
-      <span>Vants controle</span>
-      <span class="example-spacer"></span>
-      <div class="botao-home">
+    </div>
 
-        <button *ngIf="loginService.isUserLoggedIn()"  mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-          <mat-icon>home</mat-icon>
-          <a routerLink="/vants" class="nav-link">Vants</a>
-        </button>
-      </div>
-        <div class="botao-logout">
+    <div class="link-clima">
+      <a routerLink="/clima" class="nav-link ">Clima</a>
+    </div>
+    <div class="botao-logout">
 
-        <button *ngIf="loginService.isUserLoggedIn()" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-          <mat-icon>logout</mat-icon>
-          <a  routerLink="/logout" class="nav-link">Logout</a>
-        </button>
-      </div>
-      
-    </mat-toolbar>
-  </p>
+      <button *ngIf="loginService.isUserLoggedIn()" mat-icon-button class="example-icon favorite-icon"
+        aria-label="Example icon-button with heart icon">
+        <mat-icon>logout</mat-icon>
+        <a routerLink="/logout" class="nav-link">Logout</a>
+      </button>
+    </div>
 
+  </mat-toolbar>
+</p>
