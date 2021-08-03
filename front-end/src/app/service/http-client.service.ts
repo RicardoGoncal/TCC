@@ -46,12 +46,14 @@ export class HttpClientService {
   readonly pythonApiURL: string;
   readonly javaApiURL: string;
   readonly cadastrarVant: string;
+  readonly startVantServer:string;
   basic: any;
 
   constructor(protected httpClient: HttpClient, private auth: AuthenticationService,) {
     this.pythonApiURL = 'http://localhost:5000';
     this.javaApiURL = 'http://localhost:8080';
     this.cadastrarVant = 'http://localhost:8080';
+    this.startVantServer = 'http://localhost:8085';
   }
 
   addVant(vant): Observable<Vant> {
@@ -97,6 +99,17 @@ export class HttpClientService {
     let headers = new HttpHeaders({ Authorization: this.basic });
 
     return this.httpClient.get<Mensagem[]>(url, { headers })
+      .pipe(
+        catchError(this.handlerError('getMensagem', []))
+      )
+  }
+
+  startVant(port: string){
+    let url = `${this.startVantServer}/start`
+
+    let json =  JSON.stringify(port)
+
+    return this.httpClient.post(url, json)
       .pipe(
         catchError(this.handlerError('getMensagem', []))
       )

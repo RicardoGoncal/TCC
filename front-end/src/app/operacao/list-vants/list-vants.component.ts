@@ -12,7 +12,7 @@ import { HttpClientService } from 'src/app/service/http-client.service';
 
 export class ListVantsComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'nome', 'port', 'acao'];
+  displayedColumns: string[] = ['id', 'nome', 'port', 'acao', 'conectar'];
 
   dataSource = new MatTableDataSource<any>();
 
@@ -29,6 +29,16 @@ export class ListVantsComponent implements OnInit {
         this.dataSource = new MatTableDataSource();
         this.dataSource.data =  res;
         this.dataSource.paginator = this.paginator;     
+      }, err => {
+        console.log(err)
+      })
+  }
+
+  start(port: string){
+    console.log("chamei" + port)
+    this.httpClientService.startVant(port).subscribe(
+      res => {
+           
       }, err => {
         console.log(err)
       })

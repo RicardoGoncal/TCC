@@ -29,6 +29,13 @@
           <button mat-flat-button color="primary" [routerLink]="['/vants/',element?.id]">Selecionar</button>
         </td>
       </ng-container>
+
+      <ng-container matColumnDef="conectar">
+        <th mat-header-cell *matHeaderCellDef>Iniciar</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-flat-button color="primary" (click)="start(element?.port)">Conectar</button>
+        </td>
+      </ng-container>
       
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
