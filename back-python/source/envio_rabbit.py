@@ -2,8 +2,17 @@
 
 import pika
 
-class Torre_Rb(object):
+"""
+    Código responsável por fazer o envio de uma request(mensagem) para o vant.
+"""
 
+class Envio_Rb(object):
+
+    """
+        Classe Envio_Rb, responsável por pedir uma request a algum vant do server.
+    """
+
+    # Inicialização da classe
     def __init__(self, id_vant, port_vant, message):
 
         self.id = str(id_vant)
@@ -21,6 +30,9 @@ class Torre_Rb(object):
             self.response = body
 
     def call(self):
+        """
+            Método responsável por receber a resposta da request solicitada ao vant
+        """
         self.response = None
         self.corr_id = str(self.id) 
         self.channel.basic_publish(exchange='', routing_key=self.port, properties=pika.BasicProperties(reply_to=self.callback_queue, correlation_id=self.corr_id),\

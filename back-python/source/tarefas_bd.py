@@ -3,6 +3,9 @@
 from configparser import ConfigParser
 import mysql.connector
 
+"""
+    Código com o objetivo de trabalhar com o banco de dados
+"""
 class Tarefas_Bd():
 
     """
