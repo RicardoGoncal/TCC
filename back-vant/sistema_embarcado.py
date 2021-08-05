@@ -4,8 +4,19 @@ import pika
 import random
 import sys
 
+"""
+    Código responsável por estabelecer um canal de conexão do vant
+    no RabbitMQ
+"""
+
 class Vant_Rb(object):
 
+    """
+        Classe Vant, responsável por enviar uma resposta de uma request
+        pedido da torre de comando
+    """
+
+    # Inicialização da classe
     def __init__(self, port):
 
         self.port = str(port)
@@ -22,6 +33,11 @@ class Vant_Rb(object):
 
     def on_request(self, ch, method, props, body):
 
+        """
+            Método atrelado a funcionalidades do RabbitMQ. Faz o retorno
+            de uma mensagem após receber uma mensagem.
+        """
+
         r = str(body)
 
         print(" [.] (%s)" % r)
@@ -33,15 +49,15 @@ class Vant_Rb(object):
 
     def consome_msg(self):
 
+        """
+            Método atrelado a funcionalidades do RabbitMQ. Faz com que
+            o canal criado na inicialização fique aguardando para consumir
+            uma mensagem.
+        """
+
         self.channel.basic_qos(prefetch_count=1)
 
         self.channel.basic_consume(queue=self.port, on_message_callback=self.on_request)
 
         print("[x] Awaiting RPC requests")
         self.channel.start_consuming()
-
-if __name__ == '__main__':
-
-    port = sys.argv[1] if len(sys.argv) > 1 else 0
-    vant_rb = Vant_Rb(port=port)
-    vant_rb.consome_msg()
