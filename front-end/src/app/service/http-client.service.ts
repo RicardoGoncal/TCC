@@ -38,6 +38,10 @@ export class Mensagem {
     },
   ) { }
 }
+
+export class SendMessage {
+  [key: string]: any
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -104,14 +108,16 @@ export class HttpClientService {
       )
   }
 
-  startVant(port: string){
+  startVant(port){
     let url = `${this.startVantServer}/start`
 
     let json =  JSON.stringify(port)
 
+
+
     console.log(json)
 
-    return this.httpClient.post(url, json)
+    return this.httpClient.post(url, json, {headers:{'Content-Type': 'application/json'}})
       .pipe(
         catchError(this.handlerError('getMensagem', []))
       )

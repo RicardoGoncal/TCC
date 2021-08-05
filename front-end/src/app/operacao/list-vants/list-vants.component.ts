@@ -3,11 +3,16 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { HttpClientService } from 'src/app/service/http-client.service';
 
+interface SendMessage {
+  [key: string]: any
+}
 @Component({
   selector: 'app-list-vants',
   templateUrl: './list-vants.component.html',
   styleUrls: ['./list-vants.component.css']
 })
+
+
 
 
 export class ListVantsComponent implements OnInit {
@@ -17,6 +22,8 @@ export class ListVantsComponent implements OnInit {
   dataSource = new MatTableDataSource<any>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  messageToVant: SendMessage = {};
   
   constructor(
     private httpClientService: HttpClientService
@@ -35,8 +42,9 @@ export class ListVantsComponent implements OnInit {
   }
 
   start(port: string){
-    console.log("chamei" + port)
-    this.httpClientService.startVant(port).subscribe(
+    this.messageToVant.message = '' 
+    this.messageToVant.port = port
+    this.httpClientService.startVant(this.messageToVant).subscribe(
       res => {
            
       }, err => {

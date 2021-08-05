@@ -215,7 +215,6 @@ export class HomeComponent implements OnInit {
 
   sendMessage() {
 
-    console.log(this.messageToVant)
     this.httpClientService.sendMessage(this.messageToVant).subscribe(
       response => {
         this.vantResponse = response
