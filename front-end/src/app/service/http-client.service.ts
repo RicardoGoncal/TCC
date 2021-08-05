@@ -109,6 +109,8 @@ export class HttpClientService {
 
     let json =  JSON.stringify(port)
 
+    console.log(json)
+
     return this.httpClient.post(url, json)
       .pipe(
         catchError(this.handlerError('getMensagem', []))
