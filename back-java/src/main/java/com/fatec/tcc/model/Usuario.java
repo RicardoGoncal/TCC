@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @Entity
 @Table(name = "torre_comando")
-public class Torre implements UserDetails {
+public class Usuario implements UserDetails {
 
     @Id
     private Long id;
@@ -30,11 +30,11 @@ public class Torre implements UserDetails {
     @NotNull
     private String senha;
 
-    private String authorities;
+    private String autoridades;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.stream(authorities.split(","))
+        return Arrays.stream(autoridades.split(","))
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
     }

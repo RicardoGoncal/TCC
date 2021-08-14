@@ -1,14 +1,12 @@
 package com.fatec.tcc.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
 public class User {
     private String status;
-    public User(String status) {
-        this.status = status;
-    }
-    public String getStatus() {
-        return status;
-    }
-    public void setStatus(String status) {
-        this.status = status;
-    }
 }

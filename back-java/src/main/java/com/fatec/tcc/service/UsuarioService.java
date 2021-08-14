@@ -1,6 +1,8 @@
 package com.fatec.tcc.service;
 
-import com.fatec.tcc.repository.TorreRepository;
+import com.fatec.tcc.model.Usuario;
+import com.fatec.tcc.model.dto.UsuarioDTO;
+import com.fatec.tcc.repository.UsuarioRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -14,14 +16,22 @@ import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
-public class TorreDetailsService implements UserDetailsService {
+public class UsuarioService implements UserDetailsService {
 
-    private final TorreRepository torreRepository;
+    private final UsuarioRepository usuarioRepository;
 
     @Override
     public UserDetails loadUserByUsername(String nome) throws UsernameNotFoundException {
-        return Optional.ofNullable(torreRepository.findByNome(nome))
+        return Optional.ofNullable(usuarioRepository.findByNome(nome))
                 .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado") );
     }
 
+    public Usuario create(UsuarioDTO user) {
+        Usuario usuario = new Usuario();
+        usuario.setNome(user.getNome());
+        usuario.setSenha(user.getSenha());
+        usuario.setAutoridades(user.getAutoridades());
+        usuarioRepository.save(usuario);
+        return usuario;
+    }
 }

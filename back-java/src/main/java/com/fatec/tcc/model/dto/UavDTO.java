@@ -10,8 +10,7 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
-@ApiModel()
-public class VantDTO {
+public class UavDTO {
 
     @NotNull(message = "Nome não pode ser nulo")
     @NotEmpty(message = "Nome não pode ser vazio")

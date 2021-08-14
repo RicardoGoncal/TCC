@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @Entity
 @Table(name = "vant")
-public class Vant {
+public class Uav {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
