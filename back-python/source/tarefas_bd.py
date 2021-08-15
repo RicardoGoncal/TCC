@@ -25,14 +25,14 @@ class Tarefas_Bd():
             database = self.config.get('main', 'database')
         )
 
-    def inserir_log_torre(self, id_vant,msg_vant,data):
+    def inserir_log_torre(self, id_uav,msg_uav,data):
 
         """
-            Método destinado a gravar informação de envio da Torre de Comando
-            params: identificação do vant, mensagem vinda front, data de envio
+            Método destinado a gravar informação de envio da Torre de Controle
+            params: identificação do uav, mensagem vinda front, data de envio
         """
         mycursor = self.mydb.cursor()
-        query = "insert into log_torre (id_vant, mensagem, data_envio) values('{}','{}','{}')".format(id_vant,msg_vant,data)
+        query = "insert into log_torre (id_uav, mensagem, data_envio) values('{}','{}','{}')".format(id_uav,msg_uav,data)
         mycursor.execute(query)
 
         self.mydb.commit()

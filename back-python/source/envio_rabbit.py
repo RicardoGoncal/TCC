@@ -3,20 +3,20 @@
 import pika
 
 """
-    Código responsável por fazer o envio de uma request(mensagem) para o vant.
+    Código responsável por fazer o envio de uma request(mensagem) para o uav.
 """
 
 class Envio_Rb(object):
 
     """
-        Classe Envio_Rb, responsável por pedir uma request a algum vant do server.
+        Classe Envio_Rb, responsável por pedir uma request a algum uav do server.
     """
 
     # Inicialização da classe
-    def __init__(self, id_vant, port_vant, message):
+    def __init__(self, id_uav, port_uav, message):
 
-        self.id = str(id_vant)
-        self.port = str(port_vant)
+        self.id = str(id_uav)
+        self.port = str(port_uav)
         self.message = str(message)
         self.connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
         self.channel = self.connection.channel()
@@ -31,7 +31,7 @@ class Envio_Rb(object):
 
     def call(self):
         """
-            Método responsável por receber a resposta da request solicitada ao vant
+            Método responsável por receber a resposta da request solicitada ao uav
         """
         self.response = None
         self.corr_id = str(self.id) 
