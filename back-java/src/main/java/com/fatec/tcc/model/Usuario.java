@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "torre_comando")
+@Table(name = "usuario")
 public class Usuario implements UserDetails {
 
     @Id

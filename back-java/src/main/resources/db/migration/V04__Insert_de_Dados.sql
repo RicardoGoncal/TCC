@@ -1,5 +1,5 @@
-INSERT INTO torre_comando (nome, senha, authorities ) VALUES ('Admin', '{bcrypt}$2a$10$5l7VBtTLjOYFjUCOnGCH5uny81vZWiD4DHAqdvIawT7jYjUt2bYBK', 'ROLE_USER,ROLE_ADMIN');
-INSERT INTO torre_comando (nome, senha, authorities ) VALUES ('User', '{bcrypt}$2a$10$ggZCLzTRQ8zAKslJkIpELeVtq4LXAk3z6sl0BoLS9yExyD1.bTFIO', 'ROLE_USER');
+INSERT INTO usuario (nome, senha, autoridades ) VALUES ('Admin', '{bcrypt}$2a$10$5l7VBtTLjOYFjUCOnGCH5uny81vZWiD4DHAqdvIawT7jYjUt2bYBK', 'ROLE_USER,ROLE_ADMIN');
+INSERT INTO usuario (nome, senha, autoridades ) VALUES ('User', '{bcrypt}$2a$10$ggZCLzTRQ8zAKslJkIpELeVtq4LXAk3z6sl0BoLS9yExyD1.bTFIO', 'ROLE_USER');
 
 INSERT INTO uav (nome, port)
 VALUES ('uav_001', 5001),

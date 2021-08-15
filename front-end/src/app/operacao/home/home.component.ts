@@ -82,7 +82,7 @@ export class HomeComponent implements OnInit {
       response => this.handleSuccessfulResponse(response),
     );
     this.messageToUav.message = ''
-    this.messageToUav.v                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ant = this.uavId
+    this.messageToUav.uav = this.uavId
     this.messageToUav.port = 5000 + Number(this.uavId)
   }
 

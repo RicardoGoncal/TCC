@@ -22,8 +22,9 @@ import { ListUavsComponent } from './operacao/list-uavs/list-uavs.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AddUavComponent } from './operacao/add-uav/add-uav.component';
+import { AddUavComponent } from './operacao/add-uavs/add-uavs.component';
 import { ClimaComponent } from './operacao/clima/clima.component';
+import { AddUserComponent } from './operacao/add-user/add-user.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { ClimaComponent } from './operacao/clima/clima.component';
     ListUavsComponent,
     AddUavComponent,
     ClimaComponent,
+    AddUserComponent,
   ],
   imports: [
     BrowserModule,
