@@ -23,14 +23,18 @@ public class UsuarioService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String nome) throws UsernameNotFoundException {
         return Optional.ofNullable(usuarioRepository.findByNome(nome))
-                .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado") );
+                .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
     }
 
     public Usuario create(UsuarioDTO user) {
         Usuario usuario = new Usuario();
         usuario.setNome(user.getNome());
         usuario.setSenha(user.getSenha());
-        usuario.setAutoridades(user.getAutoridades());
+        if (user.getAutoridades()) {
+            usuario.setAutoridades("ROLE_USER,ROLE_ADMIN");
+        }else{
+            usuario.setAutoridades("ROLE_USER");
+        }
         usuarioRepository.save(usuario);
         return usuario;
     }

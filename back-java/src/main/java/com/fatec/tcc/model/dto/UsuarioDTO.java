@@ -18,5 +18,5 @@ public class UsuarioDTO {
     @NotNull
     private String senha;
 
-    private String autoridades;
+    private Boolean autoridades;
 }

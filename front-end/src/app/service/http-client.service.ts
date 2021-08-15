@@ -113,19 +113,33 @@ export class HttpClientService {
 
     let json =  JSON.stringify(port)
 
-
-
-    console.log(json)
-
     return this.httpClient.post(url, json, {headers:{'Content-Type': 'application/json'}})
       .pipe(
         catchError(this.handlerError('getMensagem', []))
       )
   }
 
+  addUsuario(form){
+    let url = `${this.javaApiURL}/new`
+
+    let json =  JSON.stringify(form)
+
+    let headers = new HttpHeaders({ Authorization: this.basic, 'Content-Type': 'application/json' });
+
+    console.log(json)
+    console.log(url)
+    console.log(headers)
+
+    return this.httpClient.post(url, json, {headers})
+      .pipe(
+        catchError(this.handlerError('createUser', []))
+      )
+  }
+
   private handlerError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error)
+      console.log("TO NO ERRO")
       return of(result as T)
     }
   }

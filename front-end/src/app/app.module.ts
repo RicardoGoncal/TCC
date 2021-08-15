@@ -25,6 +25,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AddUavComponent } from './operacao/add-uavs/add-uavs.component';
 import { ClimaComponent } from './operacao/clima/clima.component';
 import { AddUserComponent } from './operacao/add-user/add-user.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { AddUserComponent } from './operacao/add-user/add-user.component';
     MatInputModule,
     MatPaginatorModule, 
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCheckboxModule
   ],
   providers: [
 
