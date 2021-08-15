@@ -7,15 +7,15 @@ interface SendMessage {
   [key: string]: any
 }
 @Component({
-  selector: 'app-list-vants',
-  templateUrl: './list-vants.component.html',
-  styleUrls: ['./list-vants.component.css']
+  selector: 'app-list-uavs',
+  templateUrl: './list-uavs.component.html',
+  styleUrls: ['./list-uavs.component.css']
 })
 
 
 
 
-export class ListVantsComponent implements OnInit {
+export class ListUavsComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'nome', 'port', 'acao', 'conectar'];
 
@@ -23,7 +23,7 @@ export class ListVantsComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  messageToVant: SendMessage = {};
+  messageToUav: SendMessage = {};
   
   constructor(
     private httpClientService: HttpClientService
@@ -31,7 +31,7 @@ export class ListVantsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.httpClientService.getVants().subscribe(
+    this.httpClientService.getUavs().subscribe(
       res => {
         this.dataSource = new MatTableDataSource();
         this.dataSource.data =  res;
@@ -42,9 +42,9 @@ export class ListVantsComponent implements OnInit {
   }
 
   start(port: string){
-    this.messageToVant.message = '' 
-    this.messageToVant.port = port
-    this.httpClientService.startVant(this.messageToVant).subscribe(
+    this.messageToUav.message = '' 
+    this.messageToUav.port = port
+    this.httpClientService.startUav(this.messageToUav).subscribe(
       res => {
            
       }, err => {

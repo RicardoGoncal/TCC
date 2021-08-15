@@ -1,7 +1,7 @@
 <div class="container">
   <div class="button-row">
-    <button color="primary" class="add-vant-button" mat-raised-button [routerLink]="['/vants/new']">
-        <mat-icon>add</mat-icon> Adicionar Vant
+    <button color="primary" class="add-uav-button" mat-raised-button [routerLink]="['/uavs/new']">
+        <mat-icon>add</mat-icon> Adicionar Uav
     </button>
 </div>
 
@@ -26,7 +26,7 @@
       <ng-container matColumnDef="acao">
         <th mat-header-cell *matHeaderCellDef>Ação</th>
         <td mat-cell *matCellDef="let element">
-          <button mat-flat-button color="primary" [routerLink]="['/vants/',element?.id]">Selecionar</button>
+          <button mat-flat-button color="primary" [routerLink]="['/uavs/',element?.id]">Selecionar</button>
         </td>
       </ng-container>
 

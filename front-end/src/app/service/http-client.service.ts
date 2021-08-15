@@ -17,13 +17,13 @@ export class Usuario {
   ) { }
 
 }
-export class Vants {
+export class Uavs {
   constructor(
     public id: string,
     public nome: string,
   ) { }
 }
-export class Vant {
+export class Uav {
   constructor(
     public nome: string,
   ) { }
@@ -49,32 +49,32 @@ export class HttpClientService {
 
   readonly pythonApiURL: string;
   readonly javaApiURL: string;
-  readonly cadastrarVant: string;
-  readonly startVantServer:string;
+  readonly cadastrarUav: string;
+  readonly startUavServer:string;
   basic: any;
 
   constructor(protected httpClient: HttpClient, private auth: AuthenticationService,) {
     this.pythonApiURL = 'http://localhost:5000';
     this.javaApiURL = 'http://localhost:8080';
-    this.cadastrarVant = 'http://localhost:8080';
-    this.startVantServer = 'http://localhost:8085';
+    this.cadastrarUav = 'http://localhost:8080';
+    this.startUavServer = 'http://localhost:8085';
   }
 
-  addVant(vant): Observable<Vant> {
+  addUav(uav): Observable<Uav> {
 
-    let url = `${this.javaApiURL}/vants`
+    let url = `${this.javaApiURL}/uavs`
     this.basic = sessionStorage.getItem('basicauth')
 
-    return this.httpClient.post<Vant>(url, vant, {headers:{Authorization: this.basic,'Content-Type': 'application/json'}})
+    return this.httpClient.post<Uav>(url, uav, {headers:{Authorization: this.basic,'Content-Type': 'application/json'}})
       .pipe(
-        tap((vant: Vant) => console.log('Adicionou o vant')),
-        catchError(this.handlerError<Vant>('addVant'))
+        tap((uav: Uav) => console.log('Adicionou o uav')),
+        catchError(this.handlerError<Uav>('addUav'))
       )
   }
 
-  sendMessage(messageToVant) {
-    let url = `${this.pythonApiURL}/vant`;
-    let json =  JSON.stringify(messageToVant)
+  sendMessage(messageToUav) {
+    let url = `${this.pythonApiURL}/uav`;
+    let json =  JSON.stringify(messageToUav)
     return this.httpClient.post(url, json, {headers:{'Content-Type': 'application/json'}});
   }
 
@@ -86,12 +86,12 @@ export class HttpClientService {
     return this.httpClient.get<Usuario>(url, { headers })
   }
 
-  getVants() {
-    let url = `${this.javaApiURL}/vants`
+  getUavs() {
+    let url = `${this.javaApiURL}/uavs`
     this.basic = sessionStorage.getItem('basicauth')
     let headers = new HttpHeaders({ Authorization: this.basic });
 
-    return this.httpClient.get<Vants[]>(url, { headers })
+    return this.httpClient.get<Uavs[]>(url, { headers })
       .pipe(
         catchError(this.handlerError('getCliente', []))
       );
@@ -108,8 +108,8 @@ export class HttpClientService {
       )
   }
 
-  startVant(port){
-    let url = `${this.startVantServer}/start`
+  startUav(port){
+    let url = `${this.startUavServer}/start`
 
     let json =  JSON.stringify(port)
 

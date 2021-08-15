@@ -1,16 +1,14 @@
 package com.fatec.tcc.model;
 
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import springfox.documentation.annotations.ApiIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 @Data
 @Entity
-@Table(name = "vant")
+@Table(name = "uav")
 public class Uav {
 
     @Id

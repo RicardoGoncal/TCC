@@ -25,9 +25,9 @@ interface SendMessage {
 
 export class HomeComponent implements OnInit {
 
-  vantId: number;
+  uavId: number;
 
-  vantResponse: any;
+  uavResponse: any;
 
   categorias: Categoria[];
 
@@ -67,13 +67,13 @@ export class HomeComponent implements OnInit {
   numberSpeed: string = '';
   numberCrossing: string = '';
 
-  messageToVant: SendMessage = {};
+  messageToUav: SendMessage = {};
 
   constructor(
     private httpClientService: HttpClientService,
     private route: ActivatedRoute
   ) {
-    this.route.params.subscribe(params => this.vantId = params['id']);
+    this.route.params.subscribe(params => this.uavId = params['id']);
   }
 
 
@@ -81,9 +81,9 @@ export class HomeComponent implements OnInit {
     this.httpClientService.getCategorias().subscribe(
       response => this.handleSuccessfulResponse(response),
     );
-    this.messageToVant.message = ''
-    this.messageToVant.v                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ant = this.vantId
-    this.messageToVant.port = 5000 + Number(this.vantId)
+    this.messageToUav.message = ''
+    this.messageToUav.v                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ant = this.uavId
+    this.messageToUav.port = 5000 + Number(this.uavId)
   }
 
   handleSuccessfulResponse(response) {
@@ -105,10 +105,10 @@ export class HomeComponent implements OnInit {
 
   resetForm() {
 
-    this.messageToVant = {};
-    this.messageToVant.message = ''
-    this.messageToVant.vant = this.vantId
-    this.messageToVant.port = 5000 + Number(this.vantId)
+    this.messageToUav = {};
+    this.messageToUav.message = ''
+    this.messageToUav.uav = this.uavId
+    this.messageToUav.port = 5000 + Number(this.uavId)
 
     this.displayClimb = 0, this.selectedClimb = '',
       this.displayRoute = 0, this.selectedRoute = '',
@@ -177,32 +177,32 @@ export class HomeComponent implements OnInit {
       }
 
       if (this.numberClimb != undefined && this.numberClimb != '') {
-        this.messageToVant.message += doc.innerText != null ? doc.innerText.replace('\t', '') + ':' + this.numberClimb + ';' : '';
+        this.messageToUav.message += doc.innerText != null ? doc.innerText.replace('\t', '') + ':' + this.numberClimb + ';' : '';
         this.displayClimb = -1
         this.numberClimb = ''
       }
       else if (this.numberCrossing != undefined && this.numberCrossing != '') {
-        this.messageToVant.message += doc.innerText != null ? doc.innerText.replace('\t', '') + ':' + this.numberCrossing + ';' : '';
+        this.messageToUav.message += doc.innerText != null ? doc.innerText.replace('\t', '') + ':' + this.numberCrossing + ';' : '';
         this.displayCrossing = -1
         this.numberCrossing = ''
       }
       else if (this.numberDescend != undefined && this.numberDescend != '') {
-        this.messageToVant.message += doc.innerText != null ? doc.innerText.replace('\t', '') + ':' + this.numberDescend + ';' : '';
+        this.messageToUav.message += doc.innerText != null ? doc.innerText.replace('\t', '') + ':' + this.numberDescend + ';' : '';
         this.displayDescend = -1
         this.numberDescend = ''
       }
       else if (this.numberRoute != undefined && this.numberRoute != '') {
-        this.messageToVant.message += doc.innerText != null ? doc.innerText.replace('\t', '') + ':' + this.numberRoute + ';' : '';
+        this.messageToUav.message += doc.innerText != null ? doc.innerText.replace('\t', '') + ':' + this.numberRoute + ';' : '';
         this.displayRoute = -1
         this.numberRoute = ''
       }
       else if (this.numberSpeed != undefined && this.numberSpeed != '') {
-        this.messageToVant.message += doc.innerText != null ? doc.innerText.replace('\t', '') + ':' + this.numberSpeed + ';' : '';
+        this.messageToUav.message += doc.innerText != null ? doc.innerText.replace('\t', '') + ':' + this.numberSpeed + ';' : '';
         this.displaySpeed = -1
         this.numberSpeed = ''
       }
       else {
-        this.messageToVant.message += doc.innerText != null ? doc.innerText.replace('\t', '') + ';' : '';
+        this.messageToUav.message += doc.innerText != null ? doc.innerText.replace('\t', '') + ';' : '';
         if (this.displayComms == 1) this.displayComms = -1
         if (this.displayEmergency == 1) this.displayEmergency = -1
         if (this.displayReport == 1) this.displayReport = -1
@@ -214,9 +214,9 @@ export class HomeComponent implements OnInit {
 
   sendMessage() {
 
-    this.httpClientService.sendMessage(this.messageToVant).subscribe(
+    this.httpClientService.sendMessage(this.messageToUav).subscribe(
       response => {
-        this.vantResponse = response
+        this.uavResponse = response
       }
     );
 

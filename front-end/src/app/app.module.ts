@@ -18,11 +18,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
-import { ListVantsComponent } from './operacao/list-vants/list-vants.component';
+import { ListUavsComponent } from './operacao/list-uavs/list-uavs.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AddVantComponent } from './operacao/add-vant/add-vant.component';
+import { AddUavComponent } from './operacao/add-uav/add-uav.component';
 import { ClimaComponent } from './operacao/clima/clima.component';
 
 
@@ -34,8 +34,8 @@ import { ClimaComponent } from './operacao/clima/clima.component';
     HomeComponent,
     HeaderComponent,
     HomeComponent,
-    ListVantsComponent,
-    AddVantComponent,
+    ListUavsComponent,
+    AddUavComponent,
     ClimaComponent,
   ],
   imports: [

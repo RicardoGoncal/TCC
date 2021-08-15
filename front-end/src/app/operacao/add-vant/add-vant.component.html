@@ -1,13 +1,13 @@
 <div class="button-row">
-    <button color="" mat-raised-button [routerLink]="['/vants']">
+    <button color="" mat-raised-button [routerLink]="['/uavs']">
         <mat-icon>chevron_left</mat-icon> Voltar
     </button>
 </div>
 <div class="title">
-    <h1>Adicionar Novo Vant</h1>
+    <h1>Adicionar Novo Uav</h1>
 </div>
 
-<form class="container" [formGroup]="vantForm" (ngSubmit)="newVant(vantForm.value)">
+<form class="container" [formGroup]="uavForm" (ngSubmit)="newUav(uavForm.value)">
     <mat-form-field class="input-name">
         <input matInput #input name="nome" placeholder="Nome" maxlength="200" formControlName="nome">
         <mat-hint align="end">{{input.value?.length || 0}}/100</mat-hint>
@@ -15,5 +15,5 @@
     <br>
 
     <button type="submit" class="button-add" mat-raised-button color="primary"
-        [disabled]="!vantForm.valid">Adicionar</button>
+        [disabled]="!uavForm.valid">Adicionar</button>
 </form>

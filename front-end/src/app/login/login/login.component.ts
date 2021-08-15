@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   checkLogin() {
     this.loginservice.authenticate(this.username, this.password).subscribe(
       res => {
-        this.router.navigate(['vants'])
+        this.router.navigate(['uavs'])
         this.invalidLogin = false
       },
       error => {

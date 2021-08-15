@@ -4,28 +4,28 @@ import { Router } from '@angular/router';
 import { HttpClientService } from 'src/app/service/http-client.service';
 
 @Component({
-  selector: 'app-add-vant',
-  templateUrl: './add-vant.component.html',
-  styleUrls: ['./add-vant.component.css']
+  selector: 'app-add-uav',
+  templateUrl: './add-uav.component.html',
+  styleUrls: ['./add-uav.component.css']
 })
-export class AddVantComponent implements OnInit {
+export class AddUavComponent implements OnInit {
 
-  vantForm: FormGroup;
+  uavForm: FormGroup;
 
   constructor(private router: Router,
     private httpService: HttpClientService,
     private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.vantForm = this.formBuilder.group({
+    this.uavForm = this.formBuilder.group({
       'nome': [null, [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
     })
   }
 
-  newVant(form: NgForm) {
-    this.httpService.addVant(form)
+  newUav(form: NgForm) {
+    this.httpService.addUav(form)
       .subscribe(res => {
-        this.router.navigate(['/vants'])
+        this.router.navigate(['/uavs'])
       }, (err) => {
         console.log(err)
       })

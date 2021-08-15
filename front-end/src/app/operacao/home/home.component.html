@@ -195,29 +195,29 @@
     <div class="container-right">
 
         <div class="container-response">
-            <h1>Mensagem Retornada do Vant</h1>
-            <h3>{{vantResponse?.mensagem}}</h3>
-            <h3>{{vantResponse?.climb}}</h3>
-            <h3>{{vantResponse?.route}}</h3>
-            <h3>{{vantResponse?.emergency}}</h3>
-            <h3>{{vantResponse?.descend}}</h3>
-            <h3>{{vantResponse?.comms}}</h3>
-            <h3>{{vantResponse?.speed}}</h3>
-            <h3>{{vantResponse?.report}}</h3>
-            <h3>{{vantResponse?.crossing}}</h3>
+            <h1>Mensagem Retornada do Uav</h1>
+            <h3>{{uavResponse?.mensagem}}</h3>
+            <h3>{{uavResponse?.climb}}</h3>
+            <h3>{{uavResponse?.route}}</h3>
+            <h3>{{uavResponse?.emergency}}</h3>
+            <h3>{{uavResponse?.descend}}</h3>
+            <h3>{{uavResponse?.comms}}</h3>
+            <h3>{{uavResponse?.speed}}</h3>
+            <h3>{{uavResponse?.report}}</h3>
+            <h3>{{uavResponse?.crossing}}</h3>
         </div>
 
         <div class="container-envio">
             <h1>Área de Envio</h1>
             <div class="selectedMessages">
-                <span>{{messageToVant?.message}}</span>
+                <span>{{messageToUav?.message}}</span>
             </div>
-            <button class="reset-messages" mat-raised-button color="warn" (click)="resetForm()" *ngIf="messageToVant?.message.length > 0" >
+            <button class="reset-messages" mat-raised-button color="warn" (click)="resetForm()" *ngIf="messageToUav?.message.length > 0" >
                 Resetar Mensagens
             </button>
             <div class="botao-enviar">
                 <div class="example-button-row">
-                    <button mat-raised-button type="submit" color="primary" (click)=sendMessage() [disabled]="messageToVant?.message.length == 0" >Send Message</button>
+                    <button mat-raised-button type="submit" color="primary" (click)=sendMessage() [disabled]="messageToUav?.message.length == 0" >Send Message</button>
                 </div>
             </div>
 
