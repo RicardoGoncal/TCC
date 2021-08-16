@@ -10,8 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
-import java.net.URI;
-
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -26,7 +24,7 @@ public class UsuarioController {
         return new User("User successfully authenticated");
     }
 
-    @PostMapping("new")
+    @PostMapping("/new")
     public ResponseEntity<Usuario> create(@RequestBody UsuarioDTO user){
         System.out.println("CHAMEI");
         Usuario usuario = usuarioService.create(user);

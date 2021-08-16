@@ -121,9 +121,7 @@ export class HttpClientService {
 
   addUsuario(form){
     let url = `${this.javaApiURL}/new`
-
     let json =  JSON.stringify(form)
-
     let headers = new HttpHeaders({ Authorization: this.basic, 'Content-Type': 'application/json' });
 
     console.log(json)

@@ -1,0 +1,13 @@
+.container{
+    width: 700px;
+    margin: 100px auto;
+}
+
+table{
+    width: 100%;
+}
+
+.add-uav-button{
+    margin-bottom: 16px;
+}
+

@@ -1,0 +1,43 @@
+.container {
+    position: relative;
+    float: left;
+    width: 100%;
+    margin-top: 180px;
+    display: flex;
+    justify-content: center;
+}
+
+.fields{
+    display: block;
+}
+
+.field{
+    margin-bottom: 16px;
+    width: 180px;
+}
+
+.button-add{
+    margin-left: 32px;
+    height: 48px;
+}
+
+.title{
+    text-align: center;
+}
+
+.button-row{
+    margin-left: 16px;
+}
+
+.input-name{
+    width: 300px;
+}
+
+.mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }
+
+  .example-right-align {
+    text-align: right;
+  }
+  
