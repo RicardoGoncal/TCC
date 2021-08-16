@@ -13,8 +13,12 @@
       </button>
     </div>
 
-    <div class="link-clima">
+    <div class="link-clima" *ngIf="loginService.isUserLoggedIn()">
       <a routerLink="/clima" class="nav-link ">Clima</a>
+    </div>
+
+    <div class="link-clima" *ngIf="loginService.isUserLoggedIn()">
+      <a routerLink="/new" class="nav-link ">Novo Usuário</a>
     </div>
     <div class="botao-logout">
 

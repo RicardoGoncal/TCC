@@ -26,7 +26,6 @@ public class UsuarioController {
 
     @PostMapping("/new")
     public ResponseEntity<Usuario> create(@RequestBody UsuarioDTO user){
-        System.out.println("CHAMEI");
         Usuario usuario = usuarioService.create(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(usuario);
     }

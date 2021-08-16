@@ -122,11 +122,9 @@ export class HttpClientService {
   addUsuario(form){
     let url = `${this.javaApiURL}/new`
     let json =  JSON.stringify(form)
+    this.basic = sessionStorage.getItem('basicauth')
     let headers = new HttpHeaders({ Authorization: this.basic, 'Content-Type': 'application/json' });
 
-    console.log(json)
-    console.log(url)
-    console.log(headers)
 
     return this.httpClient.post(url, json, {headers})
       .pipe(

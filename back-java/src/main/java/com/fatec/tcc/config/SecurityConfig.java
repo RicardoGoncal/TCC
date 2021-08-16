@@ -3,6 +3,7 @@ package com.fatec.tcc.config;
 import com.fatec.tcc.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -11,6 +12,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -53,10 +55,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .antMatchers(HttpMethod.DELETE, "/vants/*").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/new").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
-
 }
 
