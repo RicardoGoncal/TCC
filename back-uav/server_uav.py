@@ -4,12 +4,12 @@ from flask import Flask
 from flask import request
 from flask import jsonify
 from flask_cors import CORS
-from sistema_embarcado import Vant_Rb
+from sistema_embarcado import uav_Rb
 import datetime
 
 """
     Pequeno server criado com o framework Flask do Python.
-    Nele teremos a inicialização dos vants quando a rota for
+    Nele teremos a inicialização dos uavs quando a rota for
     solicitada.
 """
 
@@ -20,18 +20,18 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 # Área de criação das rotas do servidor
 @app.route('/start', methods=['POST','GET'])
-def vant():
+def uav():
 
     """
-        Rota que recebe uma request para inicializar o vant
-        Params: request Json contendo o número do port do vant
-        return: o vant é inicializado para receber mensagens
+        Rota que recebe uma request para inicializar o uav
+        Params: request Json contendo o número do port do uav
+        return: o uav é inicializado para receber mensagens
     """
 
     content = {}
     content.update(request.json)
     print(content)
 
-    vant_rb = Vant_Rb(port=content['port'])
-    vant_rb.consome_msg()
+    uav_rb = uav_Rb(port=content['port'])
+    uav_rb.consome_msg()
     

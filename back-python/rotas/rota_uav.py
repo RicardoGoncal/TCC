@@ -13,23 +13,23 @@ app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 # Área das funções
-def log_torre(id_vant, msg_vant):
+def log_torre(id_uav, msg_uav):
     """
         Realiza a inserção de dados na tabela de log da Torre 
-        de comando
+        de controle
     """
     log_torre = Tarefas_Bd()
     data = datetime.datetime.now()
 
-    log_torre.inserir_log_torre(id_vant=id_vant, msg_vant=msg_vant, data=data)
+    log_torre.inserir_log_torre(id_uav=id_uav, msg_uav=msg_uav, data=data)
 
-@app.route('/vant', methods=['POST','GET'])
-def vant():
+@app.route('/uav', methods=['POST','GET'])
+def uav():
 
     """
-        Rota que recebe um POST contendo uma mensagem da torre de comando
-        Params: request Json contendo ID do vant, mensagem e número do port
-        Return: retorna o conteúdo da request pedida ao vant 
+        Rota que recebe um POST contendo uma mensagem da torre de controle
+        Params: request Json contendo ID do UAV, mensagem e número do port
+        Return: retorna o conteúdo da request pedida ao uav 
     """
 
     if request.json is None:
@@ -40,12 +40,12 @@ def vant():
         print(content)
 
         # Inserir na tabela de log da torre de comando no banco de dados
-        log_torre(id_vant=content['vant'], msg_vant=content['message'])
+        log_torre(id_uav=content['uav'], msg_uav=content['message'])
 
-        # Cria instância para envio de mensagem ao vant
-        torre_rb = Envio_Rb(id_vant=content['vant'], port_vant=content['port'], message=content['message'])
+        # Cria instância para envio de mensagem ao uav
+        torre_rb = Envio_Rb(id_uav=content['uav'], port_uav=content['port'], message=content['message'])
 
-        print(" [x] Requesting...")  # Aguardando a resposta do request pedido ao vant
+        print(" [x] Requesting...")  # Aguardando a resposta do request pedido ao uav
         response = torre_rb.call()  # Recebe a resposta
         print(" [.] Got %r" % response) # Print da resposta
 

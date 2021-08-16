@@ -5,14 +5,14 @@ import random
 import sys
 
 """
-    Código responsável por estabelecer um canal de conexão do vant
+    Código responsável por estabelecer um canal de conexão do uav
     no RabbitMQ
 """
 
-class Vant_Rb(object):
+class uav_Rb(object):
 
     """
-        Classe Vant, responsável por enviar uma resposta de uma request
+        Classe uav, responsável por enviar uma resposta de uma request
         pedido da torre de comando
     """
 
