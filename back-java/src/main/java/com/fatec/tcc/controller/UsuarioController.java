@@ -19,9 +19,9 @@ public class UsuarioController {
     UsuarioService usuarioService;
 
     @ApiIgnore
-    @GetMapping(value = "login", produces = "application/json")
-    public User validateLogin() {
-        return new User("User successfully authenticated");
+    @PostMapping(value = "login", produces = "application/json")
+    public UsuarioDTO validateLogin(@RequestBody String username) {
+        return usuarioService.findUser(username);
     }
 
     @PostMapping("/new")

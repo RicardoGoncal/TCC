@@ -2,19 +2,31 @@
 
   <div class="">
 
-    <form class="example-form">
-      <mat-form-field class="example-full-width">
-        <mat-label>Usuário</mat-label>
-        <input matInput name="username" [(ngModel)]="username">
-      </mat-form-field>
+    <form class="login-form">
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Senha</mat-label>
-        <input matInput type="password" name="password" [(ngModel)]="password">
+      <div class="field">
+
+        <mat-form-field appearance="fill">
+          <mat-label>Usuário</mat-label>
+          <input matInput name="username" [(ngModel)]="username">
+          
+        </mat-form-field>
+      </div>
+
+      <div class="field">
+
+        <mat-form-field appearance="fill">
+          <mat-label>Senha</mat-label>
+          <input matInput name="password" [(ngModel)]="password" [type]="hide ? 'password' : 'text'">
+          <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
       </mat-form-field>
-      
-      <button mat-raised-button (click)=checkLogin() color="primary" >Login</button>
+    </div>
+
+      <button mat-raised-button (click)=checkLogin() color="primary">Login</button>
     </form>
   </div>
-   
-  </div>
+
+</div>

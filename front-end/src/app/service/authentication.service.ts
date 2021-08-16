@@ -4,7 +4,9 @@ import { map } from 'rxjs/operators';
 
 export class User {
   constructor(
-    public status: string,
+    public nome: string,
+    public senha: string,
+    public autoridades: string
   ) { }
 
 }
@@ -21,12 +23,15 @@ export class AuthenticationService {
 
   authenticate(username, password) {
     let headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
-    return this.httpClient.get<User>('http://localhost:8080/login', { headers }).pipe(
+    let json = JSON.stringify(username)
+    console.log(json)
+    return this.httpClient.post<User>('http://localhost:8080/login',json, { headers }).pipe(
       map(
         userData => {
           sessionStorage.setItem('username', username);
           let authString = 'Basic ' + btoa(username + ':' + password);
           sessionStorage.setItem('basicauth', authString);
+          sessionStorage.setItem('admin', userData.autoridades )
           return userData;
         }
       )
@@ -37,6 +42,11 @@ export class AuthenticationService {
   isUserLoggedIn() {
     let user = sessionStorage.getItem('username')
     return !(user === null)
+  }
+
+  isAdmin(){
+    let admin = sessionStorage.getItem('admin')
+    return (admin !== "true")
   }
 
   logOut() {
