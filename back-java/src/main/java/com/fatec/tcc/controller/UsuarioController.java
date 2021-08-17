@@ -1,8 +1,8 @@
 package com.fatec.tcc.controller;
 
-import com.fatec.tcc.model.User;
 import com.fatec.tcc.model.Usuario;
-import com.fatec.tcc.model.dto.UsuarioDTO;
+import com.fatec.tcc.model.dto.request.UsuarioRequest;
+import com.fatec.tcc.model.dto.response.UsuarioResponse;
 import com.fatec.tcc.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,13 +20,19 @@ public class UsuarioController {
 
     @ApiIgnore
     @PostMapping(value = "login", produces = "application/json")
-    public UsuarioDTO validateLogin(@RequestBody String username) {
+    public UsuarioResponse validateLogin(@RequestBody String username) {
         return usuarioService.findUser(username);
     }
 
     @PostMapping("/new")
-    public ResponseEntity<Usuario> create(@RequestBody UsuarioDTO user){
+    public ResponseEntity<Usuario> create(@RequestBody UsuarioRequest user){
         Usuario usuario = usuarioService.create(user);
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuario);
+    }
+
+    @PutMapping("edit")
+    public ResponseEntity<UsuarioResponse> update(@RequestBody UsuarioRequest user){
+        UsuarioResponse usuario = usuarioService.update(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(usuario);
     }
 

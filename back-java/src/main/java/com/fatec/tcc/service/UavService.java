@@ -1,7 +1,7 @@
 package com.fatec.tcc.service;
 
 import com.fatec.tcc.model.Uav;
-import com.fatec.tcc.model.dto.UavDTO;
+import com.fatec.tcc.model.dto.request.UavRequest;
 import com.fatec.tcc.repository.UavRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,13 +19,13 @@ public class UavService {
         return uavRepository.findAll();
     }
 
-    public ResponseEntity salvar(UavDTO uavDTO) {
+    public ResponseEntity salvar(UavRequest uavRequest) {
         try {
             Uav uav = new Uav();
             Integer portToVant = uavRepository.findMaxPort();
             portToVant++;
             uav.setPort(portToVant);
-            uav.setNome(uavDTO.getNome());
+            uav.setNome(uavRequest.getNome());
             Uav uavCriado = uavRepository.save(uav);
             return ResponseEntity.status(HttpStatus.CREATED).body(uavCriado);
         }catch (Exception e){

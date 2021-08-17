@@ -1,4 +1,4 @@
-package com.fatec.tcc.model.dto;
+package com.fatec.tcc.model.dto.request;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
-public class UavDTO {
+public class UavRequest {
 
     @NotNull(message = "Nome não pode ser nulo")
     @NotEmpty(message = "Nome não pode ser vazio")

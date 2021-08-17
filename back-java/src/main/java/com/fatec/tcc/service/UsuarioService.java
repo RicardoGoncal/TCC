@@ -1,7 +1,8 @@
 package com.fatec.tcc.service;
 
 import com.fatec.tcc.model.Usuario;
-import com.fatec.tcc.model.dto.UsuarioDTO;
+import com.fatec.tcc.model.dto.request.UsuarioRequest;
+import com.fatec.tcc.model.dto.response.UsuarioResponse;
 import com.fatec.tcc.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class UsuarioService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
     }
 
-    public Usuario create(UsuarioDTO user) {
+    public Usuario create(UsuarioRequest user) {
         Usuario usuario = new Usuario();
         usuario.setNome(user.getNome());
 
@@ -47,16 +48,31 @@ public class UsuarioService implements UserDetailsService {
         return usuario;
     }
 
-    public UsuarioDTO findUser(String nome) {
+    public UsuarioResponse findUser(String nome) {
         Usuario usuario = usuarioRepository.findUsuarioByNome(nome.replace("\"", ""));
-        UsuarioDTO dto = new UsuarioDTO();
+        UsuarioResponse response = new UsuarioResponse();
         try {
-            dto.setNome(usuario.getNome());
-            dto.setSenha(usuario.getSenha());
-            dto.setAutoridades(usuario.getAutoridades().equals("ROLE_USER"));
+            response.setNome(usuario.getNome());
+            response.setSenha(usuario.getSenha());
+            response.setAutoridades(usuario.getAutoridades().equals("ROLE_USER"));
         } catch (Exception e) {
             throw new UsernameNotFoundException("Usuário não encontrado");
         }
-        return dto;
+        return response;
+    }
+
+    public UsuarioResponse update(UsuarioRequest usuarioRequest) {
+        Usuario usuario = usuarioRepository.findUsuarioByNome(usuarioRequest.getNome());
+        UsuarioResponse response = new UsuarioResponse();
+        try {
+            response.setNome(usuario.getNome());
+            response.setSenha(usuarioRequest.getSenha());
+            response.setAutoridades(usuarioRequest.getAutoridades());
+            usuario.setSenha(usuarioRequest.getSenha());
+            usuarioRepository.save(usuario);
+            return response;
+        }catch (Exception e) {
+            throw new UsernameNotFoundException("Usuário não encontrado");
+        }
     }
 }

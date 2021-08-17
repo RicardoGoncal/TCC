@@ -1,7 +1,7 @@
 package com.fatec.tcc.controller;
 
 import com.fatec.tcc.model.Uav;
-import com.fatec.tcc.model.dto.UavDTO;
+import com.fatec.tcc.model.dto.request.UavRequest;
 import com.fatec.tcc.service.UavService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ public class UavController {
     @CacheEvict(value="listaDeUavs", allEntries = true)
     @ApiOperation(value = "Criação de novo Uav")
     @PostMapping
-    public ResponseEntity<Uav> criar(@RequestBody @Valid UavDTO vant) {
+    public ResponseEntity<Uav> criar(@RequestBody @Valid UavRequest vant) {
         return uavService.salvar(vant);
     }
 

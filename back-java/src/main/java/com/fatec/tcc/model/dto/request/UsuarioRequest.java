@@ -1,4 +1,4 @@
-package com.fatec.tcc.model.dto;
+package com.fatec.tcc.model.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UsuarioDTO {
+public class UsuarioRequest {
     @NotNull
     private String nome;
 
