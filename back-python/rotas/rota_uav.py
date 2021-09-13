@@ -23,6 +23,12 @@ def log_torre(id_uav, msg_uav):
 
     log_torre.inserir_log_torre(id_uav=id_uav, msg_uav=msg_uav, data=data)
 
+
+@app.route("/health")
+def hello():
+    return "Application Health OK"
+
+
 @app.route('/uav', methods=['POST','GET'])
 def uav():
 
@@ -50,3 +56,7 @@ def uav():
         print(" [.] Got %r" % response) # Print da resposta
 
         return jsonify(content) # Retorna 
+
+
+if __name__=="__main__":
+    app.run(host='0.0.0.0')
