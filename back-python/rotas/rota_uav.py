@@ -26,7 +26,7 @@ def log_torre(id_uav, msg_uav):
 
 @app.route("/health")
 def hello():
-    return "Application Health OK"
+    return "Server Envio Health OK"
 
 
 @app.route('/uav', methods=['POST','GET'])

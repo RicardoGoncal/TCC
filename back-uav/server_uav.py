@@ -17,6 +17,9 @@ import datetime
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
+@app.route("/health")
+def health():
+    return "Server UAV Health OK"
 
 # Área de criação das rotas do servidor
 @app.route('/start', methods=['POST','GET'])
@@ -35,3 +38,5 @@ def uav():
     uav_rb = uav_Rb(port=content['port'])
     uav_rb.consome_msg()
     
+if __name__=="__main__":
+    app.run(host='0.0.0.0')
