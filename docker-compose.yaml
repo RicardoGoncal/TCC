@@ -1,15 +1,19 @@
-version: "3.9"
+version: "3"
 services:
-  api:
-    build: back-java/
+  server_envio:
+    image: server_envio_python
     ports:
-      - "5000:5000"
-  db:
-    image: mysql
-    command: --default-authentication-plugin=mysql_native_password
+      - "5001:5000"
     restart: always
+
+  server_uav:
+    image: server_uav_python
     ports: 
-      - "3306:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: 1234
-      MYSQL_DATABASE: cpdlc
+      - "5002:5000"
+    restart: always
+
+  front_end:
+    image: uavfront
+    ports: 
+      - "4200:4200"
+    restart: always
