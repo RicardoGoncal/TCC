@@ -21,6 +21,14 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 def health():
     return "Server UAV Health OK"
 
+@app.route("/test", methods=['POST'])
+def test():
+
+    content = {}
+    content.update(request.json)
+
+    return content
+
 # Área de criação das rotas do servidor
 @app.route('/start', methods=['POST','GET'])
 def uav():
@@ -35,8 +43,10 @@ def uav():
     content.update(request.json)
     print(content)
 
+
+
     uav_rb = uav_Rb(port=content['port'])
-    uav_rb.consome_msg()
+    # uav_rb.consome_msg()
     
 if __name__=="__main__":
-    app.run(host='0.0.0.0')
+    app.run(port=5000, host='0.0.0.0')

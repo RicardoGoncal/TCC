@@ -13,5 +13,5 @@ COPY source/ .
 
 ENV PYTHONPATH=./
 
-CMD ["python", "./rotas/rota_uav.py", "--host=0.0.0.0"]
+CMD ["python", "./rotas/rota_uav.py"]
 

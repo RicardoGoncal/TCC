@@ -1,19 +1,32 @@
-version: "3"
+version: "3.2"
 services:
   server_envio:
-    image: server_envio_python
+    image: server_envio_python:latest
     ports:
-      - "5001:5000"
+      - "5000:5000"
     restart: always
 
   server_uav:
-    image: server_uav_python
+    image: server_uav_python:latest
     ports: 
-      - "5002:5000"
+      - "8085:5000"
     restart: always
 
   front_end:
-    image: uavfront
+    image: uavfront:latest
     ports: 
       - "4200:4200"
     restart: always
+  
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    ports:
+        - 5672:5672
+        - 15672:15672
+    networks:
+        - rabbitmq_go_net
+
+networks:
+  rabbitmq_go_net:
+    driver: bridge

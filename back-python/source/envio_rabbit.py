@@ -41,4 +41,3 @@ class Envio_Rb(object):
         while self.response is None:
             self.connection.process_data_events()
         return str(self.response)
-
