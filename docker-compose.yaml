@@ -1,32 +1,56 @@
 version: "3.2"
 services:
-  server_envio:
-    image: server_envio_python:latest
+
+  db:
+    image: mysql:8
+    container_name: db
     ports:
-      - "5000:5000"
-    restart: always
+        - "3306:3306"
+    environment:
+        MYSQL_USER: tcc
+        MYSQL_PASSWORD: tcc
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: cpdlc
 
-  server_uav:
-    image: server_uav_python:latest
-    ports: 
-      - "8085:5000"
-    restart: always
+  web:
+    image: openjdk:11-jre-slim
+    depends_on: [db]
+    working_dir: /app
+    volumes:
+        - ./back-java/target:/app
+    ports:
+        - "8080:8080"
+    command: java -jar /app/tcc-0.0.1-SNAPSHOT.jar
+    links:
+        - db:db
 
-  front_end:
-    image: uavfront:latest
-    ports: 
-      - "4200:4200"
-    restart: always
+  # server_envio:
+  #   image: server_envio_python:latest
+  #   ports:
+  #     - "5000:5000"
+  #   restart: always
+
+  # server_uav:
+  #   image: server_uav_python:latest
+  #   ports: 
+  #     - "8085:8085"
+  #   restart: always
+
+  # front_end:
+  #   image: uavfront:latest
+  #   ports: 
+  #     - "4200:4200"
+  #   restart: always
   
-  rabbitmq:
-    image: rabbitmq:3-management-alpine
-    container_name: 'rabbitmq'
-    ports:
-        - 5672:5672
-        - 15672:15672
-    networks:
-        - rabbitmq_go_net
+  # rabbitmq:
+  #   image: rabbitmq:3-management-alpine
+  #   container_name: 'rabbitmq'
+  #   ports:
+  #       - 5672:5672
+  #       - 15672:15672
+    # networks:
+    #     - rabbitmq_go_net
 
-networks:
-  rabbitmq_go_net:
-    driver: bridge
+# networks:
+#   rabbitmq_go_net:
+#     driver: bridge

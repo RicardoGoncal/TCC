@@ -5,7 +5,9 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-COPY . . 
+ADD source/sql.ini .
+
+COPY . .
 
 ENV FLASK_APP=rota_uav.py
 

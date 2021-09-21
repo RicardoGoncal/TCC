@@ -46,7 +46,7 @@ def uav():
 
 
     uav_rb = uav_Rb(port=content['port'])
-    # uav_rb.consome_msg()
+    uav_rb.consome_msg()
     
 if __name__=="__main__":
-    app.run(port=5000, host='0.0.0.0')
+    app.run(port=8085, host='0.0.0.0')

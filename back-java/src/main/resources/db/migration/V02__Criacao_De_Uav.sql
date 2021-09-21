@@ -1,6 +1,6 @@
 CREATE table uav
 (
-    id integer primary key auto_increment,
+    id bigint primary key auto_increment,
     nome varchar(200) not null,
     port integer not null UNIQUE
 );

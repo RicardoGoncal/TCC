@@ -18,12 +18,20 @@ class Tarefas_Bd():
         self.path = '../source/sql.ini'
         self.config.read(self.path)
 
+        # self.mydb = mysql.connector.connect(
+        #     host = self.config.get('main', 'host'),
+        #     user = self.config.get('main', 'user'),
+        #     password = self.config.get('main', 'password'),
+        #     database = self.config.get('main', 'database')
+        # )
+
         self.mydb = mysql.connector.connect(
-            host = self.config.get('main', 'host'),
-            user = self.config.get('main', 'user'),
-            password = self.config.get('main', 'password'),
-            database = self.config.get('main', 'database')
+            host = 'localhost',
+            user = 'tcc',
+            password = 'Seformar@21',
+            database = 'cpdlc2'
         )
+
 
     def inserir_log_torre(self, id_uav,msg_uav,data):
 
