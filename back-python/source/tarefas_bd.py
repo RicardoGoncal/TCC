@@ -26,9 +26,9 @@ class Tarefas_Bd():
         # )
 
         self.mydb = mysql.connector.connect(
-            host = 'localhost',
+            host = '172.18.0.1',
             user = 'tcc',
-            password = 'Seformar@21',
+            password = 'tcc',
             database = 'cpdlc2'
         )
 

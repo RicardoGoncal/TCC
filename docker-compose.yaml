@@ -13,7 +13,11 @@ services:
         MYSQL_DATABASE: cpdlc2
 
   spring_boot_com_mysql:
+    build:
+      context: ./back-java
+      dockerfile: ./Dockerfile
     image: server-java:latest
+    container_name: server_java
     ports:
       - '8080:8080'
       - '5005:5005'
@@ -22,31 +26,43 @@ services:
       - PROFILE=prod
     links:
       - db
-
-  # server_envio:
-  #   image: server_envio_python:latest
-  #   ports:
-  #     - "5000:5000"
-  #   restart: always
-
-  # server_uav:
-  #   image: server_uav_python:latest
-  #   ports: 
-  #     - "8085:8085"
-  #   restart: always
-
+  
   front_end:
+    build:
+      context: ./front-end
+      dockerfile: ./Dockerfile
     image: uavfront:latest
+    container_name: uavfront
     ports: 
       - "4200:4200"
     restart: always
-  
-  # rabbitmq:
-  #   image: rabbitmq:3-management-alpine
-  #   container_name: 'rabbitmq'
-  #   ports:
-  #       - 5672:5672
-  #       - 15672:15672
+
+  server_envio:
+    build:
+      context: ./back-python
+      dockerfile: ./Dockerfile
+    image: server-envio-python:latest
+    container_name: server-envio-py
+    ports:
+      - "5000:5000"
+    restart: always
+
+  server_uav:
+    build:
+      context: ./back-uav
+      dockerfile: ./Dockerfile
+    image: server-uav-python:latest
+    container_name: server-uav-py
+    ports: 
+      - "8085:8085"
+    restart: always
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    ports:
+        - 5672:5672
+        - 15672:15672
     # networks:
     #     - rabbitmq_go_net
 
