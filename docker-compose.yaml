@@ -10,19 +10,18 @@ services:
         MYSQL_USER: tcc
         MYSQL_PASSWORD: tcc
         MYSQL_ROOT_PASSWORD: root
-        MYSQL_DATABASE: cpdlc
+        MYSQL_DATABASE: cpdlc2
 
-  web:
-    image: openjdk:11-jre-slim
-    depends_on: [db]
-    working_dir: /app
-    volumes:
-        - ./back-java/target:/app
+  spring_boot_com_mysql:
+    image: server-java:latest
     ports:
-        - "8080:8080"
-    command: java -jar /app/tcc-0.0.1-SNAPSHOT.jar
+      - '8080:8080'
+      - '5005:5005'
+    environment:
+      - ADDITIONAL_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 -Xmx1G -Xms128m -XX:MaxMetaspaceSize=128m
+      - PROFILE=prod
     links:
-        - db:db
+      - db
 
   # server_envio:
   #   image: server_envio_python:latest
@@ -36,11 +35,11 @@ services:
   #     - "8085:8085"
   #   restart: always
 
-  # front_end:
-  #   image: uavfront:latest
-  #   ports: 
-  #     - "4200:4200"
-  #   restart: always
+  front_end:
+    image: uavfront:latest
+    ports: 
+      - "4200:4200"
+    restart: always
   
   # rabbitmq:
   #   image: rabbitmq:3-management-alpine
