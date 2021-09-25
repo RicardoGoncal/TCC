@@ -1,0 +1,29 @@
+
+<div id="mapa">
+
+    <h1>Essa porra nao carrega</h1>
+    <script>
+
+        function inicializar() {
+        var coordenadas = {lat: -22.912869, lng: -43.228963};
+
+        var mapa = new google.maps.Map(document.getElementById('mapa'), {
+            zoom: 15,
+            center: coordenadas 
+        });
+
+        var marker = new google.maps.Marker({
+            position: coordenadas,
+            map: mapa,
+            title: 'Meu marcador'
+        });
+        }
+    </script>
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuzU-WyVakwNU2_FNEgSIN6EVoV6_wf_M&callback=inicializar">
+    </script>
+
+</div>
+
+  

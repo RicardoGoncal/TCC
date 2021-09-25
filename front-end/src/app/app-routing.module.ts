@@ -10,6 +10,8 @@ import { HomeComponent } from './operacao/home/home.component';
 import { ListUavsComponent } from './operacao/list-uavs/list-uavs.component';
 import { AuthguardService } from './service/authguard.service';
 
+import { MapsComponent } from './operacao/maps/maps-uavs.component';
+
 const routes: Routes = [
   { path: '', component: ListUavsComponent,canActivate:[AuthguardService] },
   { path: 'uavs', component: ListUavsComponent,canActivate:[AuthguardService] },
@@ -19,6 +21,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent,canActivate:[AuthguardService] },
   { path: 'new', component: AddUserComponent,canActivate:[AuthguardService] },
+  { path: 'maps', component: MapsComponent},
 ]
 
 @NgModule({

@@ -27,6 +27,7 @@ import { ClimaComponent } from './operacao/clima/clima.component';
 import { AddUserComponent } from './operacao/add-user/add-user.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
+import {MapsComponent} from './operacao/maps/maps-uavs.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     AddUavComponent,
     ClimaComponent,
     AddUserComponent,
+    MapsComponent
   ],
   imports: [
     BrowserModule,
