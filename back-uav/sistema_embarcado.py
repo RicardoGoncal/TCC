@@ -20,7 +20,7 @@ class uav_Rb(object):
     def __init__(self, port):
 
         self.port = str(port)
-        self.connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+        self.connection = pika.BlockingConnection(pika.ConnectionParameters(host='172.18.0.1'))
         self.channel = self.connection.channel()
         self.channel.queue_declare(queue=self.port)
 
