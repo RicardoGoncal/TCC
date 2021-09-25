@@ -26,6 +26,7 @@ import { AddUavComponent } from './operacao/add-uavs/add-uavs.component';
 import { ClimaComponent } from './operacao/clima/clima.component';
 import { AddUserComponent } from './operacao/add-user/add-user.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { GoogleMapsModule } from '@angular/google-maps'
 
 import {MapsComponent} from './operacao/maps/maps-uavs.component';
 
@@ -60,7 +61,8 @@ import {MapsComponent} from './operacao/maps/maps-uavs.component';
     MatPaginatorModule, 
     MatSelectModule,
     ReactiveFormsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    GoogleMapsModule
   ],
   providers: [
 
