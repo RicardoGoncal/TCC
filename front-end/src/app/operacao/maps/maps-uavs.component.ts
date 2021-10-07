@@ -2,6 +2,10 @@ import { Position } from '@angular/compiler';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { map } from 'rxjs/operators';
+import {MapDirectionsService} from '@angular/google-maps';
+import { Observable } from 'rxjs';
+
+
 
 @Component({
     selector: 'app-maps',
@@ -10,6 +14,7 @@ import { map } from 'rxjs/operators';
 
 export class MapsComponent {
 
+    
     @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow;
 
     title = 'Gmaps';
@@ -26,6 +31,19 @@ export class MapsComponent {
         lng: -46.8353236,
     };
 
+    // readonly directionsResults$: Observable<google.maps.DirectionsResult|undefined>;
+    readonly directionsResults$: Observable<google.maps.DirectionsResult|undefined>;
+    
+    constructor(mapDirectionsService: MapDirectionsService) {
+        const request: google.maps.DirectionsRequest = {
+          destination: {lat: -23.5719967, lng: -46.8227457},
+          origin: this.position,
+          travelMode: google.maps.TravelMode.BICYCLING
+        };
+
+        this.directionsResults$ = mapDirectionsService.route(request).pipe(map(response => response.result));
+    }   
+
     // label = {
     //     color: 'red',
     //     text: 'Marcador'
@@ -34,6 +52,9 @@ export class MapsComponent {
     openInfoWindow(marker: MapMarker){
         this.infoWindow.open(marker);
     }
+
+   
+    
 }
 
 // export class MapsComponent implements OnInit {

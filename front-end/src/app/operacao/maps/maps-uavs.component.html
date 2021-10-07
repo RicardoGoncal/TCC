@@ -24,6 +24,9 @@
         <map-info-window>
             Base Fatec para aeronaves não tripuladas.
         </map-info-window>
+
+        <map-directions-renderer *ngIf="(directionsResults$ | async) as directionsResults"
+                           [directions]="directionsResults"></map-directions-renderer>
     </google-map>
 
 </div>
