@@ -1,72 +1,109 @@
+import { Position } from '@angular/compiler';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
+import { map } from 'rxjs/operators';
+
 @Component({
     selector: 'app-maps',
     templateUrl: './maps-uavs.component.html',
 })
 
-export class MapsComponent implements OnInit {
-    @ViewChild(GoogleMap, { static: false }) map: GoogleMap
-    @ViewChild(MapInfoWindow, { static: false }) info: MapInfoWindow
+export class MapsComponent {
 
-    zoom = 12
-    center: google.maps.LatLngLiteral
-    options: google.maps.MapOptions = {
-        zoomControl: false,
-        scrollwheel: false,
-        disableDoubleClickZoom: true,
-        mapTypeId: 'hybrid',
-        maxZoom: 15,
-        minZoom: 8,
-    }
-    markers = []
-    infoContent = ''
+    @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow;
 
-    ngOnInit() {
-        navigator.geolocation.getCurrentPosition((position) => {
-            this.center = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude,
-            }
-        })
-    }
+    title = 'Gmaps';
 
-    zoomIn() {
-        if (this.zoom < this.options.maxZoom) this.zoom++
-    }
+    position = {
 
-    zoomOut() {
-        if (this.zoom > this.options.minZoom) this.zoom--
-    }
+        lat: -23.5169413,
+        lng: -46.8353236,
+    };
 
-    click(event: google.maps.MouseEvent) {
-        console.log(event)
-    }
+    markerPosition: google.maps.LatLngLiteral={
 
-    logCenter() {
-        console.log(JSON.stringify(this.map.getCenter()))
-    }
+        lat: -23.5169413,
+        lng: -46.8353236,
+    };
 
-    addMarker() {
-        this.markers.push({
-            position: {
-                lat: this.center.lat + ((Math.random() - 0.5) * 2) / 10,
-                lng: this.center.lng + ((Math.random() - 0.5) * 2) / 10,
-            },
-            label: {
-                color: 'red',
-                text: 'Marker label ' + (this.markers.length + 1),
-            },
-            title: 'Marker title ' + (this.markers.length + 1),
-            info: 'Marker info ' + (this.markers.length + 1),
-            options: {
-                animation: google.maps.Animation.BOUNCE,
-            },
-        })
-    }
+    // label = {
+    //     color: 'red',
+    //     text: 'Marcador'
+    // };
 
-    openInfo(marker: MapMarker, content) {
-        this.infoContent = content
-        this.info.open(marker)
+    openInfoWindow(marker: MapMarker){
+        this.infoWindow.open(marker);
     }
 }
+
+// export class MapsComponent implements OnInit {
+//     @ViewChild(GoogleMap, { static: false }) map: GoogleMap
+//     @ViewChild(MapInfoWindow, { static: false }) info: MapInfoWindow
+
+//     zoom = 12
+//     center: google.maps.LatLngLiteral
+//     options: google.maps.MapOptions = {
+//         zoomControl: false,
+//         scrollwheel: false,
+//         disableDoubleClickZoom: true,
+//         mapTypeId: 'hybrid',
+//         maxZoom: 20,
+//         minZoom: 8,
+//         center: { lat: -23.5171833, lng: -46.8376875},
+//     }
+
+//     markers = []
+//     infoContent = ''
+
+//     ngOnInit() {
+//         navigator.geolocation.getCurrentPosition((position) => {
+//             this.center = {
+//                 lat: position.coords.latitude,
+//                 lng: position.coords.longitude,
+//             }
+//         })
+//     }
+
+//     zoomIn() {
+//         if (this.zoom < this.options.maxZoom) this.zoom++
+//     }
+
+//     zoomOut() {
+//         if (this.zoom > this.options.minZoom) this.zoom--
+//     }
+
+//     click(event: google.maps.MouseEvent) {
+//         console.log(event)
+//     }
+
+//     logCenter() {
+//         console.log(JSON.stringify(this.map.getCenter()))
+//     }
+
+//     addMarker() {
+//         this.markers.push({
+//             position: {
+//                 lat: this.center.lat + ((Math.random() - 0.5) * 2) / 10,
+//                 lng: this.center.lng + ((Math.random() - 0.5) * 2) / 10,
+//             },
+//             label: {
+//                 color: 'red',
+//                 text: 'Marker label ' + (this.markers.length + 1),
+//             },
+//             title: 'Marker title ' + (this.markers.length + 1),
+//             info: 'Marker info ' + (this.markers.length + 1),
+//             options: {
+//                 animation: google.maps.Animation.BOUNCE,
+//             },
+//         })
+//     }
+
+//     openInfo(marker: MapMarker, content) {
+//         this.infoContent = content
+//         this.info.open(marker)
+//     }
+// }
+
+
+
+    
