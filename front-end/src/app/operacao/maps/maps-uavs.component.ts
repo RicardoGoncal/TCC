@@ -25,34 +25,47 @@ export class MapsComponent {
         lng: -46.8353236,
     };
 
-    markerPosition: google.maps.LatLngLiteral={
+    position_dest = {
+        
+        lat: -23.5719967, 
+        lng: -46.8227457,
 
-        lat: -23.5169413,
-        lng: -46.8353236,
     };
 
+
+    markerPosition: google.maps.LatLngLiteral= this.position
+    markerPositionDest: google.maps.LatLngLiteral = this.position_dest
+
     // readonly directionsResults$: Observable<google.maps.DirectionsResult|undefined>;
-    readonly directionsResults$: Observable<google.maps.DirectionsResult|undefined>;
+    // readonly directionsResults$: Observable<google.maps.DirectionsResult|undefined>;
     
-    constructor(mapDirectionsService: MapDirectionsService) {
-        const request: google.maps.DirectionsRequest = {
-          destination: {lat: -23.5719967, lng: -46.8227457},
-          origin: this.position,
-          travelMode: google.maps.TravelMode.BICYCLING
-        };
+    // constructor(mapDirectionsService: MapDirectionsService) {
+    //     const request: google.maps.DirectionsRequest = {
+    //       destination: {lat: -23.5719967, lng: -46.8227457},
+    //       origin: this.position,
+    //       travelMode: google.maps.TravelMode.WALKING
+    //     };
 
-        this.directionsResults$ = mapDirectionsService.route(request).pipe(map(response => response.result));
-    }   
+    //     this.directionsResults$ = mapDirectionsService.route(request).pipe(map(response => response.result));
+    // }
 
-    // label = {
-    //     color: 'red',
-    //     text: 'Marcador'
-    // };
+    vertices: google.maps.LatLngLiteral[]=[
+        this.position, this.position_dest
+    ]
+    
+    // vertices2: google.maps.LatLngLiteral[]=[
+    //     this.position, {lat: -23.5460305, 
+    //         lng: -46.7260801,},
+    // ];
+    
 
     openInfoWindow(marker: MapMarker){
         this.infoWindow.open(marker);
     }
 
+    InfoWindow2(){
+        this.infoWindow.open();
+    }
    
     
 }

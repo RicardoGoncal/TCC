@@ -19,14 +19,25 @@
 
     <google-map width="100%" height="800" [center]='position'>
         <map-marker #marker="mapMarker" [position]='markerPosition' [title]='title' (mapClick)='openInfoWindow(marker)'>
+            <map-info-window>
+                Base Fatec para aeronaves não tripuladas.
+            </map-info-window>
         </map-marker>
 
-        <map-info-window>
-            Base Fatec para aeronaves não tripuladas.
-        </map-info-window>
+        <map-marker  [position]='markerPositionDest' [title]='title' (mapClick)='InfoWindow2()'>
+            <map-info-window>
+                Teste
+            </map-info-window>
+        </map-marker>
 
-        <map-directions-renderer *ngIf="(directionsResults$ | async) as directionsResults"
-                           [directions]="directionsResults"></map-directions-renderer>
+        
+
+        <!-- <map-directions-renderer *ngIf="(directionsResults$ | async) as directionsResults"
+                           [directions]="directionsResults"></map-directions-renderer> -->
+
+        <map-polyline [path]='vertices'></map-polyline>
+
+        <!-- <map-polyline [path]='vertices2'></map-polyline> -->
     </google-map>
 
 </div>
