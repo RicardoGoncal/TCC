@@ -228,7 +228,7 @@
 
 <div id="mapa">
 
-    <google-map width="70%" height="450" [center]='initial_position'>
+    <google-map width="70%" height="450" [center]='position'>
         <map-marker #marker="mapMarker" [position]='markerPositionInitial' [title]='title'
             (mapClick)='openInfoWindow(marker)'>
             <map-info-window>
@@ -237,22 +237,16 @@
         </map-marker>
 
         <map-marker [position]='markerPositionDest' [title]='title' (mapClick)='InfoWindow2()'>
-            <map-info-window>
-                Teste
-            </map-info-window>
         </map-marker>
 
         <map-polyline [path]='vertices'></map-polyline>
 
     </google-map>
 
-    <input matInput name="position_dest.lat" [(ngModel)]="position_dest.lat">
-    <input matInput name="position_dest.lng" [(ngModel)]="position_dest.lng">
+    <input matInput name="positionDest.lat" [(ngModel)]="positionDest.lat">
+    <input matInput name="positionDest.lng" [(ngModel)]="positionDest.lng">
 
-    <button class="button" mat-raised-button color="primary"
-       
-        >
+    <button class="button" mat-raised-button color="primary" (click)="addDest(positionDest.lat, positionDest.lng)">
         <mat-icon>add</mat-icon>
     </button>
-
 </div>
