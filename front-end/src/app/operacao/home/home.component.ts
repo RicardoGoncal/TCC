@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClientService } from '../../service/http-client.service'
 import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
 interface Mensagem {
@@ -71,9 +71,12 @@ export class HomeComponent implements OnInit {
 
   messageToUav: SendMessage = {};
 
+  href: string = "";
+
   constructor(
     private httpClientService: HttpClientService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.route.params.subscribe(params => this.uavId = params['id']);
   }
@@ -86,6 +89,9 @@ export class HomeComponent implements OnInit {
     this.messageToUav.message = ''
     this.messageToUav.uav = this.uavId
     this.messageToUav.port = 5000 + Number(this.uavId)
+
+    this.href = this.router.url;
+    console.log(this.router.url);
   }
 
   handleSuccessfulResponse(response) {
@@ -238,9 +244,9 @@ export class HomeComponent implements OnInit {
 
   positionDest = {
       
-      lat: -23.5169413, 
-      lng: -46.8353236,
-
+    lat: localStorage.getItem('latitude'+this.href)!= null ? Number(localStorage.getItem('latitude'+this.href)) : -23.5719967,
+    lng: localStorage.getItem('longitude'+this.href)!= null ? Number(localStorage.getItem('longitude'+this.href)) : -46.8227457,
+    
   };
 
   markerPositionInitial: google.maps.LatLngLiteral= this.position
@@ -260,6 +266,8 @@ export class HomeComponent implements OnInit {
   }
 
   addDest(latitude, longitude) {
+    localStorage.setItem('latitude'+this.href, latitude);
+    localStorage.setItem('longitude'+this.href, longitude);
     this.positionDest.lat = Number(latitude)
     this.positionDest.lng = Number(longitude)
     this.markerPositionDest = {lat: this.positionDest.lat, lng: this.positionDest.lng}

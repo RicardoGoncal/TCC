@@ -11,13 +11,13 @@ export class MapsComponent {
     title = 'Gmaps';
 
     position = {
-        lat: sessionStorage.getItem('latitude')== null ? Number(sessionStorage.getItem('latitude')) : -23.5169413,
-        lng: sessionStorage.getItem('longitude')== null ? Number(sessionStorage.getItem('longitude')) : -46.8353236,
+        lat: -23.5169413,
+        lng: -46.8353236,
     };
     
     positionDest = {
-        lat: -23.5719967,
-        lng: -46.8227457,
+        lat: sessionStorage.getItem('latitude')== null ? Number(sessionStorage.getItem('latitude')) : -23.5719967,
+        lng: sessionStorage.getItem('longitude')== null ? Number(sessionStorage.getItem('longitude')) : -46.8227457,
     };
     
     markerPosition: google.maps.LatLngLiteral = this.position
