@@ -242,10 +242,13 @@ export class HomeComponent implements OnInit {
       lng: -46.8353236,
   };
 
+  latDest = 'latitude'+this.href;
+  lngDest = 'longitude'+this.href;
+
   positionDest = {
       
-    lat: localStorage.getItem('latitude'+this.href)!= null ? Number(localStorage.getItem('latitude'+this.href)) : -23.5719967,
-    lng: localStorage.getItem('longitude'+this.href)!= null ? Number(localStorage.getItem('longitude'+this.href)) : -46.8227457,
+    lat: localStorage.getItem(this.latDest)!= null ? Number(localStorage.getItem(this.latDest)) : -23.5719967,
+    lng: localStorage.getItem(this.lngDest)!= null ? Number(localStorage.getItem(this.lngDest)) : -46.8227457,
     
   };
 
@@ -266,8 +269,8 @@ export class HomeComponent implements OnInit {
   }
 
   addDest(latitude, longitude) {
-    localStorage.setItem('latitude'+this.href, latitude);
-    localStorage.setItem('longitude'+this.href, longitude);
+    localStorage.setItem(this.latDest, latitude);
+    localStorage.setItem(this.lngDest, longitude);
     this.positionDest.lat = Number(latitude)
     this.positionDest.lng = Number(longitude)
     this.markerPositionDest = {lat: this.positionDest.lat, lng: this.positionDest.lng}
