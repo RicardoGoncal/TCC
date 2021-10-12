@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClientService } from '../../service/http-client.service'
-import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
+import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 interface Mensagem {
   id: string;
   mensagem: string;
@@ -71,7 +71,13 @@ export class HomeComponent implements OnInit {
 
   messageToUav: SendMessage = {};
 
-  href: string = "";
+  href: string = '';
+  latDest: string = '';
+  lngDest: string = '';
+  positionDest = {
+    lat: -23.5169413,
+    lng: -46.8353236,
+  };
 
   constructor(
     private httpClientService: HttpClientService,
@@ -91,7 +97,14 @@ export class HomeComponent implements OnInit {
     this.messageToUav.port = 5000 + Number(this.uavId)
 
     this.href = this.router.url;
-    console.log(this.router.url);
+    this.latDest = "latitude".concat(this.href).replace("/uavs/", "");
+    this.lngDest = "longitude".concat(this.href).replace("/uavs/", "");
+
+    this.positionDest = {
+      lat: localStorage.getItem(this.latDest) != null ? Number(localStorage.getItem(this.latDest)) : -23.5169413,
+      lng: localStorage.getItem(this.lngDest) != null ? Number(localStorage.getItem(this.lngDest)) : -46.8353236,
+    };
+    this.addDest(this.positionDest.lat, this.positionDest.lng)
   }
 
   handleSuccessfulResponse(response) {
@@ -231,41 +244,28 @@ export class HomeComponent implements OnInit {
     this.resetForm()
   }
 
-
   // Parte do Google-Maps
-
   title = 'Gmaps';
 
   position = {
-
-      lat: -23.5169413,
-      lng: -46.8353236,
+    lat: -23.5169413,
+    lng: -46.8353236,
   };
 
-  latDest = 'latitude'+this.href;
-  lngDest = 'longitude'+this.href;
-
-  positionDest = {
-      
-    lat: localStorage.getItem(this.latDest)!= null ? Number(localStorage.getItem(this.latDest)) : -23.5719967,
-    lng: localStorage.getItem(this.lngDest)!= null ? Number(localStorage.getItem(this.lngDest)) : -46.8227457,
-    
-  };
-
-  markerPositionInitial: google.maps.LatLngLiteral= this.position
+  markerPositionInitial: google.maps.LatLngLiteral = this.position
 
   markerPositionDest: google.maps.LatLngLiteral = this.positionDest
 
-  vertices: google.maps.LatLngLiteral[]=[
-      this.position, this.positionDest
+  vertices: google.maps.LatLngLiteral[] = [
+    this.position, this.positionDest
   ]
-  
-  openInfoWindow(marker: MapMarker){
-      this.infoWindow.open(marker);
+
+  openInfoWindow(marker: MapMarker) {
+    this.infoWindow.open(marker);
   }
 
-  InfoWindow2(){
-      this.infoWindow.open();
+  InfoWindow2() {
+    this.infoWindow.open();
   }
 
   addDest(latitude, longitude) {
@@ -273,11 +273,12 @@ export class HomeComponent implements OnInit {
     localStorage.setItem(this.lngDest, longitude);
     this.positionDest.lat = Number(latitude)
     this.positionDest.lng = Number(longitude)
-    this.markerPositionDest = {lat: this.positionDest.lat, lng: this.positionDest.lng}
+    this.markerPositionDest = { lat: this.positionDest.lat, lng: this.positionDest.lng }
     this.vertices = [this.position, this.positionDest]
+    console.log(this.latDest)
+    console.log(this.lngDest)
+    console.log(this.href)
   };
-   
-    
+
+
 }
-
-
