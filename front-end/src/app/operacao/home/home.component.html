@@ -17,8 +17,7 @@
                     <input class="input-mat" matInput placeholder="100" type="number" name="numberClimb"
                         [(ngModel)]="numberClimb" min=0>
                     <button class="button-del" mat-raised-button color="primary"
-                        [disabled]="selectedClimb.length == 0 || numberClimb==''"
-                        (click)="addMessage('selectedClimb')">
+                        [disabled]="selectedClimb.length == 0 || numberClimb==''" (click)="addMessage('selectedClimb')">
                         <mat-icon>add</mat-icon>
                     </button>
                     <button class="button-del" mat-raised-button color="warn" (click)="excluir('displayClimb')">
@@ -37,8 +36,7 @@
                     <input class="input-mat" matInput placeholder="100" type="number" name="numberRoute"
                         [(ngModel)]="numberRoute" min=0>
                     <button class="button-del" mat-raised-button color="primary"
-                        [disabled]="selectedRoute.length == 0 || numberRoute==''"
-                        (click)="addMessage('selectedRoute')">
+                        [disabled]="selectedRoute.length == 0 || numberRoute==''" (click)="addMessage('selectedRoute')">
                         <mat-icon>add</mat-icon>
                     </button>
                     <button class="button-del" mat-raised-button color="warn" *ngIf="displayRoute"
@@ -117,8 +115,7 @@
                     <input class="input-mat" matInput placeholder="100" type="number" name="numberSpeed"
                         [(ngModel)]="numberSpeed" min=0>
                     <button class="button-del" mat-raised-button color="primary"
-                        [disabled]="selectedSpeed.length == 0 || numberSpeed==''"
-                        (click)="addMessage('selectedSpeed')">
+                        [disabled]="selectedSpeed.length == 0 || numberSpeed==''" (click)="addMessage('selectedSpeed')">
                         <mat-icon>add</mat-icon>
                     </button>
                     <button class="button-del" mat-raised-button color="warn" *ngIf="displaySpeed"
@@ -212,12 +209,14 @@
             <div class="selectedMessages">
                 <span>{{messageToUav?.message}}</span>
             </div>
-            <button class="reset-messages" mat-raised-button color="warn" (click)="resetForm()" *ngIf="messageToUav?.message.length > 0" >
+            <button class="reset-messages" mat-raised-button color="warn" (click)="resetForm()"
+                *ngIf="messageToUav?.message.length > 0">
                 Resetar Mensagens
             </button>
             <div class="botao-enviar">
                 <div class="example-button-row">
-                    <button mat-raised-button type="submit" color="primary" (click)=sendMessage() [disabled]="messageToUav?.message.length == 0" >Send Message</button>
+                    <button mat-raised-button type="submit" color="primary" (click)=sendMessage()
+                        [disabled]="messageToUav?.message.length == 0">Send Message</button>
                 </div>
             </div>
 
@@ -230,13 +229,14 @@
 <div id="mapa">
 
     <google-map width="70%" height="450" [center]='initial_position'>
-        <map-marker #marker="mapMarker" [position]='markerPositionInitial' [title]='title' (mapClick)='openInfoWindow(marker)'>
+        <map-marker #marker="mapMarker" [position]='markerPositionInitial' [title]='title'
+            (mapClick)='openInfoWindow(marker)'>
             <map-info-window>
                 Base Fatec para aeronaves não tripuladas.
             </map-info-window>
         </map-marker>
 
-        <map-marker  [position]='markerPositionDest' [title]='title' (mapClick)='InfoWindow2()'>
+        <map-marker [position]='markerPositionDest' [title]='title' (mapClick)='InfoWindow2()'>
             <map-info-window>
                 Teste
             </map-info-window>
@@ -245,5 +245,14 @@
         <map-polyline [path]='vertices'></map-polyline>
 
     </google-map>
+
+    <input matInput name="position_dest.lat" [(ngModel)]="position_dest.lat">
+    <input matInput name="position_dest.lng" [(ngModel)]="position_dest.lng">
+
+    <button class="button" mat-raised-button color="primary"
+       
+        >
+        <mat-icon>add</mat-icon>
+    </button>
 
 </div>
