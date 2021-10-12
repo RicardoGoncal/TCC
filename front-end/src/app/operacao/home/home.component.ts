@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClientService } from '../../service/http-client.service'
-
+import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
 interface Mensagem {
   id: string;
   mensagem: string;
@@ -24,6 +24,8 @@ interface SendMessage {
 })
 
 export class HomeComponent implements OnInit {
+
+  @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow;
 
   uavId: number;
 
@@ -223,4 +225,41 @@ export class HomeComponent implements OnInit {
     this.resetForm()
   }
 
+
+  // Parte do Google-Maps
+
+  title = 'Gmaps';
+
+  initial_position = {
+
+      lat: -23.5169413,
+      lng: -46.8353236,
+  };
+
+  position_dest = {
+      
+      lat: -23.5719967, 
+      lng: -46.8227457,
+
+  };
+
+  markerPositionInitial: google.maps.LatLngLiteral= this.initial_position
+
+  markerPositionDest: google.maps.LatLngLiteral = this.position_dest
+
+  vertices: google.maps.LatLngLiteral[]=[
+      this.initial_position, this.position_dest
+  ]
+  
+  openInfoWindow(marker: MapMarker){
+      this.infoWindow.open(marker);
+  }
+
+  InfoWindow2(){
+      this.infoWindow.open();
+  }
+   
+    
 }
+
+

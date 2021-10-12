@@ -224,3 +224,26 @@
         </div>
 
     </div>
+
+</div>
+
+<div id="mapa">
+
+    <google-map width="70%" height="450" [center]='initial_position'>
+        <map-marker #marker="mapMarker" [position]='markerPositionInitial' [title]='title' (mapClick)='openInfoWindow(marker)'>
+            <map-info-window>
+                Base Fatec para aeronaves não tripuladas.
+            </map-info-window>
+        </map-marker>
+
+        <map-marker  [position]='markerPositionDest' [title]='title' (mapClick)='InfoWindow2()'>
+            <map-info-window>
+                Teste
+            </map-info-window>
+        </map-marker>
+
+        <map-polyline [path]='vertices'></map-polyline>
+
+    </google-map>
+
+</div>
