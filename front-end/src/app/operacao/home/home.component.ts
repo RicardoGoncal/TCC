@@ -230,25 +230,25 @@ export class HomeComponent implements OnInit {
 
   title = 'Gmaps';
 
-  initial_position = {
+  position = {
 
       lat: -23.5169413,
       lng: -46.8353236,
   };
 
-  position_dest = {
+  positionDest = {
       
-      lat: -23.5719967, 
-      lng: -46.8227457,
+      lat: -23.5169413, 
+      lng: -46.8353236,
 
   };
 
-  markerPositionInitial: google.maps.LatLngLiteral= this.initial_position
+  markerPositionInitial: google.maps.LatLngLiteral= this.position
 
-  markerPositionDest: google.maps.LatLngLiteral = this.position_dest
+  markerPositionDest: google.maps.LatLngLiteral = this.positionDest
 
   vertices: google.maps.LatLngLiteral[]=[
-      this.initial_position, this.position_dest
+      this.position, this.positionDest
   ]
   
   openInfoWindow(marker: MapMarker){
@@ -258,6 +258,13 @@ export class HomeComponent implements OnInit {
   InfoWindow2(){
       this.infoWindow.open();
   }
+
+  addDest(latitude, longitude) {
+    this.positionDest.lat = Number(latitude)
+    this.positionDest.lng = Number(longitude)
+    this.markerPositionDest = {lat: this.positionDest.lat, lng: this.positionDest.lng}
+    this.vertices = [this.position, this.positionDest]
+  };
    
     
 }
