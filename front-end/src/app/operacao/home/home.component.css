@@ -66,7 +66,6 @@ button{
     justify-content: space-between;
     align-items: center;
     align-content: center;
-   
 }
 
 .button-del{
@@ -100,4 +99,30 @@ button{
 .reset-messages{
     margin: 16px 125px;
     width: 250px;
+}
+
+.map-container{
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.map{
+    margin: 16px;
+}
+
+.map-buttons{
+    margin: 32px;
+}
+
+.map-buttons mat-form-field{
+    width: 180px;
+    padding: 1px;
+    margin-right: 8px;
+}
+
+.addDestination{
+    width: 100px;
+    height: 38px;
+    padding: 2px;
 }

@@ -1,27 +1,27 @@
 <p>
   <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>Uavs controle</span>
-    <span class="example-spacer"></span>
-    <div class="botao-home">
-      <button *ngIf="loginService.isUserLoggedIn()" mat-icon-button class="example-icon"
-        aria-label="Example icon-button with share icon">
+
+    <a routerLink="/uavs" class="botao-home">
+      <button mat-icon-button> 
         <mat-icon>home</mat-icon>
-        <a routerLink="/uavs" class="nav-link">Uavs</a>
       </button>
-    </div>
-
-    <div class="link-clima" *ngIf="loginService.isUserLoggedIn()">
-      <a routerLink="/clima" class="nav-link ">Clima</a>
-    </div>
-
-    <div class="link-clima" *ngIf="loginService.isAdmin() && loginService.isUserLoggedIn()">
-      <a routerLink="/new" class="nav-link ">Novo Usuário</a>
+    </a>
+    <span>Uavs controle</span>
+    <div class="header">
+      <div class="botao-home" *ngIf="loginService.isUserLoggedIn()">
+        <a routerLink="/uavs" class="nav-link">Uavs</a>
+      </div>
+      <div class="link-user" *ngIf="loginService.isAdmin() && loginService.isUserLoggedIn()">
+        <a routerLink="/new" class="nav-link ">Novo Usuário</a>
+      </div>
+      <div class="link-user" *ngIf="loginService.isAdmin() && loginService.isUserLoggedIn()">
+        <a routerLink="/maps" class="nav-link ">Mapa de rotas</a>
+      </div>
+      <div class="link-clima" *ngIf="loginService.isUserLoggedIn()">
+        <a routerLink="/clima" class="nav-link ">Clima</a>
+      </div>
     </div>
     <div class="botao-logout">
-
       <button *ngIf="loginService.isUserLoggedIn()" mat-icon-button class="example-icon favorite-icon"
         aria-label="Example icon-button with heart icon">
         <mat-icon>logout</mat-icon>

@@ -246,10 +246,20 @@ export class HomeComponent implements OnInit {
 
   // Parte do Google-Maps
   title = 'Gmaps';
-
+  
   position = {
     lat: -23.5169413,
     lng: -46.8353236,
+  };
+  
+  options: google.maps.MapOptions = { 
+    zoom: 5,
+    center: this.position,
+    disableDefaultUI: false,
+    zoomControl: true,
+    streetViewControl: false,
+    rotateControl: true,
+    scaleControl: true,
   };
 
   markerPositionInitial: google.maps.LatLngLiteral = this.position
@@ -275,10 +285,6 @@ export class HomeComponent implements OnInit {
     this.positionDest.lng = Number(longitude)
     this.markerPositionDest = { lat: this.positionDest.lat, lng: this.positionDest.lng }
     this.vertices = [this.position, this.positionDest]
-    console.log(this.latDest)
-    console.log(this.lngDest)
-    console.log(this.href)
   };
-
 
 }

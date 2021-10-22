@@ -226,27 +226,37 @@
 
 </div>
 
-<div id="mapa">
+<div id="mapa" class="map-container">
 
-    <google-map width="70%" height="450" [center]='position'>
-        <map-marker #marker="mapMarker" [position]='markerPositionInitial' [title]='title'
-            (mapClick)='openInfoWindow(marker)'>
-            <map-info-window>
-                Base Fatec para aeronaves não tripuladas.
-            </map-info-window>
-        </map-marker>
+    <div class="map">
 
-        <map-marker [position]='markerPositionDest' [title]='title' (mapClick)='InfoWindow2()'>
-        </map-marker>
+        <google-map width="100%" [options]="options">
+            <map-marker #marker="mapMarker" [position]='markerPositionInitial' [title]='title'
+                (mapClick)='openInfoWindow(marker)'>
+                <map-info-window>
+                    Base Fatec para aeronaves não tripuladas.
+                </map-info-window>
+            </map-marker>
 
-        <map-polyline [path]='vertices'></map-polyline>
+            <map-marker [position]='markerPositionDest' [title]='title' (mapClick)='InfoWindow2()'>
+            </map-marker>
 
-    </google-map>
+            <map-polyline [path]='vertices'></map-polyline>
+        </google-map>
+    </div>
 
-    <input matInput name="positionDest.lat" [(ngModel)]="positionDest.lat">
-    <input matInput name="positionDest.lng" [(ngModel)]="positionDest.lng">
-
-    <button class="button" mat-raised-button color="primary" (click)="addDest(positionDest.lat, positionDest.lng)">
-        <mat-icon>add</mat-icon>
-    </button>
+    <div class="map-buttons">
+        <mat-form-field appearance="fill">
+            <mat-label>Latidude</mat-label>
+            <input matInput name="positionDest.lat" type="number" max="80" min="-80" [(ngModel)]="positionDest.lat">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Longitude</mat-label>
+            <input matInput name="positionDest.lng" type="number" max="150" min="-100" [(ngModel)]="positionDest.lng">
+        </mat-form-field>
+        <button class="addDestination" mat-raised-button color="primary"
+            (click)="addDest(positionDest.lat, positionDest.lng)">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
 </div>
