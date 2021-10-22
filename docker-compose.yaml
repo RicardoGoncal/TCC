@@ -10,7 +10,16 @@ services:
         MYSQL_USER: tcc
         MYSQL_PASSWORD: tcc
         MYSQL_ROOT_PASSWORD: root
-        MYSQL_DATABASE: cpdlc2
+        MYSQL_DATABASE: cpdlc
+
+  flyway:
+    image: flyway/flyway
+    command: -url=jdbc:mysql://db -schemas=cpdlc -user=tcc -password=tcc -connectRetries=60 migrate
+    volumes:
+      - ./back-java/src/main/resources/db/migration:/flyway/sql
+    depends_on:
+      - db
+      - spring_boot_com_mysql
 
   spring_boot_com_mysql:
     build:
@@ -24,6 +33,8 @@ services:
     environment:
       - ADDITIONAL_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 -Xmx1G -Xms128m -XX:MaxMetaspaceSize=128m
       - PROFILE=prod
+    depends_on:
+      - db
     links:
       - db
   
@@ -63,8 +74,8 @@ services:
     ports:
         - 5672:5672
         - 15672:15672
-    # networks:
-    #     - rabbitmq_go_net
+#     networks:
+#         - rabbitmq_go_net
 
 # networks:
 #   rabbitmq_go_net:

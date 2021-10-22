@@ -18,7 +18,7 @@ class Envio_Rb(object):
         self.id = str(id_uav)
         self.port = str(port_uav)
         self.message = str(message)
-        self.connection = pika.BlockingConnection(pika.ConnectionParameters(host='172.18.0.1'))
+        self.connection = pika.BlockingConnection(pika.ConnectionParameters(host='rabbitmq'))
         self.channel = self.connection.channel()
         result = self.channel.queue_declare(queue='', exclusive=True)
 
