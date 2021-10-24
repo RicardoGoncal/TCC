@@ -5,7 +5,13 @@ import { MapInfoWindow, MapMarker } from '@angular/google-maps';
     templateUrl: './maps-uavs.component.html',
 })
 
-export class MapsComponent {
+export class MapsComponent implements OnInit {
+    ngOnInit(): void {
+        var i = 1;
+        for (i = 1; i <= localStorage.length / 2; i++) {
+            this.addDest(localStorage.getItem('latitude' + i), localStorage.getItem('longitude' + i));
+        }
+    }
 
     @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow;
     title = 'Gmaps';
@@ -14,29 +20,43 @@ export class MapsComponent {
         lat: -23.5169413,
         lng: -46.8353236,
     };
-    
-    positionDest = {
-        lat: sessionStorage.getItem('latitude')== null ? Number(sessionStorage.getItem('latitude')) : -23.5719967,
-        lng: sessionStorage.getItem('longitude')== null ? Number(sessionStorage.getItem('longitude')) : -46.8227457,
-    };
-    
-    markerPosition: google.maps.LatLngLiteral = this.position
-    markerPositionDest: google.maps.LatLngLiteral = this.positionDest
 
-    vertices: google.maps.LatLngLiteral[] = [
+    positionDest = {
+        lat: -23.5719967,
+        lng: -46.8227457,
+    };
+
+    markerPosition: google.maps.LatLngLiteral = this.position
+    markerPositions: google.maps.LatLngLiteral[] = [];
+    vertices: any = []
+
+    vertice: google.maps.LatLngLiteral[] = [
         this.position, this.positionDest
     ]
-    openInfoWindow(marker: MapMarker){
+
+    options: google.maps.MapOptions = {
+        zoom: 5,
+        center: this.position,
+        disableDefaultUI: false,
+        zoomControl: true,
+        streetViewControl: false,
+        rotateControl: true,
+        scaleControl: true,
+    };
+    openInfoWindow(marker: MapMarker) {
         this.infoWindow.open(marker);
     }
 
     addDest(latitude, longitude) {
-        sessionStorage.setItem('latitude', latitude);
-        sessionStorage.setItem('longitude', longitude);
-        this.positionDest.lat = Number(latitude)
-        this.positionDest.lng = Number(longitude)
-        this.markerPositionDest = this.positionDest
-        this.vertices = [this.position, this.positionDest]
+        this.positionDest = {
+            lat: Number(latitude),
+            lng: Number(longitude)
+        }
+        this.vertice = [
+            this.position, this.positionDest
+        ]
+        this.markerPositions.push(this.positionDest);
+        this.vertices.push(this.vertice)
     }
 
 }

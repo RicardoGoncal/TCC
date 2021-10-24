@@ -1,86 +1,82 @@
-.container{
-    display: flex;
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
 
-.container-mensagem{
-    border: 0.2px solid black ;
-    width: 25%;
-    margin-top: 30px;
-    margin-left: 30px;
+.container-mensagem,
+.container-botoes,
+.container-response,
+.container-envio {
+    border: 0.2px solid black;
+    width: 500px;
+}
+
+.container-mensagem {
+    margin: 30px auto;
     height: 600px;
 }
 
-
-.container-botoes{
-    border: 0.2px solid black;
-    width: 25%;
-    margin: 30px 0 0 30px;
-    margin-left: 150px;
+.container-botoes {
+    margin: 30px auto;
     height: 600px;
 }
 
-.container-response{
-    border: 0.2px solid black;
+.container-response {
     width: 500px;
-    margin: 30px 0 0 30px;
-    margin-left: 150px;
+    margin: 30px auto;
     height: 300px;
 }
 
-.container-envio{
-    border: 0.2px solid black;
-    width: 500px;
-    margin-top: 20px;
-    margin-left: 150px;
-    height: 300px;
+.container-envio {
+    margin: 30px auto;
+    height: 267px;
 }
 
 mat-card {
     width: 300px;
     margin-top: 10px;
     text-align: center;
-    
 }
 
-h1{
+h1 {
     text-align: center;
 }
 
-button{
+button {
     background-color: white;
     width: 50%;
     margin: 30px;
-    padding: 15px 40px ;
+    padding: 15px 40px;
     text-align: center;
 }
 
-.example-button-row{
+.example-button-row {
     display: flex;
     align-items: center;
     align-content: center;
     justify-content: center;
 }
 
-.row-cards{
+.row-cards {
     display: flex;
     justify-content: space-between;
     align-items: center;
     align-content: center;
 }
 
-.button-del{
+.button-del {
     width: 30px;
     padding: 1px;
     margin-bottom: 44px;
 }
 
-.mat-form-fields{
+.mat-form-fields {
     display: flex;
     align-items: center;
     align-content: center;
 }
 
-.input-mat{
+.input-mat {
     width: 50px;
     align-content: center;
     align-items: center;
@@ -96,32 +92,38 @@ button{
     font-weight: bold;
 }
 
-.reset-messages{
-    margin: 16px 125px;
-    width: 250px;
+.reset-messages,
+.send-button {
+    margin: 16px 130px;
+    height: 48px;
 }
 
-.map-container{
+.reset-messages span,
+.send-button span {
+    margin-top: 1px;
+}
+
+.map-container {
     align-items: center;
     align-content: center;
     justify-content: center;
 }
 
-.map{
+.map {
     margin: 16px;
 }
 
-.map-buttons{
+.map-buttons {
     margin: 32px;
 }
 
-.map-buttons mat-form-field{
+.map-buttons mat-form-field {
     width: 180px;
     padding: 1px;
     margin-right: 8px;
 }
 
-.addDestination{
+.addDestination {
     width: 100px;
     height: 38px;
     padding: 2px;

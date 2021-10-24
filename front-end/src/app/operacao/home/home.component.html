@@ -14,10 +14,8 @@
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
-                    <input class="input-mat" matInput placeholder="100" type="number" name="numberClimb"
-                        [(ngModel)]="numberClimb" min=0>
-                    <button class="button-del" mat-raised-button color="primary"
-                        [disabled]="selectedClimb.length == 0 || numberClimb==''" (click)="addMessage('selectedClimb')">
+                    <input class="input-mat" matInput placeholder="100" type="number" name="numberClimb" [(ngModel)]="numberClimb" min=0>
+                    <button class="button-del" mat-raised-button color="primary" [disabled]="selectedClimb.length == 0 || numberClimb==''" (click)="addMessage('selectedClimb')">
                         <mat-icon>add</mat-icon>
                     </button>
                     <button class="button-del" mat-raised-button color="warn" (click)="excluir('displayClimb')">
@@ -33,14 +31,11 @@
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
-                    <input class="input-mat" matInput placeholder="100" type="number" name="numberRoute"
-                        [(ngModel)]="numberRoute" min=0>
-                    <button class="button-del" mat-raised-button color="primary"
-                        [disabled]="selectedRoute.length == 0 || numberRoute==''" (click)="addMessage('selectedRoute')">
+                    <input class="input-mat" matInput placeholder="100" type="number" name="numberRoute" [(ngModel)]="numberRoute" min=0>
+                    <button class="button-del" mat-raised-button color="primary" [disabled]="selectedRoute.length == 0 || numberRoute==''" (click)="addMessage('selectedRoute')">
                         <mat-icon>add</mat-icon>
                     </button>
-                    <button class="button-del" mat-raised-button color="warn" *ngIf="displayRoute"
-                        (click)="excluir('displayRoute')">
+                    <button class="button-del" mat-raised-button color="warn" *ngIf="displayRoute" (click)="excluir('displayRoute')">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </div>
@@ -54,8 +49,7 @@
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
-                    <button class="button-del" mat-raised-button color="primary"
-                        [disabled]="selectedEmergency.length == 0" (click)="addMessage('selectedEmergency')">
+                    <button class="button-del" mat-raised-button color="primary" [disabled]="selectedEmergency.length == 0" (click)="addMessage('selectedEmergency')">
                         <mat-icon>add</mat-icon>
                     </button>
                     <button class="button-del" mat-raised-button color="warn" (click)="excluir('displayEmergency')">
@@ -72,15 +66,11 @@
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
-                    <input class="input-mat" matInput placeholder="100" type="number" name="numberDescend"
-                        [(ngModel)]="numberDescend" min=0>
-                    <button class="button-del" mat-raised-button color="primary"
-                        [disabled]="selectedDescend.length == 0 || numberDescend==''"
-                        (click)="addMessage('selectedClDescend')">
+                    <input class="input-mat" matInput placeholder="100" type="number" name="numberDescend" [(ngModel)]="numberDescend" min=0>
+                    <button class="button-del" mat-raised-button color="primary" [disabled]="selectedDescend.length == 0 || numberDescend==''" (click)="addMessage('selectedClDescend')">
                         <mat-icon>add</mat-icon>
                     </button>
-                    <button class="button-del" mat-raised-button color="warn" *ngIf="displayDescend"
-                        (click)="excluir('displayDescend')">
+                    <button class="button-del" mat-raised-button color="warn" *ngIf="displayDescend" (click)="excluir('displayDescend')">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </div>
@@ -94,8 +84,7 @@
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
-                    <button class="button-del" mat-raised-button color="primary" [disabled]="selectedComms.length == 0"
-                        (click)="addMessage('selectedComms')">
+                    <button class="button-del" mat-raised-button color="primary" [disabled]="selectedComms.length == 0" (click)="addMessage('selectedComms')">
                         <mat-icon>add</mat-icon>
                     </button>
                     <button class="button-del" mat-raised-button color="warn" (click)="excluir('displayComms')">
@@ -112,14 +101,11 @@
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
-                    <input class="input-mat" matInput placeholder="100" type="number" name="numberSpeed"
-                        [(ngModel)]="numberSpeed" min=0>
-                    <button class="button-del" mat-raised-button color="primary"
-                        [disabled]="selectedSpeed.length == 0 || numberSpeed==''" (click)="addMessage('selectedSpeed')">
+                    <input class="input-mat" matInput placeholder="100" type="number" name="numberSpeed" [(ngModel)]="numberSpeed" min=0>
+                    <button class="button-del" mat-raised-button color="primary" [disabled]="selectedSpeed.length == 0 || numberSpeed==''" (click)="addMessage('selectedSpeed')">
                         <mat-icon>add</mat-icon>
                     </button>
-                    <button class="button-del" mat-raised-button color="warn" *ngIf="displaySpeed"
-                        (click)="excluir('displaySpeed')">
+                    <button class="button-del" mat-raised-button color="warn" *ngIf="displaySpeed" (click)="excluir('displaySpeed')">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </div>
@@ -133,8 +119,7 @@
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
-                    <button class="button-del" mat-raised-button color="primary" [disabled]="selectedReport.length == 0"
-                        (click)="addMessage('selectedReport')">
+                    <button class="button-del" mat-raised-button color="primary" [disabled]="selectedReport.length == 0" (click)="addMessage('selectedReport')">
                         <mat-icon>add</mat-icon>
                     </button>
                     <button class="button-del" mat-raised-button color="warn" (click)="excluir('displayReport')">
@@ -151,11 +136,8 @@
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
-                    <input class="input-mat" matInput placeholder="100" type="number" name="numberCrossing"
-                        [(ngModel)]="numberCrossing" min=0>
-                    <button class="button-del" mat-raised-button color="primary"
-                        [disabled]="selectedCrossing.length == 0 || numberCrossing==''"
-                        (click)="addMessage('selectedCrossing')">
+                    <input class="input-mat" matInput placeholder="100" type="number" name="numberCrossing" [(ngModel)]="numberCrossing" min=0>
+                    <button class="button-del" mat-raised-button color="primary" [disabled]="selectedCrossing.length == 0 || numberCrossing==''" (click)="addMessage('selectedCrossing')">
                         <mat-icon>add</mat-icon>
                     </button>
                     <button class="button-del" mat-raised-button color="warn" (click)="excluir('displayCrossing')">
@@ -209,16 +191,13 @@
             <div class="selectedMessages">
                 <span>{{messageToUav?.message}}</span>
             </div>
-            <button class="reset-messages" mat-raised-button color="warn" (click)="resetForm()"
-                *ngIf="messageToUav?.message.length > 0">
+            <button class="reset-messages" mat-raised-button color="warn" (click)="resetForm()" *ngIf="messageToUav?.message.length > 0">
                 Resetar Mensagens
             </button>
-            <div class="botao-enviar">
-                <div class="example-button-row">
-                    <button mat-raised-button type="submit" color="primary" (click)=sendMessage()
-                        [disabled]="messageToUav?.message.length == 0">Send Message</button>
-                </div>
-            </div>
+
+            <button mat-raised-button type="submit" class="send-button" color="primary" (click)=sendMessage() [disabled]="messageToUav?.message.length == 0">
+                Enviar Mensagem
+            </button>
 
         </div>
 
@@ -231,8 +210,7 @@
     <div class="map">
 
         <google-map width="100%" [options]="options">
-            <map-marker #marker="mapMarker" [position]='markerPositionInitial' [title]='title'
-                (mapClick)='openInfoWindow(marker)'>
+            <map-marker #marker="mapMarker" [position]='markerPositionInitial' [title]='title' (mapClick)='openInfoWindow(marker)'>
                 <map-info-window>
                     Base Fatec para aeronaves não tripuladas.
                 </map-info-window>
@@ -254,8 +232,8 @@
             <mat-label>Longitude</mat-label>
             <input matInput name="positionDest.lng" type="number" max="150" min="-100" [(ngModel)]="positionDest.lng">
         </mat-form-field>
-        <button class="addDestination" mat-raised-button color="primary"
-            (click)="addDest(positionDest.lat, positionDest.lng)">
+
+        <button class="addDestination" mat-raised-button color="primary" (click)="addDest(positionDest.lat, positionDest.lng)">
             <mat-icon>add</mat-icon>
         </button>
     </div>

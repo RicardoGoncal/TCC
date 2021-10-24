@@ -1,44 +1,45 @@
 .container {
     position: relative;
-    float: left;
-    width: 100%;
-    margin-top: 180px;
+    width: 300px;
+    margin: 120px auto;
     display: flex;
     justify-content: center;
+    border: 0.2px solid black;
+    height: 400px;
 }
 
-.fields{
+.fields {
+    margin-top: 72px;
     display: block;
 }
 
-.field{
+.field {
     margin-bottom: 8px;
-    width: 180px;
+    width: 240px;
 }
 
-.button-add{
+.button-add {
     margin-left: 0px;
     height: 48px;
     width: 100%;
 }
 
-.title{
+.title {
     text-align: center;
 }
 
-.button-row{
+.button-row {
     margin-left: 16px;
 }
 
-.input-name{
+.input-name {
     width: 300px;
 }
 
 .example-right-align {
-text-align: right;
+    text-align: right;
 }
 
-mat-form-field{
-width: 100%;
+mat-form-field {
+    width: 100%;
 }
-  
