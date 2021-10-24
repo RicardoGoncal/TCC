@@ -8,7 +8,9 @@ import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 export class MapsComponent implements OnInit {
     ngOnInit(): void {
         var i = 1;
-        for (i = 1; i <= localStorage.length / 2; i++) {
+        var lastId = Number(sessionStorage.getItem("lastId"))
+        for (i = 1; i <= lastId; i++) {
+            if(localStorage.getItem('latitude' + i) != null)
             this.addDest(localStorage.getItem('latitude' + i), localStorage.getItem('longitude' + i));
         }
     }

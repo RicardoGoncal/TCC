@@ -89,9 +89,6 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
-    this.httpClientService.getCategorias().subscribe(
-      response => this.handleSuccessfulResponse(response),
-    );
     this.messageToUav.message = ''
     this.messageToUav.uav = this.uavId
     this.messageToUav.port = 5000 + Number(this.uavId)
@@ -105,10 +102,6 @@ export class HomeComponent implements OnInit {
       lng: localStorage.getItem(this.lngDest) != null ? Number(localStorage.getItem(this.lngDest)) : -46.8353236,
     };
     this.addDest(this.positionDest.lat, this.positionDest.lng)
-  }
-
-  handleSuccessfulResponse(response) {
-    this.categorias = response;
   }
 
   excluir(displayType: string) {

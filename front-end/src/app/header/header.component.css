@@ -1,23 +1,29 @@
-.header{
+.header {
     display: flex;
 }
-.botao-home{
+
+.botao-home {
     margin-left: 48px;
 }
 
-.botao-logout, .link-clima, .link-user {
+.botao-logout,
+.link-clima,
+.link-user {
     margin-left: 24px;
 }
 
-.botao-home a, .botao-logout a, .link-clima a, .link-user a {
+.botao-home a,
+.botao-logout a,
+.link-clima a,
+.link-user a {
     color: white;
     text-decoration: none;
     font-size: 14px;
-
 }
 
 .botao-logout {
-    margin-left: 60%;
+    margin-left: auto;
+    margin-right: 5%;
 }
 
 a button {

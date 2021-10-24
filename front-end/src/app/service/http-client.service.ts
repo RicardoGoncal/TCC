@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthenticationService } from './authentication.service';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
 export class Categoria {
@@ -89,10 +89,16 @@ export class HttpClientService {
   getUavs() {
     let url = `${this.javaApiURL}/uavs`
     this.basic = sessionStorage.getItem('basicauth')
+    sessionStorage.setItem('lastId', "1");
     let headers = new HttpHeaders({ Authorization: this.basic });
 
-    return this.httpClient.get<Uavs[]>(url, { headers })
-      .pipe(
+    return this.httpClient.get<Uavs[]>(url, { headers }).pipe(
+        map(
+          uavs => {
+            sessionStorage.setItem('lastId',uavs[uavs.length-1].id);
+            return uavs
+          }
+        ),
         catchError(this.handlerError('getCliente', []))
       );
   }
@@ -135,7 +141,7 @@ export class HttpClientService {
   private handlerError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error)
-      console.log("TO NO ERRO")
+      console.log("ERRO")
       return of(result as T)
     }
   }

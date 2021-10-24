@@ -24,7 +24,6 @@ export class AuthenticationService {
   authenticate(username, password) {
     let headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
     let json = JSON.stringify(username)
-    console.log(json)
     return this.httpClient.post<User>('http://localhost:8080/login',json, { headers }).pipe(
       map(
         userData => {
