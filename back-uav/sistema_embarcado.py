@@ -20,23 +20,132 @@ class uav_Rb(object):
     def __init__(self, port):
 
         self.port = str(port)
-        self.connection = pika.BlockingConnection(pika.ConnectionParameters(host='rabbitmq'))
+        self.connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
         self.channel = self.connection.channel()
         self.channel.queue_declare(queue=self.port)
 
     def numero_random(self):
+
+        """
+            Apenas um teste para a aplicação
+        """
 
         num = random.randint(0, 100)
         
         string = 'seu numero eh {}'.format(num)
         return string
 
+    def upper_msg(self, msg):
+        """
+            Metodo que analisa se a mensagem contém alguma letra em minusculo
+            entrada: mensagem atual
+            saida: verdadeiro ou falso de acordo com a logica
+        """
+    
+        if msg.isupper():
+            return True
+        else:
+            return False
+
+    def msg_equal(self, msg_atual, msg_anterior):
+
+        """
+            Metodo que analisa se uma mensagem atual tem a mesma categoria da anterior
+            entradas: mensagem atual e mensagem anterior
+            saida: verdadeiro ou falso de acordo com a logica
+        """
+
+        if msg_atual.split(" ")[0] != msg_anterior.split(" ")[0]:
+            return True
+        else:
+            return False
+
+    def verifica_escala(self, msg):
+        """
+            Metodo que faz a analise da escala de voo do UAV. Limite max: 120m
+            entrada: mensagem atual a ser analisada
+            saida: verdadeiro ou falso de acordo com a logica
+        """
+
+        escala = msg.split(" ")[-1]
+
+        if 'FL' in escala:
+            escala = escala[2:]
+
+            if int(escala) >= 10 and int(escala) <= 120:
+                return True
+            else:
+                return False
+        else:
+            if int(escala) >= 10 and int(escala) <= 120:
+                return True
+            else:
+                return False
+
     def on_request(self, ch, method, props, body):
 
         """
             Método atrelado a funcionalidades do RabbitMQ. Faz o retorno
             de uma mensagem após receber uma mensagem.
+
+            OBS: Aqui vai pedir para realizar o tratamento da mensagem recebida, utilizando
+            os modulos formados.
         """
+
+        # Para contagem das mensagens
+        contar_msg = 0
+
+        # Verificar se o Body é a msg em si
+        string_bytes = body
+
+        # Decodifica a mensagem
+        string_sbytes = str(string_bytes.decode('utf-8'))
+
+        # Verifica se há mais de uma msg na string e faz contagem
+        lista_msgs = string_sbytes.split(';')
+        n_msgs = len(lista_msgs)
+
+        # Realiza o fluxo de analise da mensagem
+        for index in range(len(lista_msgs)):
+
+            print(lista_msgs[index])
+
+            # Fluxo começando com analise de Upper
+            if self.upper_msg(lista_msgs[index]):
+                contar_msg += 1
+
+                # Se for mais de uma mensagem
+                if contar_msg > 1:
+
+                    msg_anterior = lista_msgs[index - 1]
+                    msg_atual = lista_msgs[index]
+
+                    # Verifica se a mensagem anterior é da mesma categoria da atual
+                    if self.msg_equal(msg_atual, msg_anterior):
+                        print('Mensagem de categoria diferente, passe para a proxima etapa')
+
+                        # Verifica se a mensagem está passando da escala max: 120m
+                        if self.verifica_escala(msg_atual):
+                            print("Mensagem dentro da escala, passe para a proxima etapa")
+                        else:
+                            print('Mensagem com escala não permitida, bloqueio do envio')
+                            break
+                    else:
+                        print('Mensagem de mesma categoria da anterior, bloqueio do envio')
+                        break
+                # Se for apenas uma mensagem
+                else:
+                    msg_atual = lista_msgs[index]
+
+                    # Verifica se a mensagem está passando da escala max: 120m
+                    if self.verifica_escala(msg_atual):
+                         print("Mensagem dentro da escala, passe para a proxima etapa")
+                    else:
+                        print('Mensagem com escala não permitida, bloqueio do envio')
+                        break
+            else:
+                print("Mensagem contém letra minuscula, bloqueio do envio")
+                break
 
         r = str(body)
 

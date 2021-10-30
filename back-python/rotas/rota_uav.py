@@ -13,15 +13,15 @@ app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 # Área das funções
-def log_torre(id_uav, msg_uav):
-    """
-        Realiza a inserção de dados na tabela de log da Torre 
-        de controle
-    """
-    log_torre = Tarefas_Bd()
-    data = datetime.datetime.now()
+# def log_torre(id_uav, msg_uav):
+#     """
+#         Realiza a inserção de dados na tabela de log da Torre 
+#         de controle
+#     """
+#     log_torre = Tarefas_Bd()
+#     data = datetime.datetime.now()
 
-    log_torre.inserir_log_torre(id_uav=id_uav, msg_uav=msg_uav, data=data)
+#     log_torre.inserir_log_torre(id_uav=id_uav, msg_uav=msg_uav, data=data)
 
 
 @app.route("/health")
@@ -44,19 +44,20 @@ def uav():
         content = {}
         content.update(request.json)
         print(content)
+        print(content['message'])
 
         # Inserir na tabela de log da torre de comando no banco de dados
-        log_torre(id_uav=content['uav'], msg_uav=content['message'])
+        # log_torre(id_uav=content['uav'], msg_uav=content['message'])
 
         # Cria instância para envio de mensagem ao uav
-        torre_rb = Envio_Rb(id_uav=content['uav'], port_uav=content['port'], message=content['message'])
+        # torre_rb = Envio_Rb(id_uav=content['uav'], port_uav=content['port'], message=content['message'])
 
         print(" [x] Requesting...")  # Aguardando a resposta do request pedido ao uav
-        response = torre_rb.call()  # Recebe a resposta
-        print(" [.] Got %r" % response) # Print da resposta
+        # response = torre_rb.call()  # Recebe a resposta
+        # print(" [.] Got %r" % response) # Print da resposta
 
         return jsonify(content) # Retorna 
 
 
 if __name__=="__main__":
-    app.run(port=5000, host='0.0.0.0')
+    app.run(port=5000, host='localhost')
