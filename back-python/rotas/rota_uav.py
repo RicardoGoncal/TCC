@@ -50,11 +50,11 @@ def uav():
         # log_torre(id_uav=content['uav'], msg_uav=content['message'])
 
         # Cria instância para envio de mensagem ao uav
-        # torre_rb = Envio_Rb(id_uav=content['uav'], port_uav=content['port'], message=content['message'])
+        torre_rb = Envio_Rb(id_uav=content['uav'], port_uav=content['port'], message=content['message'])
 
         print(" [x] Requesting...")  # Aguardando a resposta do request pedido ao uav
-        # response = torre_rb.call()  # Recebe a resposta
-        # print(" [.] Got %r" % response) # Print da resposta
+        response = torre_rb.call()  # Recebe a resposta
+        print(" [.] Got %r" % response) # Print da resposta
 
         return jsonify(content) # Retorna 
 

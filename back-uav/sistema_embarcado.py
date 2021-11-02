@@ -24,20 +24,9 @@ class uav_Rb(object):
         self.channel = self.connection.channel()
         self.channel.queue_declare(queue=self.port)
 
-    def numero_random(self):
-
-        """
-            Apenas um teste para a aplicação
-        """
-
-        num = random.randint(0, 100)
-        
-        string = 'seu numero eh {}'.format(num)
-        return string
-
     def upper_msg(self, msg):
         """
-            Metodo que analisa se a mensagem contém alguma letra em minusculo
+            Metodo que analisa se a mensagem contém alguma letra em minuscula
             entrada: mensagem atual
             saida: verdadeiro ou falso de acordo com a logica
         """
@@ -105,6 +94,10 @@ class uav_Rb(object):
         lista_msgs = string_sbytes.split(';')
         n_msgs = len(lista_msgs)
 
+        # Variaveis para aceitação da msg
+        response = ""
+        aceita = False
+
         # Realiza o fluxo de analise da mensagem
         for index in range(len(lista_msgs)):
 
@@ -127,11 +120,16 @@ class uav_Rb(object):
                         # Verifica se a mensagem está passando da escala max: 120m
                         if self.verifica_escala(msg_atual):
                             print("Mensagem dentro da escala, passe para a proxima etapa")
+                            aceita = True
                         else:
                             print('Mensagem com escala não permitida, bloqueio do envio')
+                            response = 'Mensagem com escala nao permitida, bloqueio do envio'
+                            aceita = False
                             break
                     else:
                         print('Mensagem de mesma categoria da anterior, bloqueio do envio')
+                        response = 'Mensagem de mesma categoria da anterior, bloqueio do envio'
+                        aceita = False
                         break
                 # Se for apenas uma mensagem
                 else:
@@ -140,21 +138,26 @@ class uav_Rb(object):
                     # Verifica se a mensagem está passando da escala max: 120m
                     if self.verifica_escala(msg_atual):
                          print("Mensagem dentro da escala, passe para a proxima etapa")
+                         aceita = True
                     else:
                         print('Mensagem com escala não permitida, bloqueio do envio')
+                        response = 'Mensagem com escala nao permitida, bloqueio do envio'
+                        aceita = False
                         break
             else:
-                print("Mensagem contém letra minuscula, bloqueio do envio")
+                print('Mensagem contém letra minuscula, bloqueio do envio')
+                response = 'Mensagem contem letra minuscula, bloqueio do envio'
+                aceita = False
                 break
-
-        r = str(body)
-
-        print(" [.] (%s)" % r)
-        response = self.numero_random()
-
-        ch.basic_publish(exchange='', routing_key=props.reply_to, properties = pika.BasicProperties(correlation_id= props.correlation_id), body=str(response))
-
-        ch.basic_ack(delivery_tag=method.delivery_tag)
+        
+        if aceita:
+            response = 'Mensagem passou em todos os teste. Aceito.'
+            print(response)
+            ch.basic_publish(exchange='', routing_key=props.reply_to, properties = pika.BasicProperties(correlation_id= props.correlation_id), body=str(response))
+            ch.basic_ack(delivery_tag=method.delivery_tag)
+        else:
+            ch.basic_publish(exchange='', routing_key=props.reply_to, properties = pika.BasicProperties(correlation_id= props.correlation_id), body=str(response))
+            ch.basic_ack(delivery_tag=method.delivery_tag)
 
     def consome_msg(self):
 
