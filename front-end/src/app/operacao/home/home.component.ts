@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
 
   @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow;
 
+  FAIL_FLAG: boolean;
   uavId: number;
 
   uavResponse: any;
@@ -228,11 +229,20 @@ export class HomeComponent implements OnInit {
 
   sendMessage() {
 
-    this.httpClientService.sendMessage(this.messageToUav).subscribe(
-      response => {
-        this.uavResponse = response
+    if(this.FAIL_FLAG){
+      this.httpClientService.sendMessageFail(this.messageToUav).subscribe(
+        response => {
+          this.uavResponse = response
+        }
+        );
+    }else{
+
+      this.httpClientService.sendMessage(this.messageToUav).subscribe(
+        response => {
+          this.uavResponse = response
+        }
+        );
       }
-    );
 
     this.resetForm()
   }

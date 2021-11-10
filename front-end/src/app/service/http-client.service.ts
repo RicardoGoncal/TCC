@@ -78,6 +78,12 @@ export class HttpClientService {
     return this.httpClient.post(url, json, {headers:{'Content-Type': 'application/json'}});
   }
 
+  sendMessageFail(messageToUav) {
+    let url = `${this.pythonApiURL}/fail`;
+    let json =  JSON.stringify(messageToUav)
+    return this.httpClient.post(url, json, {headers:{'Content-Type': 'application/json'}});
+  }
+
   getCategorias() {
     let url = `${this.javaApiURL}/categorias`
     this.basic = sessionStorage.getItem('basicauth')
