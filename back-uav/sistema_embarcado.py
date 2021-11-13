@@ -20,7 +20,7 @@ class uav_Rb(object):
     def __init__(self, port):
 
         self.port = str(port)
-        self.connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+        self.connection = pika.BlockingConnection(pika.ConnectionParameters(host='rabbitmq'))
         self.channel = self.connection.channel()
         self.channel.queue_declare(queue=self.port)
 
@@ -151,18 +151,13 @@ class uav_Rb(object):
                 break
         
         if aceita:
-            response = 'Mensagem passou em todos os teste. Aceito.'
+            response = 'ACCEPT'
             print(response)
             ch.basic_publish(exchange='', routing_key=props.reply_to, properties = pika.BasicProperties(correlation_id= props.correlation_id), body=str(response))
             ch.basic_ack(delivery_tag=method.delivery_tag)
         else:
             ch.basic_publish(exchange='', routing_key=props.reply_to, properties = pika.BasicProperties(correlation_id= props.correlation_id), body=str(response))
             ch.basic_ack(delivery_tag=method.delivery_tag)
-
-
-        executar_msg(sas):
-
-            return 'ACCEPT' if sas else 'DENIED'
             
     def consome_msg(self):
 
