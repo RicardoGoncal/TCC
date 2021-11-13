@@ -4,11 +4,6 @@
         <form method="post">
             <h1> Área de Mensagem </h1>
 
-            <button class="btn btn-primary" (click)="FAIL_FLAG = !FAIL_FLAG">
-                Fail Flag
-           </button>
-
-
             <div class="cards">
                 <div class="row-cards" *ngIf="displayClimb == 1">
                     <mat-form-field class="mat-form-fields" appearance="fill">
@@ -191,6 +186,9 @@
             <h3>{{uavResponse?.crossing}}</h3>
         </div>
 
+        <button class="fail-button" mat-raised-button color="warn" (click)="FAIL_FLAG = !FAIL_FLAG">
+            Módulo de falha = {{FAIL_FLAG}}
+       </button>
         <div class="container-envio">
             <h1>Área de Envio</h1>
             <div class="selectedMessages">

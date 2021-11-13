@@ -128,3 +128,11 @@ button {
     height: 38px;
     padding: 2px;
 }
+
+.fail-button {
+    width: 240px;
+    height: 16px;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+}

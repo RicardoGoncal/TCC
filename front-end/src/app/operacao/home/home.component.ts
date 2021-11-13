@@ -90,6 +90,7 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
+    this.FAIL_FLAG=false
     this.messageToUav.message = ''
     this.messageToUav.uav = this.uavId
     this.messageToUav.port = 5000 + Number(this.uavId)
