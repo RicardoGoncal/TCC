@@ -159,6 +159,11 @@ class uav_Rb(object):
             ch.basic_publish(exchange='', routing_key=props.reply_to, properties = pika.BasicProperties(correlation_id= props.correlation_id), body=str(response))
             ch.basic_ack(delivery_tag=method.delivery_tag)
 
+
+        executar_msg(sas):
+
+            return 'ACCEPT' if sas else 'DENIED'
+            
     def consome_msg(self):
 
         """
