@@ -71,6 +71,15 @@ class uav_Rb(object):
             else:
                 return False
 
+    def verifica_adm(self, msg):
+
+        lista_adm = ('DATALINK', 'DOWNLINK', 'MINIMUM', 'PRESENT')
+
+        if msg.split(" ")[0] in lista_adm:
+            return True
+        else:
+            False
+
     def on_request(self, ch, method, props, body):
 
         """
@@ -92,7 +101,8 @@ class uav_Rb(object):
 
         # Verifica se há mais de uma msg na string e faz contagem
         lista_msgs = string_sbytes.split(';')
-        n_msgs = len(lista_msgs)
+
+        ['climb; ADM']
 
         # Variaveis para aceitação da msg
         response = ""
@@ -117,15 +127,19 @@ class uav_Rb(object):
                     if self.msg_equal(msg_atual, msg_anterior):
                         print('Mensagem de categoria diferente, passe para a proxima etapa')
 
-                        # Verifica se a mensagem está passando da escala max: 120m
-                        if self.verifica_escala(msg_atual):
-                            print("Mensagem dentro da escala, passe para a proxima etapa")
+                        if self.verifica_adm(msg_atual):    
+                            print("Mensagem administrativa, verifica somente maiuscula")
                             aceita = True
                         else:
-                            print('Mensagem com escala não permitida, bloqueio do envio')
-                            response = 'Mensagem com escala nao permitida, bloqueio do envio'
-                            aceita = False
-                            break
+                            # Verifica se a mensagem está passando da escala max: 120m
+                            if self.verifica_escala(msg_atual):
+                                print("Mensagem dentro da escala, passe para a proxima etapa")
+                                aceita = True
+                            else:
+                                print('Mensagem com escala não permitida, bloqueio do envio')
+                                response = 'Mensagem com escala nao permitida, bloqueio do envio'
+                                aceita = False
+                                break
                     else:
                         print('Mensagem de mesma categoria da anterior, bloqueio do envio')
                         response = 'Mensagem de mesma categoria da anterior, bloqueio do envio'
