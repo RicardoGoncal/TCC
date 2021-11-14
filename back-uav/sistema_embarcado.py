@@ -101,8 +101,7 @@ class uav_Rb(object):
 
         # Verifica se há mais de uma msg na string e faz contagem
         lista_msgs = string_sbytes.split(';')
-
-        ['climb; ADM']
+        lista_msgs.pop()
 
         # Variaveis para aceitação da msg
         response = ""
@@ -149,15 +148,19 @@ class uav_Rb(object):
                 else:
                     msg_atual = lista_msgs[index]
 
-                    # Verifica se a mensagem está passando da escala max: 120m
-                    if self.verifica_escala(msg_atual):
-                         print("Mensagem dentro da escala, passe para a proxima etapa")
-                         aceita = True
+                    if self.verifica_adm(msg_atual):    
+                            print("Mensagem administrativa, verifica somente maiuscula")
+                            aceita = True
                     else:
-                        print('Mensagem com escala não permitida, bloqueio do envio')
-                        response = 'Mensagem com escala nao permitida, bloqueio do envio'
-                        aceita = False
-                        break
+                        # Verifica se a mensagem está passando da escala max: 120m
+                        if self.verifica_escala(msg_atual):
+                            print("Mensagem dentro da escala, passe para a proxima etapa")
+                            aceita = True
+                        else:
+                            print('Mensagem com escala não permitida, bloqueio do envio')
+                            response = 'Mensagem com escala nao permitida, bloqueio do envio'
+                            aceita = False
+                            break
             else:
                 print('Mensagem contém letra minuscula, bloqueio do envio')
                 response = 'Mensagem contem letra minuscula, bloqueio do envio'
@@ -170,6 +173,7 @@ class uav_Rb(object):
             ch.basic_publish(exchange='', routing_key=props.reply_to, properties = pika.BasicProperties(correlation_id= props.correlation_id), body=str(response))
             ch.basic_ack(delivery_tag=method.delivery_tag)
         else:
+            response = "UNABLE"
             ch.basic_publish(exchange='', routing_key=props.reply_to, properties = pika.BasicProperties(correlation_id= props.correlation_id), body=str(response))
             ch.basic_ack(delivery_tag=method.delivery_tag)
             

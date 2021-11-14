@@ -15,15 +15,15 @@ app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 # Área das funções
-# def log_torre(id_uav, msg_uav):
-#     """
-#         Realiza a inserção de dados na tabela de log da Torre 
-#         de controle
-#     """
-#     log_torre = Tarefas_Bd()
-#     data = datetime.datetime.now()
+def log_torre(id_uav, msg_uav):
+    """
+        Realiza a inserção de dados na tabela de log da Torre 
+        de controle
+    """
+    log_torre = Tarefas_Bd()
+    data = datetime.datetime.now()
 
-#     log_torre.inserir_log_torre(id_uav=id_uav, msg_uav=msg_uav, data=data)
+    log_torre.inserir_log_torre(id_uav=id_uav, msg_uav=msg_uav, data=data)
 
 def log_retorno(id_uav, msg_uav, aceito):
     """
@@ -63,7 +63,7 @@ def uav():
         """
 
         # Inserir na tabela de log da torre de comando no banco de dados
-        # log_torre(id_uav=content['uav'], msg_uav=content['message'])
+        log_torre(id_uav=content['uav'], msg_uav=content['message'])
 
         # Cria instância para envio de mensagem ao uav
         torre_rb = Envio_Rb(id_uav=content['uav'], port_uav=content['port'], message=content['message'])
@@ -72,7 +72,12 @@ def uav():
         response = torre_rb.call()  # Recebe a resposta
         print(" [.] Got %r" % response) # Print da resposta
 
-        return jsonify(content) # Retorna 
+        response = response.replace('b','')
+        response = response.replace("'",'')
+
+        log_retorno(id_uav=content['uav'], msg_uav=content['message'], aceito= 1 if response == "ACCEPT" else 0)
+
+        return jsonify({"data": response}) # Retorna 
 
 
 @app.route('/fail', methods=['POST'])
@@ -103,18 +108,20 @@ def falha():
         print(mensagem_do_mal)
 
         # Inserir na tabela de log da torre de comando no banco de dados
-        # log_torre(id_uav=content['uav'], msg_uav=content['message'])
+        log_torre(id_uav=content['uav'], msg_uav=content['message'])
 
         # Cria instância para envio de mensagem ao uav
-        # torre_rb = Envio_Rb(id_uav=content['uav'], port_uav=content['port'], message=mensagem_do_mal)
+        torre_rb = Envio_Rb(id_uav=content['uav'], port_uav=content['port'], message=mensagem_do_mal)
 
         print(" [x] Requesting...")  # Aguardando a resposta do request pedido ao uav
-        response = b'ACCEPT'  # Recebe a resposta
+        response = torre_rb.call()  # Recebe a resposta
         print(" [.] Got %r" % response) # Print da resposta
+        response = response.replace('b','')
+        response = response.replace("'",'')
 
-        log_retorno(id_uav=content['uav'], msg_uav=mensagem_do_mal, aceito= 1 if str(response.decode('utf-8')) == "ACCEPT" else 0)
+        log_retorno(id_uav=content['uav'], msg_uav=mensagem_do_mal, aceito= 1 if response == "ACCEPT" else 0)
 
-        return jsonify({"data": str(response.decode('utf-8'))}) # Retorna 
+        return jsonify({"data": response}) # Retorna 
 
 
 if __name__=="__main__":
