@@ -19,9 +19,9 @@ services:
       - ./back-java/src/main/resources/db/migration:/flyway/sql
     depends_on:
       - db
-      - spring_boot_com_mysql
+      - back_java
 
-  spring_boot_com_mysql:
+  back_java:
     build:
       context: ./back-java
       dockerfile: ./Dockerfile

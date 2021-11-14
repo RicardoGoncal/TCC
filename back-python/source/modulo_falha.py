@@ -37,6 +37,7 @@ class Modulo_Falha(object):
             lista_msg = mensagem.split(";")
 
             if len(lista_msg) == 1:
+                print("FALHA DE UMA UNICA")
                 return mensagem.lower()
             else:
                 indice_aleatorio = random.randrange(0,len(lista_msg),1)

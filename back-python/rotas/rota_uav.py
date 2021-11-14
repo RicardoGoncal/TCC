@@ -25,6 +25,15 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 #     log_torre.inserir_log_torre(id_uav=id_uav, msg_uav=msg_uav, data=data)
 
+def log_retorno(id_uav, msg_uav, aceito):
+    """
+        Realiza a inserção de dados na tabela de log do retorno feito pelo UAV
+    """
+    log_retorno = Tarefas_Bd()
+    data = datetime.datetime.now()
+
+    log_retorno.inserir_log_retorno(id_uav=id_uav, msg_uav=msg_uav, data=data, aceito=aceito)
+
 
 @app.route("/health")
 def hello():
@@ -88,21 +97,25 @@ def falha():
         """
 
         # Invocar o modulo de falha
-        falha = Modulo_Falha(random.randrange(1,3,1), content['message'])
+        falha = Modulo_Falha(1, content['message'])
         mensagem_do_mal = falha.altera_msg()
+
+        print(mensagem_do_mal)
 
         # Inserir na tabela de log da torre de comando no banco de dados
         # log_torre(id_uav=content['uav'], msg_uav=content['message'])
 
         # Cria instância para envio de mensagem ao uav
-        torre_rb = Envio_Rb(id_uav=content['uav'], port_uav=content['port'], message=mensagem_do_mal)
+        # torre_rb = Envio_Rb(id_uav=content['uav'], port_uav=content['port'], message=mensagem_do_mal)
 
         print(" [x] Requesting...")  # Aguardando a resposta do request pedido ao uav
-        response = torre_rb.call()  # Recebe a resposta
+        response = b'ACCEPT'  # Recebe a resposta
         print(" [.] Got %r" % response) # Print da resposta
 
-        return jsonify(content) # Retorna 
+        log_retorno(id_uav=content['uav'], msg_uav=mensagem_do_mal, aceito= 1 if str(response.decode('utf-8')) == "ACCEPT" else 0)
+
+        return jsonify({"data": str(response.decode('utf-8'))}) # Retorna 
 
 
 if __name__=="__main__":
-    app.run(port=5000, host='localhost')
+    app.run(port=5000, host='0.0.0.0')

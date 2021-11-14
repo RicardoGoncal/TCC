@@ -13,4 +13,4 @@ ENV FLASK_APP=server_uav.py
 
 ENV PYTHONPATH=./
 
-CMD ["python", "server_uav.py"]
+CMD ["python", "-u","server_uav.py"]

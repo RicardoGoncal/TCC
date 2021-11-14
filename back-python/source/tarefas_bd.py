@@ -45,3 +45,16 @@ class Tarefas_Bd():
 
         self.mydb.commit()
         self.mydb.close()
+
+    def inserir_log_retorno(self, id_uav,msg_uav,data,aceito):
+
+        """
+            Método destinado a gravar informação de envio da Torre de Controle
+            params: identificação do uav, mensagem vinda front, data de envio
+        """
+        mycursor = self.mydb.cursor()
+        query = "insert into log_retorno (id_uav, mensagem, data_envio, aceito) values('{}','{}','{}','{}')".format(id_uav,msg_uav,data, aceito)
+        mycursor.execute(query)
+
+        self.mydb.commit()
+        self.mydb.close()
