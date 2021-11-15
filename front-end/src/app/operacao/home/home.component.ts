@@ -198,22 +198,22 @@ export class HomeComponent implements OnInit {
         this.numberClimb = ''
       }
       else if (this.numberCrossing != undefined && this.numberCrossing != '') {
-        this.messageToUav.message += doc.innerText != null ? doc.innerText.replace('\t', '') + ':' + this.numberCrossing + ';' : '';
+        this.messageToUav.message += doc.innerText != null ? doc.innerText.replace('\t', '') + ' ' + this.numberCrossing + ';' : '';
         this.displayCrossing = -1
         this.numberCrossing = ''
       }
       else if (this.numberDescend != undefined && this.numberDescend != '') {
-        this.messageToUav.message += doc.innerText != null ? doc.innerText.replace('\t', '') + ':' + this.numberDescend + ';' : '';
+        this.messageToUav.message += doc.innerText != null ? doc.innerText.replace('\t', '') + ' ' + this.numberDescend + ';' : '';
         this.displayDescend = -1
         this.numberDescend = ''
       }
       else if (this.numberRoute != undefined && this.numberRoute != '') {
-        this.messageToUav.message += doc.innerText != null ? doc.innerText.replace('\t', '') + ':' + this.numberRoute + ';' : '';
+        this.messageToUav.message += doc.innerText != null ? doc.innerText.replace('\t', '') + ' ' + this.numberRoute + ';' : '';
         this.displayRoute = -1
         this.numberRoute = ''
       }
       else if (this.numberSpeed != undefined && this.numberSpeed != '') {
-        this.messageToUav.message += doc.innerText != null ? doc.innerText.replace('\t', '') + ':' + this.numberSpeed + ';' : '';
+        this.messageToUav.message += doc.innerText != null ? doc.innerText.replace('\t', '') + ' ' + this.numberSpeed + ';' : '';
         this.displaySpeed = -1
         this.numberSpeed = ''
       }
