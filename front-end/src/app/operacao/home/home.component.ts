@@ -90,8 +90,9 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
-    this.FAIL_FLAG=false
+    this.FAIL_FLAG = false
     this.messageToUav.message = ''
+    this.messageToUav.user = sessionStorage.getItem('username')
     this.messageToUav.uav = this.uavId
     this.messageToUav.port = 5000 + Number(this.uavId)
 
@@ -126,22 +127,29 @@ export class HomeComponent implements OnInit {
     this.messageToUav.uav = this.uavId
     this.messageToUav.port = 5000 + Number(this.uavId)
 
-    this.displayClimb = 0, this.selectedClimb = '',
-      this.displayRoute = 0, this.selectedRoute = '',
-      this.displayEmergency = 0, this.selectedEmergency = '',
-      this.displayDescend = 0, this.selectedDescend = '',
-      this.displayComms = 0, this.selectedComms = '',
-      this.displaySpeed = 0, this.selectedSpeed = '',
-      this.displayReport = 0, this.selectedReport = '',
-      this.displayCrossing = 0, this.selectedCrossing = '',
-      this.numberClimb = '',
-      this.numberRoute = '',
-      this.numberDescend = '',
-      this.numberSpeed = '',
-      this.numberCrossing = '',
-
-      this.maxMensagem = 1;
-    this.maxMensagemDisplay = 0;
+    this.displayClimb = 0
+    this.selectedClimb = ''
+    this.displayRoute = 0
+    this.selectedRoute = ''
+    this.displayEmergency = 0
+    this.selectedEmergency = ''
+    this.displayDescend = 0
+    this.selectedDescend = ''
+    this.displayComms = 0
+    this.selectedComms = ''
+    this.displaySpeed = 0
+    this.selectedSpeed = ''
+    this.displayReport = 0
+    this.selectedReport = ''
+    this.displayCrossing = 0
+    this.selectedCrossing = ''
+    this.numberClimb = ''
+    this.numberRoute = ''
+    this.numberDescend = ''
+    this.numberSpeed = ''
+    this.numberCrossing = ''
+    this.maxMensagem = 1
+    this.maxMensagemDisplay = 0
   }
 
   getMessages(type: string) {
@@ -230,34 +238,31 @@ export class HomeComponent implements OnInit {
   }
 
   sendMessage() {
-
-    if(this.FAIL_FLAG){
+    if (this.FAIL_FLAG) {
       this.httpClientService.sendMessageFail(this.messageToUav).subscribe(
         response => {
           this.uavResponse = response
         }
-        );
-    }else{
-
+      );
+    } else {
       this.httpClientService.sendMessage(this.messageToUav).subscribe(
         response => {
           this.uavResponse = response
         }
-        );
-      }
+      );
+    }
 
     this.resetForm()
   }
 
-  // Parte do Google-Maps
   title = 'Gmaps';
-  
+
   position = {
     lat: -23.5169413,
     lng: -46.8353236,
   };
-  
-  options: google.maps.MapOptions = { 
+
+  options: google.maps.MapOptions = {
     zoom: 5,
     center: this.position,
     disableDefaultUI: false,
