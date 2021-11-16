@@ -27,7 +27,6 @@ export class ClimaComponent implements OnInit {
         this.dataSource = new MatTableDataSource();
         this.dataSource.data =  res;
         this.dataSource.paginator = this.paginator;     
-        console.log(this.dataSource)
       }, err => {
         console.log(err)
       })

@@ -32,8 +32,6 @@ export class ClimaService {
     
     let url = `${this.tempCapitaisApiURL}/${ano}-${mes}-${dia}`
 
-    console.log(url)
-
     return this.httpClient.get<TempoCapitais[]>(url).pipe(
       catchError(this.handlerError('getMensagem', []))
     )

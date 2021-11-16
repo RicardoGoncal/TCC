@@ -153,7 +153,6 @@ export class HomeComponent implements OnInit {
   }
 
   getMessages(type: string) {
-    console.log(this.displayClimb)
     this.httpClientService.getMensagem(type).subscribe(
       response => {
         if (this.maxMensagem < 6 && this.maxMensagemDisplay < 1) {

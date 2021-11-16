@@ -186,20 +186,20 @@
             <h3>{{uavResponse?.crossing}}</h3>
         </div>
 
-        <button class="fail-button" mat-raised-button color="warn" (click)="FAIL_FLAG = !FAIL_FLAG">
-            Módulo de falha = {{FAIL_FLAG}}
-       </button>
         <div class="container-envio">
             <h1>Área de Envio</h1>
             <div class="selectedMessages">
                 <span>{{messageToUav?.message}}</span>
             </div>
             <button class="reset-messages" mat-raised-button color="warn" (click)="resetForm()" *ngIf="messageToUav?.message.length > 0">
-                Resetar Mensagens
+                <span> Resetar Mensagens</span>
             </button>
 
+            <button class="fail-button" mat-raised-button color="warn" (click)="FAIL_FLAG = !FAIL_FLAG">
+                <span> Módulo de falha = {{FAIL_FLAG?'ligado':'desligado'}}</span>
+            </button>
             <button mat-raised-button type="submit" class="send-button" color="primary" (click)=sendMessage() [disabled]="messageToUav?.message.length == 0">
-                Enviar Mensagem
+                <span> Enviar Mensagem</span>
             </button>
 
         </div>

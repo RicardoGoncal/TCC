@@ -93,14 +93,12 @@ button {
 }
 
 .reset-messages,
-.send-button {
-    margin: 16px 130px;
-    height: 48px;
-}
-
-.reset-messages span,
-.send-button span {
-    margin-top: 1px;
+.send-button,
+.fail-button {
+    margin: 8px 130px;
+    height: 36px;
+    align-items: center;
+    padding: 4px;
 }
 
 .map-container {
@@ -127,12 +125,4 @@ button {
     width: 100px;
     height: 38px;
     padding: 2px;
-}
-
-.fail-button {
-    width: 240px;
-    height: 16px;
-    justify-content: center;
-    text-align: center;
-    margin: 0 auto;
 }
