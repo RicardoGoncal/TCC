@@ -17,6 +17,10 @@ interface Categoria {
 interface SendMessage {
   [key: string]: any
 }
+
+interface ResponseMessage{
+  data: string;
+}
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -30,7 +34,7 @@ export class HomeComponent implements OnInit {
   FAIL_FLAG: boolean;
   uavId: number;
 
-  uavResponse: any[];
+  uavResponse;
 
   categorias: Categoria[];
 
@@ -242,13 +246,14 @@ export class HomeComponent implements OnInit {
       this.httpClientService.sendMessageFail(this.messageToUav).subscribe(
         response => {
           console.log(response)
-          this.uavResponse.push(response) 
+          this.uavResponse += response 
         }
       );
     } else {
       this.httpClientService.sendMessage(this.messageToUav).subscribe(
         response => {
-          this.uavResponse.push(response) 
+          console.log(response)
+          this.uavResponse += response  
         }
       );
     }
