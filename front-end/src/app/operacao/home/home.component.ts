@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   FAIL_FLAG: boolean;
   uavId: number;
 
-  uavResponse: any;
+  uavResponse: any[];
 
   categorias: Categoria[];
 
@@ -126,6 +126,7 @@ export class HomeComponent implements OnInit {
     this.messageToUav.message = ''
     this.messageToUav.uav = this.uavId
     this.messageToUav.port = 5000 + Number(this.uavId)
+    this.messageToUav.user = sessionStorage.getItem('username')
 
     this.displayClimb = 0
     this.selectedClimb = ''
@@ -240,17 +241,19 @@ export class HomeComponent implements OnInit {
     if (this.FAIL_FLAG) {
       this.httpClientService.sendMessageFail(this.messageToUav).subscribe(
         response => {
-          this.uavResponse = response
+          console.log(response)
+          this.uavResponse.push(response) 
         }
       );
     } else {
       this.httpClientService.sendMessage(this.messageToUav).subscribe(
         response => {
-          this.uavResponse = response
+          this.uavResponse.push(response) 
         }
       );
     }
 
+    console.log(this.uavResponse)
     this.resetForm()
   }
 
