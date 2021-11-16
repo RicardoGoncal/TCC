@@ -193,7 +193,8 @@ export class HomeComponent implements OnInit {
       }
 
       if (this.numberClimb != undefined && this.numberClimb != '') {
-        this.messageToUav.message += doc.innerText != null ? doc.innerText.replace('\t', '') + ':' + this.numberClimb + ';' : '';
+        var climb = doc.innerText != null ? doc.innerText.replace('\t', '') + ' ' + this.numberClimb + ';' : '';
+        this.messageToUav.message += climb.replace('FL ', 'FL')
         this.displayClimb = -1
         this.numberClimb = ''
       }

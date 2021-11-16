@@ -102,10 +102,11 @@ def falha():
         """
 
         # Invocar o modulo de falha
-        falha = Modulo_Falha(1, content['message'])
+        random_falha = random.randrange(1,3,1)
+        falha = Modulo_Falha(random_falha, content['message'])
         mensagem_do_mal = falha.altera_msg()
 
-        print(mensagem_do_mal)
+        print('mensagem do mal: ' + mensagem_do_mal)
 
         # Inserir na tabela de log da torre de comando no banco de dados
         log_torre(id_uav=content['uav'], msg_uav=content['message'])

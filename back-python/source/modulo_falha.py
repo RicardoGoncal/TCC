@@ -57,23 +57,44 @@ class Modulo_Falha(object):
 
         lista_adm = ('DATALINK', 'DOWNLINK', 'MINIMUM', 'PRESENT')
 
+
         mensagem = self.message
         lista_msg = mensagem.split(";")
-        indice_aleatorio = random.randrange(0,len(lista_msg),1)
-        msg_aleatoria = lista_msg[indice_aleatorio]
-        lista_msg.pop(indice_aleatorio)
+        lista_msg.pop()
 
-        if msg_aleatoria.split(" ")[0] in lista_adm:
-            alteracao = self.falha_1(msg_aleatoria)
-            lista_msg.insert(indice_aleatorio, alteracao)
+        print(lista_msg)
 
-            return ';'.join(lista_msg)
+        if len(lista_msg) == 1:
 
+            unica_msg = lista_msg[0]
+
+            if unica_msg.split(" ")[0] in lista_adm:
+                alteracao = self.falha_1(unica_msg)
+
+                return ';'.join(lista_msg)
+
+            else:
+                alteracao = self.altera_escala(unica_msg)
+                lista_msg.pop()
+                lista_msg.append(alteracao)
+        
+                return ";".join(lista_msg)
         else:
-            alteracao = self.altera_escala(msg_aleatoria)
-            lista_msg.insert(indice_aleatorio, alteracao)
+            indice_aleatorio = random.randrange(0,len(lista_msg),1)
+            msg_aleatoria = lista_msg[indice_aleatorio]
+            lista_msg.pop(indice_aleatorio)
 
-            return ";".join(lista_msg)
+            if msg_aleatoria.split(" ")[0] in lista_adm:
+                alteracao = self.falha_1(msg_aleatoria)
+                lista_msg.insert(indice_aleatorio, alteracao)
+
+                return ';'.join(lista_msg)
+
+            else:
+                alteracao = self.altera_escala(msg_aleatoria)
+                lista_msg.insert(indice_aleatorio, alteracao)
+
+                return ";".join(lista_msg)
     
     
     def altera_escala(self, msg):
@@ -85,15 +106,21 @@ class Modulo_Falha(object):
         quebra_msg.pop()
        
         if 'FL' in escala:
+
+            print(escala)
             escala = escala[2:]
 
             if int(escala) >= 10 and int(escala) <= 120:
                 
-                escala_falha = random.ranrange(120,200,10)
+                escala_falha = random.randrange(130,200,10)
+                print(escala_falha)
                 return ' '.join(quebra_msg) + ' ' + str(escala_falha)
         else:
+
             if int(escala) >= 10 and int(escala) <= 120:
 
-                escala_falha = random.randrange(120,200,10)
+                escala_falha = random.randrange(130,200,10)
+
+                print(escala_falha)
                 return ' '.join(quebra_msg) + ' ' + str(escala_falha)
             

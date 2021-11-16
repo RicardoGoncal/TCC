@@ -59,8 +59,6 @@ class uav_Rb(object):
         escala = msg.split(" ")[-1]
 
         if 'FL' in escala:
-
-            escala = escala.replace(':', '')
             escala = escala[2:]
 
             if int(escala) >= 10 and int(escala) <= 120:
@@ -68,10 +66,6 @@ class uav_Rb(object):
             else:
                 return False
         else:
-
-            formatar = escala.replace(':', ' ')
-            escala = formatar.split(" ")[-1]
-
             if int(escala) >= 10 and int(escala) <= 120:
                 return True
             else:
