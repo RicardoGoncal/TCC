@@ -22,6 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Profile("prod")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
     private final UsuarioService usuarioService;
 
     private static final String[] AUTH_WHITELIST = {
@@ -32,10 +33,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/login"
     };
 
-    @Autowired
+    @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        auth.userDetailsService(usuarioService).passwordEncoder(passwordEncoder);
+        auth.userDetailsService(this.usuarioService).passwordEncoder(new BCryptPasswordEncoder());
     }
 
     @Override
@@ -49,6 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .antMatchers(HttpMethod.DELETE, "/vants/*").hasRole("ADMIN")
                 .antMatchers(HttpMethod.POST, "/new").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/categorias/uav").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
