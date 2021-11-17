@@ -18,7 +18,7 @@ interface SendMessage {
   [key: string]: any
 }
 
-interface ResponseMessage{
+interface ResponseMessage {
   data: string;
 }
 @Component({
@@ -34,7 +34,9 @@ export class HomeComponent implements OnInit {
   FAIL_FLAG: boolean;
   uavId: number;
 
-  uavResponse;
+  sendMessageNumber = 0;
+
+  uavResponse: ResponseMessage;
 
   categorias: Categoria[];
 
@@ -75,6 +77,9 @@ export class HomeComponent implements OnInit {
   numberCrossing: string = '';
 
   messageToUav: SendMessage = {};
+  logSent = ''
+  logResp = ''
+  log = [this.logSent, this.logResp]
 
   href: string = '';
   latDest: string = '';
@@ -242,24 +247,37 @@ export class HomeComponent implements OnInit {
   }
 
   sendMessage() {
+    sessionStorage.setItem("SENTMESSAGE" + this.sendMessageNumber, this.messageToUav.message)
     if (this.FAIL_FLAG) {
       this.httpClientService.sendMessageFail(this.messageToUav).subscribe(
         response => {
-          console.log(response)
-          this.uavResponse += response 
+          sessionStorage.setItem("RESPMESSAGE" + this.sendMessageNumber, response.data)
+          if (sessionStorage.getItem('SENTMESSAGE' + this.sendMessageNumber) != null && sessionStorage.getItem('RESPMESSAGE' + this.sendMessageNumber) != null) {
+            this.addLog(sessionStorage.getItem('SENTMESSAGE' + this.sendMessageNumber), sessionStorage.getItem('RESPMESSAGE' + this.sendMessageNumber))
+            this.sendMessageNumber++
+          }
         }
       );
     } else {
       this.httpClientService.sendMessage(this.messageToUav).subscribe(
         response => {
-          console.log(response)
-          this.uavResponse += response  
+          sessionStorage.setItem("RESPMESSAGE" + this.sendMessageNumber, response.data)
+          if (sessionStorage.getItem('SENTMESSAGE' + this.sendMessageNumber) != null && sessionStorage.getItem('RESPMESSAGE' + this.sendMessageNumber) != null) {
+            this.addLog(sessionStorage.getItem('SENTMESSAGE' + this.sendMessageNumber), sessionStorage.getItem('RESPMESSAGE' + this.sendMessageNumber))
+            this.sendMessageNumber++
+          }
+
         }
       );
     }
 
-    console.log(this.uavResponse)
     this.resetForm()
+  }
+
+  addLog(sent, resp) {
+    this.logSent = sent
+    this.logResp = resp
+    this.log.push(this.logSent, this.logResp)
   }
 
   title = 'Gmaps';

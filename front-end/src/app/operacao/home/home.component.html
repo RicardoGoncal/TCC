@@ -176,9 +176,11 @@
         <div class="container-response">
             <h1>Mensagem Retornada do Uav</h1>
 
-            <h3 *ngFor="let response of uavResponse">{{response}}</h3>
-
-            <h3>{{uavResponse?.mensagem}}</h3>
+            <div *ngFor="let l of log">
+                <span>
+                    {{l}}
+                </span>
+            </div>
 
         </div>
 

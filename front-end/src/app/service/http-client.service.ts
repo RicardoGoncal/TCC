@@ -39,6 +39,10 @@ export class Mensagem {
   ) { }
 }
 
+interface ResponseMessage{
+  data: string;
+}
+
 export class SendMessage {
   [key: string]: any
 }
@@ -75,13 +79,15 @@ export class HttpClientService {
   sendMessage(messageToUav) {
     let url = `${this.pythonApiURL}/uav`;
     let json =  JSON.stringify(messageToUav)
-    return this.httpClient.post(url, json, {headers:{'Content-Type': 'application/json'}});
+    return this.httpClient.post<ResponseMessage>(url, json, {headers:{'Content-Type': 'application/json'}});
   }
 
   sendMessageFail(messageToUav) {
     let url = `${this.pythonApiURL}/fail`;
     let json =  JSON.stringify(messageToUav)
-    return this.httpClient.post(url, json, {headers:{'Content-Type': 'application/json'}});
+    let res =this.httpClient.post<ResponseMessage>(url, json, {headers:{'Content-Type': 'application/json'}})
+    console.log(res)
+    return res;
   }
 
   getCategorias() {

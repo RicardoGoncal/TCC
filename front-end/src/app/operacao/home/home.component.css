@@ -22,9 +22,9 @@
 }
 
 .container-response {
-    width: 500px;
     margin: 30px auto;
     height: 300px;
+    text-align: center;
 }
 
 .container-envio {
