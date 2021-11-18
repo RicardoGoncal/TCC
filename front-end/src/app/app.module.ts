@@ -29,6 +29,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { GoogleMapsModule } from '@angular/google-maps'
 
 import {MapsComponent} from './operacao/maps/maps-uavs.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import {MapsComponent} from './operacao/maps/maps-uavs.component';
     MatSelectModule,
     ReactiveFormsModule,
     MatCheckboxModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    FlexLayoutModule
   ],
   providers: [
 

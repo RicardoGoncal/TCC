@@ -1,7 +1,7 @@
-.container {
+/* .container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-}
+} */
 
 .container-mensagem,
 .container-botoes,
@@ -11,25 +11,28 @@
     width: 500px;
 }
 
-.container-mensagem {
-    margin: 30px auto;
-    height: 600px;
-}
-
-.container-botoes {
+.container-mensagem,
+.container-botoes,
+.container-right {
     margin: 30px auto;
     height: 600px;
 }
 
 .container-response {
-    margin: 30px auto;
+    margin: 0px auto;
     height: 300px;
     text-align: center;
+    white-space: nowrap;
+    overflow-y: scroll;
+    overflow: auto;
+    position: relative;
+    text-overflow: ellipsis;
+    Word-wrap: break-Word
 }
 
 .container-envio {
     margin: 30px auto;
-    height: 267px;
+    height: 270px;
 }
 
 mat-card {
@@ -58,6 +61,7 @@ button {
 }
 
 .row-cards {
+    margin-left: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
