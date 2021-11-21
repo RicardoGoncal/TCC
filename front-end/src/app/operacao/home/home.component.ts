@@ -2,25 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClientService } from '../../service/http-client.service'
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
-interface Mensagem {
-  id: string;
-  mensagem: string;
-  categoria: {
-    id: string,
-    nome: string
-  }
-}
-interface Categoria {
-  id: string;
-  nome: string;
-}
-interface SendMessage {
-  [key: string]: any
-}
-
-interface ResponseMessage {
-  data: string;
-}
+import { Categoria } from 'src/app/models/Categoria';
+import { Mensagem } from 'src/app/models/Mensagem';
+import { SendMessage } from 'src/app/models/SendMessage';
+import { ResponseMessage } from 'src/app/models/ResponseMessage';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

@@ -3,49 +3,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthenticationService } from './authentication.service';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
-
-export class Categoria {
-  constructor(
-    public id: string,
-    public nome: string,
-  ) { }
-}
-export class Usuario {
-  constructor(
-    public username: string,
-    public password: string,
-  ) { }
-
-}
-export class Uavs {
-  constructor(
-    public id: string,
-    public nome: string,
-  ) { }
-}
-export class Uav {
-  constructor(
-    public nome: string,
-  ) { }
-}
-export class Mensagem {
-  constructor(
-    public id: string,
-    public mensagem: string,
-    public categoria: {
-      id:string,
-      nome:string
-    },
-  ) { }
-}
-
-interface ResponseMessage{
-  data: string;
-}
-
-export class SendMessage {
-  [key: string]: any
-}
+import { Uav } from '../models/Uav';
+import { Uavs } from '../models/Uavs';
+import { Mensagem } from '../models/Mensagem';
+import { ResponseMessage } from '../models/ResponseMessage';
 @Injectable({
   providedIn: 'root'
 })
@@ -77,7 +38,7 @@ export class HttpClientService {
   }
 
   sendMessage(messageToUav) {
-    let url = `${this.pythonApiURL}/uav`;
+    let url = `${this.javaApiURL}/categorias/uav`;
     let json =  JSON.stringify(messageToUav)
     return this.httpClient.post<ResponseMessage>(url, json, {headers:{'Content-Type': 'application/json'}});
   }
@@ -88,14 +49,6 @@ export class HttpClientService {
     let res =this.httpClient.post<ResponseMessage>(url, json, {headers:{'Content-Type': 'application/json'}})
     console.log(res)
     return res;
-  }
-
-  getCategorias() {
-    let url = `${this.javaApiURL}/categorias`
-    this.basic = sessionStorage.getItem('basicauth')
-
-    let headers = new HttpHeaders({ Authorization: this.basic });
-    return this.httpClient.get<Usuario>(url, { headers })
   }
 
   getUavs() {

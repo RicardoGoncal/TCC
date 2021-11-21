@@ -1,19 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { SendMessage } from 'src/app/models/SendMessage';
 import { HttpClientService } from 'src/app/service/http-client.service';
-
-interface SendMessage {
-  [key: string]: any
-}
 @Component({
   selector: 'app-list-uavs',
   templateUrl: './list-uavs.component.html',
   styleUrls: ['./list-uavs.component.css']
 })
-
-
-
 
 export class ListUavsComponent implements OnInit {
 

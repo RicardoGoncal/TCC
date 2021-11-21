@@ -2,15 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
-
-export class Categoria{
-  constructor(
-    public id:string,
-    public nome:string,
-  ) {}
-}
-
-export class Vants{
+export class Uav{
   constructor(
     public id: string,
     public nome: string,
@@ -32,21 +24,12 @@ export class HttpClientService {
 
   constructor( private httpClient: HttpClient) {  }
 
-  getCategorias() {
-    
-    this.basic = sessionStorage.getItem('basicauth')
-     
-    let headers = new HttpHeaders({ Authorization: this.basic });
-    return this.httpClient.get<Categoria>('http://localhost:8080/categorias', { headers })
-    
-  }
-
-  getVants() {
+  getUavs() {
     this.basic = sessionStorage.getItem('basicauth')
     let headers = new HttpHeaders({ Authorization: this.basic });
-    return this.httpClient.get<Vants[]>('http://localhost:8080/vants', { headers })
+    return this.httpClient.get<Uav[]>('http://localhost:8080/Uav', { headers })
     .pipe(
-      tap(vants => console.log('leu os vants' + vants)),
+      tap(uav => console.log('leu os Uav' + uav)),
       catchError(this.handlerError('getCliente', []))
     );
   }

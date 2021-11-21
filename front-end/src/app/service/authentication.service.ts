@@ -1,16 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-
-export class User {
-  constructor(
-    public nome: string,
-    public senha: string,
-    public autoridades: string
-  ) { }
-
-}
-
+import { User } from '../models/User';
 @Injectable({
   providedIn: 'root'
 })
@@ -34,7 +25,6 @@ export class AuthenticationService {
           return userData;
         }
       )
-
     );
   }
   

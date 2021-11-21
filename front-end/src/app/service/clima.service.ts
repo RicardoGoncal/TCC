@@ -2,16 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-
-export class TempoCapitais {
-  constructor(
-    public capital: string,
-    public tmin18: string,
-    public tmax18: string,
-    public umin18: string,
-    public pmax12: string
-  ) { }
-}
+import { TempoCapitais } from '../models/TempoCapitais';
 
 @Injectable({
   providedIn: 'root'
