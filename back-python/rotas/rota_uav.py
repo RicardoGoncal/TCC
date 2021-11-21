@@ -15,7 +15,7 @@ app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 # Área das funções
-def log_torre(id_uav, msg_uav):
+def log_torre(id_uav, msg_uav, user):
     """
         Realiza a inserção de dados na tabela de log da Torre 
         de controle
@@ -23,16 +23,16 @@ def log_torre(id_uav, msg_uav):
     log_torre = Tarefas_Bd()
     data = datetime.datetime.now()
 
-    log_torre.inserir_log_torre(id_uav=id_uav, msg_uav=msg_uav, data=data)
+    log_torre.inserir_log_torre(id_uav=id_uav, msg_uav=msg_uav, data=data, user=user)
 
-def log_retorno(id_uav, msg_uav, aceito):
+def log_retorno(id_uav, msg_uav, aceito, user):
     """
         Realiza a inserção de dados na tabela de log do retorno feito pelo UAV
     """
     log_retorno = Tarefas_Bd()
     data = datetime.datetime.now()
 
-    log_retorno.inserir_log_retorno(id_uav=id_uav, msg_uav=msg_uav, data=data, aceito=aceito)
+    log_retorno.inserir_log_retorno(id_uav=id_uav, msg_uav=msg_uav, data=data, aceito=aceito, user=user)
 
 
 @app.route("/health")
@@ -63,7 +63,7 @@ def uav():
         """
 
         # Inserir na tabela de log da torre de comando no banco de dados
-        log_torre(id_uav=content['uav'], msg_uav=content['message'])
+        log_torre(id_uav=content['uav'], msg_uav=content['message'], user=content['user'])
 
         # Cria instância para envio de mensagem ao uav
         torre_rb = Envio_Rb(id_uav=content['uav'], port_uav=content['port'], message=content['message'])
@@ -75,7 +75,7 @@ def uav():
         response = response.replace('b','')
         response = response.replace("'",'')
 
-        log_retorno(id_uav=content['uav'], msg_uav=content['message'], aceito= 1 if response == "ACCEPT" else 0)
+        log_retorno(id_uav=content['uav'], msg_uav=content['message'], aceito= 1 if response == "ACCEPT" else 0, user=content['user'])
 
         return jsonify({"data": response}) # Retorna 
 
@@ -109,7 +109,7 @@ def falha():
         print('mensagem do mal: ' + mensagem_do_mal)
 
         # Inserir na tabela de log da torre de comando no banco de dados
-        log_torre(id_uav=content['uav'], msg_uav=content['message'])
+        log_torre(id_uav=content['uav'], msg_uav=content['message'], user=content['user'])
 
         # Cria instância para envio de mensagem ao uav
         torre_rb = Envio_Rb(id_uav=content['uav'], port_uav=content['port'], message=mensagem_do_mal)
@@ -120,10 +120,11 @@ def falha():
         response = response.replace('b','')
         response = response.replace("'",'')
 
-        log_retorno(id_uav=content['uav'], msg_uav=mensagem_do_mal, aceito= 1 if response == "ACCEPT" else 0)
+        log_retorno(id_uav=content['uav'], msg_uav=mensagem_do_mal, aceito= 1 if response == "ACCEPT" else 0, user=content['user'])
 
         return jsonify({"data": response}) # Retorna 
 
 
 if __name__=="__main__":
     app.run(port=5000, host='0.0.0.0')
+    

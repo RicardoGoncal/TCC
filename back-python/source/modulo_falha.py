@@ -31,10 +31,19 @@ class Modulo_Falha(object):
         """
 
         if msg != '':
-            return msg.lower()
+            print('unica msg sofrendo alteracao')
+            msg = msg.lower()
+
+            print('sofrida alteracao: ' + msg)
+
+            return msg
         else:
             mensagem = self.message
             lista_msg = mensagem.split(";")
+            lista_msg.pop()
+
+            print('lista do caraio')
+            print(lista_msg)
 
             if len(lista_msg) == 1:
                 print("FALHA DE UMA UNICA")
@@ -46,7 +55,9 @@ class Modulo_Falha(object):
                 msg_aleatoria = msg_aleatoria.lower()
                 lista_msg.insert(indice_aleatorio, msg_aleatoria)
 
-                return ';'.join(lista_msg)
+                junta_lista = ';'.join(lista_msg)
+
+                return junta_lista + ';'
 
     def falha_2(self):
 
@@ -62,6 +73,7 @@ class Modulo_Falha(object):
         lista_msg = mensagem.split(";")
         lista_msg.pop()
 
+        print('entrou na falha 2')
         print(lista_msg)
 
         if len(lista_msg) == 1:
@@ -69,32 +81,45 @@ class Modulo_Falha(object):
             unica_msg = lista_msg[0]
 
             if unica_msg.split(" ")[0] in lista_adm:
-                alteracao = self.falha_1(unica_msg)
 
-                return ';'.join(lista_msg)
+                print('unica mensagem indo para falha 1 ')
+                alteracao = self.falha_1(unica_msg)
+                lista_msg.pop()
+                lista_msg.append(alteracao)
+
+                junta_lista = ';'.join(lista_msg)
+
+                return junta_lista + ';'
 
             else:
                 alteracao = self.altera_escala(unica_msg)
                 lista_msg.pop()
                 lista_msg.append(alteracao)
+
+                junta_lista = ';'.join(lista_msg)
         
-                return ";".join(lista_msg)
+                return junta_lista + ';'
         else:
             indice_aleatorio = random.randrange(0,len(lista_msg),1)
             msg_aleatoria = lista_msg[indice_aleatorio]
             lista_msg.pop(indice_aleatorio)
 
             if msg_aleatoria.split(" ")[0] in lista_adm:
+
                 alteracao = self.falha_1(msg_aleatoria)
                 lista_msg.insert(indice_aleatorio, alteracao)
+                junta_lista = ';'.join(lista_msg)
 
-                return ';'.join(lista_msg)
+
+                return junta_lista + ';'
 
             else:
                 alteracao = self.altera_escala(msg_aleatoria)
                 lista_msg.insert(indice_aleatorio, alteracao)
 
-                return ";".join(lista_msg)
+                junta_lista = ';'.join(lista_msg)
+
+                return junta_lista + ';'
     
     
     def altera_escala(self, msg):

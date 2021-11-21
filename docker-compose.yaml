@@ -3,6 +3,8 @@ services:
 
   db:
     image: mysql:8
+    volumes:
+      - log_retorno:/var/lib/mysql
     container_name: db
     ports:
         - "3306:3306"
@@ -74,6 +76,8 @@ services:
     ports:
         - 5672:5672
         - 15672:15672
+volumes:
+  log_retorno:
 #     networks:
 #         - rabbitmq_go_net
 
