@@ -38,7 +38,7 @@ export class HttpClientService {
   }
 
   sendMessage(messageToUav) {
-    let url = `${this.javaApiURL}/categorias/uav`;
+    let url = `${this.pythonApiURL}/uav`;
     let json =  JSON.stringify(messageToUav)
     return this.httpClient.post<ResponseMessage>(url, json, {headers:{'Content-Type': 'application/json'}});
   }
