@@ -122,7 +122,12 @@ def falha():
 
         log_retorno(id_uav=content['uav'], msg_uav=mensagem_do_mal, aceito= 1 if response == "ACCEPT" else 0, user=content['user'])
 
-        return jsonify({"data": response}) # Retorna 
+        if response == "ACCEPT":
+            return jsonify({"data": response}) # Retorna 
+        else:
+            response = response+":" + " {}".format(mensagem_do_mal)
+            return jsonify({"data": response})
+
 
 
 if __name__=="__main__":
