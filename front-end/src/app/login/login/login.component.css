@@ -1,0 +1,28 @@
+.container {
+    position: relative;
+    float: left;
+    width: 100%;
+    margin-top: 180px;
+    display: flex;
+    justify-content: center;
+}
+  
+.error-auth {
+    color: red;
+    font-size: 11px;
+}
+
+.login-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+mat-form-field{
+  width: 100%;
+}
+

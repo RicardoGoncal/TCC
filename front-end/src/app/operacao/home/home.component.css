@@ -1,0 +1,132 @@
+/* .container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+} */
+
+.container-mensagem,
+.container-botoes,
+.container-response,
+.container-envio {
+    border: 0.2px solid black;
+    width: 500px;
+}
+
+.container-mensagem,
+.container-botoes,
+.container-right {
+    margin: 30px auto;
+    height: 600px;
+}
+
+.container-response {
+    margin: 0px auto;
+    height: 300px;
+    text-align: center;
+    white-space: nowrap;
+    overflow-y: scroll;
+    overflow: auto;
+    position: relative;
+    text-overflow: ellipsis;
+    Word-wrap: break-Word
+}
+
+.container-envio {
+    margin: 30px auto;
+    height: 270px;
+}
+
+mat-card {
+    width: 300px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+button {
+    background-color: white;
+    width: 50%;
+    margin: 30px;
+    padding: 15px 40px;
+    text-align: center;
+}
+
+.example-button-row {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.row-cards {
+    margin-left: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+
+.button-del {
+    width: 30px;
+    padding: 1px;
+    margin-bottom: 44px;
+}
+
+.mat-form-fields {
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+
+.input-mat {
+    width: 50px;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.selectedMessages {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: large;
+    font-weight: bold;
+}
+
+.reset-messages,
+.send-button,
+.fail-button {
+    margin: 8px 130px;
+    height: 36px;
+    align-items: center;
+    padding: 4px;
+}
+
+.map-container {
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.map {
+    margin: 16px;
+}
+
+.map-buttons {
+    margin: 32px;
+}
+
+.map-buttons mat-form-field {
+    width: 180px;
+    padding: 1px;
+    margin-right: 8px;
+}
+
+.addDestination {
+    width: 100px;
+    height: 38px;
+    padding: 2px;
+}

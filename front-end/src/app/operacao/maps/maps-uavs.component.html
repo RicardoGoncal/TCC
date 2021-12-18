@@ -1,0 +1,19 @@
+<div id="mapa">
+
+    <google-map width="100%" height="800" [options]="options">
+        <map-marker #marker="mapMarker" (mapClick)='openInfoWindow(marker)' [position]='markerPosition'>
+            <map-info-window>
+                Base Fatec para aeronaves não tripuladas.
+            </map-info-window>
+        </map-marker>
+
+        <map-marker [position]='markerPositionDest' *ngFor="let markerPositionDest of markerPositions">
+            <map-info-window>
+                Teste
+            </map-info-window>
+        </map-marker>
+
+        <map-polyline [path]='vertice' *ngFor="let vertice of vertices"></map-polyline>
+    </google-map>
+
+</div>

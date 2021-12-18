@@ -1,0 +1,20 @@
+INSERT into mensagem
+    (id_categoria, mensagem)
+values (1, 'CLIMB TO FL '),
+       (1, 'CLIMB TO AND MAINTAIN '),
+       (3, 'DESCEND TO AND MAINTAIN '),
+       (1, 'IMMEDIATELY CLIMB TO '),
+       (3, 'IMMEDIATELY DESCEND TO '),
+       (1, 'CONTINUE CLIMB TO '),
+       (3, 'CONTINUE DESCENT TO '),
+       (1, 'STOP CLIMB AT '),
+       (3, 'STOP DESCENT AT '),
+       (4, 'REQUEST LEVEL FL '),
+       (4, 'REQUEST LEVEL '),
+       (1, 'WHEN READY CLIMB TO '),
+       (3, 'WHEN READY DESCEND TO '),
+       (2, 'MAINTAIN '),
+       (6, 'DATALINK LOST'),
+       (6, 'DOWNLINK MESSAGE NOT SUPPORTED'),
+       (6, 'MINIMUM FUEL'),
+       (6, 'PRESENT WEATHER');

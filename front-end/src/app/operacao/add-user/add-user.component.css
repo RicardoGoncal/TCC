@@ -1,0 +1,45 @@
+.container {
+    position: relative;
+    width: 300px;
+    margin: 120px auto;
+    display: flex;
+    justify-content: center;
+    border: 0.2px solid black;
+    height: 400px;
+}
+
+.fields {
+    margin-top: 72px;
+    display: block;
+}
+
+.field {
+    margin-bottom: 8px;
+    width: 240px;
+}
+
+.button-add {
+    margin-left: 0px;
+    height: 48px;
+    width: 100%;
+}
+
+.title {
+    text-align: center;
+}
+
+.button-row {
+    margin-left: 16px;
+}
+
+.input-name {
+    width: 300px;
+}
+
+.example-right-align {
+    text-align: right;
+}
+
+mat-form-field {
+    width: 100%;
+}

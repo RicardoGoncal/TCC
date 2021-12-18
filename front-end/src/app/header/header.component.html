@@ -1,0 +1,33 @@
+<p>
+  <mat-toolbar color="primary">
+
+    <a routerLink="/uavs" class="botao-home">
+      <button mat-icon-button> 
+        <mat-icon>home</mat-icon>
+      </button>
+    </a>
+    <span>Uavs controle</span>
+    <div class="header">
+      <div class="botao-home" *ngIf="loginService.isUserLoggedIn()">
+        <a routerLink="/uavs" class="nav-link">Uavs</a>
+      </div>
+      <div class="link-user" *ngIf="loginService.isAdmin() && loginService.isUserLoggedIn()">
+        <a routerLink="/new" class="nav-link ">Novo Usuário</a>
+      </div>
+      <div class="link-user" *ngIf="loginService.isAdmin() && loginService.isUserLoggedIn()">
+        <a routerLink="/maps" class="nav-link ">Mapa de rotas</a>
+      </div>
+      <div class="link-clima" *ngIf="loginService.isUserLoggedIn()">
+        <a routerLink="/clima" class="nav-link ">Clima</a>
+      </div>
+    </div>
+    <div class="botao-logout">
+      <button *ngIf="loginService.isUserLoggedIn()" mat-icon-button class="example-icon favorite-icon"
+        aria-label="Example icon-button with heart icon">
+        <mat-icon>logout</mat-icon>
+        <a routerLink="/logout" class="nav-link">Logout</a>
+      </button>
+    </div>
+
+  </mat-toolbar>
+</p>

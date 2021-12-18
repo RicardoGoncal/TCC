@@ -2,6 +2,8 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "noImplicitAny": false,
+    "strictPropertyInitialization": false,
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
@@ -16,6 +18,7 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "es2020",
+    "strictNullChecks": false,
     "lib": [
       "es2018",
       "dom"

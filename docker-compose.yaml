@@ -1,0 +1,86 @@
+version: "3.2"
+services:
+
+  db:
+    image: mysql:8
+    volumes:
+      - log_retorno:/var/lib/mysql
+    container_name: db
+    ports:
+        - "3306:3306"
+    environment:
+        MYSQL_USER: tcc
+        MYSQL_PASSWORD: tcc
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: cpdlc
+
+  flyway:
+    image: flyway/flyway
+    command: -url=jdbc:mysql://db -schemas=cpdlc -user=tcc -password=tcc -connectRetries=60 migrate
+    volumes:
+      - ./back-java/src/main/resources/db/migration:/flyway/sql
+    depends_on:
+      - db
+      - back_java
+
+  back_java:
+    build:
+      context: ./back-java
+      dockerfile: ./Dockerfile
+    image: server-java:latest
+    container_name: server_java
+    ports:
+      - '8080:8080'
+      - '5005:5005'
+    environment:
+      - ADDITIONAL_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 -Xmx1G -Xms128m -XX:MaxMetaspaceSize=128m
+      - PROFILE=prod
+    depends_on:
+      - db
+    links:
+      - db
+  
+  front_end:
+    build:
+      context: ./front-end
+      dockerfile: ./Dockerfile
+    image: uavfront:latest
+    container_name: uavfront
+    ports: 
+      - "4200:4200"
+    restart: always
+
+  server_envio:
+    build:
+      context: ./back-python
+      dockerfile: ./Dockerfile
+    image: server-envio-python:latest
+    container_name: server-envio-py
+    ports:
+      - "5000:5000"
+    restart: always
+
+  server_uav:
+    build:
+      context: ./back-uav
+      dockerfile: ./Dockerfile
+    image: server-uav-python:latest
+    container_name: server-uav-py
+    ports: 
+      - "8085:8085"
+    restart: always
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    ports:
+        - 5672:5672
+        - 15672:15672
+volumes:
+  log_retorno:
+#     networks:
+#         - rabbitmq_go_net
+
+# networks:
+#   rabbitmq_go_net:
+#     driver: bridge

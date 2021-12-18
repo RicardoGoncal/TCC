@@ -1,0 +1,41 @@
+<div class="button-row">
+    <button color="" mat-raised-button [routerLink]="['/uavs']">
+        <mat-icon>chevron_left</mat-icon> Voltar
+    </button>
+</div>
+<div class="title">
+    <h1>Adicionar Novo Usuario</h1>
+</div>
+
+<form class="container" [formGroup]="usuarioForm" (ngSubmit)="newUsuario(usuarioForm.value)">
+    <div class="fields">
+
+        <div class="field">
+            <mat-form-field appearance="fill">
+                <mat-label>Nome</mat-label>
+                <input matInput placeholder="" [formControl]="nome">
+                <mat-error *ngIf="nome.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="field">
+
+            <mat-form-field appearance="fill">
+                <mat-label>Senha</mat-label>
+                <input matInput [formControl]="senha" [type]="hide ? 'password' : 'text'">
+                <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        
+        <div class="field">
+            <mat-checkbox [formControl]="admin">Admin</mat-checkbox>
+        </div>
+        
+        <div class="field">
+            <button type="submit" class="button-add" mat-raised-button color="primary"
+           >Adicionar</button>
+        </div>
+    </div>
+</form>

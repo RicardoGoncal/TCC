@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-TccApplication<tcc>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.fatec.tcc.TccApplication",
+            "projectName": "tcc",
+            "args": ["--DATABASE_URL=jdbc:mysql://localhost:3306/cpdlc2?createDatabaseIfNotExist=true&serverTimezone=UTC", "--DATABASE_USERNAME=tcc","--DATABASE_PASSWORD=Seformar@21"]
+        }
+    ]
+}
